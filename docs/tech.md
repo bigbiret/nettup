@@ -22,11 +22,13 @@ src/
 ├── layouts/       (felles <head> og sideoppsett)
 ├── styles/        (Tailwind-konfigurasjon)
 └── public/        (statisk innhold: fonter, bilder)
+tests/
+└── e2e/           (E2E smoke-tester)
 ```
 
 Bygg: `npm run build` (Node.js v18+).
 Deploy: GitHub Actions → GitHub Pages.
-Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
+Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
 
 ## 2. Essensielle tillegg
 
@@ -44,40 +46,184 @@ Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
    * Legg `<script type="application/ld+json">…</script>` med JSON-LD i `BaseLayout.astro` for schema.org.
    * Hardkod `<meta>`-tags i `BaseLayout.astro` for tittel, beskrivelse, Open Graph og canonical.
 
-4. **Bildeoptimalisering**
+4. **Lokal business SEO**
+
+   * Legg til LocalBusiness JSON-LD schema for bedrifter med fysisk adresse:
+
+     ```html
+     <script type="application/ld+json">
+     {
+       "@context": "https://schema.org",
+       "@type": "LocalBusiness",
+       "name": "Bedriftsnavn",
+       "address": {
+         "@type": "PostalAddress",
+         "streetAddress": "Gateadresse 123",
+         "addressLocality": "Oslo",
+         "postalCode": "0123",
+         "addressCountry": "NO"
+       },
+       "telephone": "+47 12 34 56 78",
+       "openingHours": "Mo-Fr 09:00-17:00",
+       "url": "https://eksempel.no"
+     }
+     </script>
+     ```
+
+5. **Bildeoptimalisering**
+
+5. **Bildeoptimalisering**
 
    * Bruk Astro sin innebygde `<Image />`-komponent for responsive bilder med lazy loading.
 
-5. **Preload kritiske ressurser**
+6. **Preload kritiske ressurser**
 
-   * I `src/layouts/BaseLayout.astro`:<br>
+   * I `src/layouts/BaseLayout.astro`:
 
      ```html
      <link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin font-display="swap">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      ```
 
-6. **Canonical-tags**
+7. **Canonical-tags**
 
    * I `BaseLayout.astro`, inkluder `<link rel="canonical" href="https://<ditt-domene>/<path>" />`.
 
-7. **Analytics med samtykke**
+8. **Analytics med samtykke**
 
-   * Integrer Plausible ved å legge `<script defer src="https://plausible.io/js/plausible.js" data-domain="<ditt-domene>"></script>` bak cookie-banner.
+   * Bytt ut Plausible med Google Analytics (GA4) og aktiver IP-anonymisering:
 
-8. **CI-basert Lighthouse-sjekk**
+     ```html
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-XXXXXXX', { 'anonymize_ip': true });
+     </script>
+     ```
 
-   * Legg til `lhci autorun` i GitHub Actions. Fail build hvis score < 90.
+   * Implementer en enkel cookie-banner-komponent for GDPR-samtykke. Last først opp analytics-skriptet etter at brukeren har akseptert.
 
-9. **Robust 404-side**
+9. **Dependabot og sikkerhetsskanning**
 
-   * Opprett `public/404.html` med navigasjon tilbake til startsiden og søkefelt.
+   * Aktiver Dependabot i GitHub repo: Settings → Security & analysis → Dependabot security updates.
+   * Legg til `.github/dependabot.yml` for automatiske PR-er på npm-oppdateringer:
+
+     ```yaml
+     version: 2
+     updates:
+       - package-ecosystem: "npm"
+         directory: "/"
+         schedule:
+           interval: "weekly"
+         open-pull-requests-limit: 5
+     ```
+
+   * Kjør `npm audit` i CI for å fange opp sårbarheter før deploy.
+
+10. **E2E "smoke"-testing**
+
+   * Installer Playwright for raske smoke-tester som sjekker at kritiske sider laster korrekt:
+
+     ```javascript
+     // tests/e2e/smoke.spec.js
+     import { test, expect } from '@playwright/test';
+
+     test('homepage loads correctly', async ({ page }) => {
+       await page.goto('/');
+       await expect(page).toHaveTitle(/.*Home.*/);
+       await expect(page.locator('h1')).toBeVisible();
+     });
+
+     test('navigation works', async ({ page }) => {
+       await page.goto('/');
+       await page.click('nav a[href="/about"]');
+       await expect(page).toHaveURL(/.*about.*/);
+     });
+     ```
+
+   * Kjør smoke-tester mot `npm run preview` i CI før deploy for å fange opp byggefeil tidlig.
+
+11. **Moderne kontaktskjema**
+
+    * Bruk Formspree for enkle kontaktskjemaer uten backend:
+
+      ```html
+      <!-- I src/pages/kontakt.astro -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="email">E-post:</label>
+        <input type="email" name="email" required>
+        
+        <label for="message">Melding:</label>
+        <textarea name="message" required></textarea>
+        
+        <input type="hidden" name="_subject" value="Ny henvendelse fra nettside">
+        <input type="hidden" name="_next" value="https://ditt-domene.no/takk">
+        
+        <button type="submit">Send melding</button>
+      </form>
+      ```
+
+    * Legg til spam-beskyttelse med `_gotcha` og validering med `_replyto`.
+
+12. **Innholdsadministrasjon med Decap CMS**
+
+    * Installer Decap CMS for Git-basert innholdsredigering:
+
+      ```bash
+      npm install netlify-cms-app
+      ```
+
+    * Opprett `public/admin/index.html`:
+
+      ```html
+      <!doctype html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Innhold Admin</title>
+      </head>
+      <body>
+        <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+      </body>
+      </html>
+      ```
+
+    * Legg til `public/admin/config.yml` for konfigurasjon:
+
+      ```yaml
+      backend:
+        name: git-gateway
+        branch: main
+
+      media_folder: "public/images"
+      public_folder: "/images"
+
+      collections:
+        - name: "pages"
+          label: "Sider"
+          folder: "src/content/pages"
+          create: true
+          fields:
+            - {label: "Tittel", name: "title", widget: "string"}
+            - {label: "Beskrivelse", name: "description", widget: "text"}
+            - {label: "Innhold", name: "body", widget: "markdown"}
+      ```
+
+    * Aktiver Git Gateway i Netlify (gratis) for autentisering til `/admin`.
+
+13. **CI-basert Lighthouse-sjekk**
+
+    * Legg til `lhci autorun` i GitHub Actions. Fail build hvis score < 90.
 
 ## 3. Ytterligere forbedringer
 
 1. **CSP & HSTS via Cloudflare**
 
-   * Pek DNS til Cloudflare Free Plan og aktiver HSTS (max-age=31536000; includeSubDomains; preload).
+   * Pek DNS til Cloudflare Free Plan og aktiver HSTS (`max-age=31536000; includeSubDomains; preload`).
    * Legg til CSP i Cloudflare Transform Rules: `default-src 'self'; script-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self';`.
 
 2. **CDN for statisk innhold**
@@ -111,41 +257,6 @@ Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
 > **Malkonklusjon:**
 > Denne malen har alle valg forhåndsdefinert for enkel implementering av en rask, sikker og vedlikeholdsvennlig statisk nettside på GitHub Pages med Astro og Tailwind. (middels innsats)
 
-For å løfte sikkerhet, robusthet og kvalitetssikring ytterligere kan du vurdere å implementere:
-
-1. **Content Security Policy (CSP)**
-   Definer en streng CSP-header for å blokkere uautoriserte skript og innhold (f.eks. `default-src 'self'; script-src 'self' https://cdn.exempel.com;`).
-
-2. **HTTP Strict-Transport-Security (HSTS)**
-   Tvinger HTTPS-trafikk og beskytter mot protocol downgrade (f.eks. `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`).
-
-3. **CDN for statisk innhold**
-   Plasser GitHub Pages bak Cloudflare/Netlify/Fastly for global edge-caching, økt ytelse og fleksible header-regler.
-
-4. **Font-subsetting & `font-display: swap`**
-   Generer subset-fonter (latin osv.), legg i `public/fonts` og bruk `font-display: swap` for å unngå FOIT/FOUT.
-
-5. **Strukturerte data (JSON-LD)**
-   Legg til schema.org-markup som `<script type="application/ld+json">…</script>` i layout for rich snippets.
-
-6. **CSS-treeshaking**
-   Sørg for at Tailwind fjerner ubrukt CSS i produksjonsbuild ved å konfigurere `content` i `tailwind.config.cjs`.
-
-7. **Accessibility-audits i CI**
-   Kjør axe-core CLI eller Lighthouse-axe i GitHub Actions og stopp build ved alvorlige tilgjengelighetsfeil.
-
-8. **Enkel PWA-fallback**
-   Legg til en service worker (f.eks. via `workbox-build`) for caching av nøkkelfiler, og gi brukere offline-fallback.
-
-9. **Internasjonalisering (i18n)**
-   Bruk Astro-i18n-plugin eller `src/pages/[lang]/…`-struktur med `hreflang`-tags for flerspråklig innhold.
-
-10. **Visuelle regresjonstester**
-    Integrer Percy.io eller Chromatic i CI for å fange visuelle UI-regresjoner automatisk.
-
-> **Oppsummert:**
-> Ved å inkludere disse tiltakene får du en sikker, rask og søkemotor-vennlig statisk side med svært liten ekstra konfigurasjon på GitHub Pages.
-
 ## 4. Oppsett av package.json
 
 Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/dev-skript og nødvendige avhengigheter:
@@ -165,7 +276,10 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
     "lint": "eslint . --ext .js,.ts,.astro",
     "format": "prettier --write .",
     "test": "vitest",
-    "check": "npm run lint && npm run format -- --check && npm run test"
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "audit": "npm audit --audit-level moderate",
+    "check": "npm run lint && npm run format -- --check && npm run test && npm run audit"
   },
   "dependencies": {
     "astro": "^3.0.0",
@@ -176,7 +290,8 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
     "@astrojs/sitemap": "^0.2.0",
     "astro-robots-txt": "^1.0.0",
     "@astrojs/i18n": "^1.0.0",
-    "plausible-tracker": "^1.4.0"
+    "workbox-build": "^6.5.0",
+    "netlify-cms-app": "^2.15.0"
   },
   "devDependencies": {
     "eslint": "^8.0.0",
@@ -184,7 +299,7 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
     "prettier": "^2.8.0",
     "vitest": "^0.25.0",
     "axe-core": "^4.4.0",
-    "workbox-build": "^6.5.0"
+    "@playwright/test": "^1.40.0"
   },
   "browserslist": [
     ">0.2%",
@@ -194,4 +309,4 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
 }
 ```
 
-Dette oppsettet dekker bygg- og utviklingsflyt, linting, formatering, testing, bilde-/SEO-plugin’er, PWA-fallback og CI-audits.
+Dette oppsettet dekker bygg- og utviklingsflyt, linting, formatering, testing, E2E smoke-tester, sikkerhetsskanning, kontaktskjemaer, innholdsadministrasjon, bilde-/SEO-plugin'er, PWA-fallback og CI-audits.
