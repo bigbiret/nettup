@@ -4,4 +4,9 @@ dist/
 *.config.js
 *.config.cjs
 *.config.mjs
-src/pages/api/ 
+src/pages/api/
+# Exclude auto-generated test and report files
+playwright-report/
+test-results/
+# Exclude build artifacts
+build/

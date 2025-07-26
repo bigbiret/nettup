@@ -12,7 +12,7 @@
     "preview": "astro preview",
     "lint": "eslint . --ext .js,.ts,.astro",
     "format": "prettier --write .",
-    "test": "vitest",
+    "test": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "audit": "npm audit --audit-level moderate",
