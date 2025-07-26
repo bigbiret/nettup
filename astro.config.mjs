@@ -16,13 +16,13 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    assets: 'assets'
+    assets: 'assets',
   },
   vite: {
     build: {
       rollupOptions: {
-        external: ['workbox-build']
-      }
-    }
-  }
-}); 
+        external: ['workbox-build'],
+      },
+    },
+  },
+});

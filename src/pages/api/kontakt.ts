@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
-    
+
     const contactData = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -14,19 +14,19 @@ export const POST: APIRoute = async ({ request }) => {
       message: formData.get('message'),
       consent: formData.get('consent'),
       timestamp: new Date().toISOString(),
-      source: 'kontakt_form'
+      source: 'kontakt_form',
     };
 
     // Valider required fields
     if (!contactData.name || !contactData.email || !contactData.message) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Navn, e-post og melding er påkrevd' 
+        JSON.stringify({
+          success: false,
+          error: 'Navn, e-post og melding er påkrevd',
         }),
-        { 
+        {
           status: 400,
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
         }
       );
     }
@@ -35,13 +35,13 @@ export const POST: APIRoute = async ({ request }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(contactData.email as string)) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Ugyldig e-postadresse' 
+        JSON.stringify({
+          success: false,
+          error: 'Ugyldig e-postadresse',
         }),
-        { 
+        {
           status: 400,
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
         }
       );
     }
@@ -51,7 +51,7 @@ export const POST: APIRoute = async ({ request }) => {
     // - CRM-system (HubSpot, Salesforce, etc.)
     // - Database (Supabase, PlanetScale, etc.)
     // - Slack/Discord notifications
-    
+
     console.log('Ny kontaktforespørsel:', contactData);
 
     // Eksempel på e-post sending (implementer med din foretrukne tjeneste)
@@ -64,26 +64,26 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'Takk for din henvendelse! Vi kommer tilbake til deg innen 24 timer.' 
+      JSON.stringify({
+        success: true,
+        message:
+          'Takk for din henvendelse! Vi kommer tilbake til deg innen 24 timer.',
       }),
-      { 
+      {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       }
     );
-
   } catch (error) {
     console.error('API error:', error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: 'Noe gikk galt. Prøv igjen senere.' 
+      JSON.stringify({
+        success: false,
+        error: 'Noe gikk galt. Prøv igjen senere.',
       }),
-      { 
+      {
         status: 500,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       }
     );
   }
@@ -127,4 +127,4 @@ async function sendContactEmail(data: any) {
 async function saveToCRM(data: any) {
   // Eksempel implementasjon med HubSpot/Salesforce/etc.
   console.log('Data ville blitt lagret i CRM:', data);
-} 
+}
