@@ -1,0 +1,445 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+---
+
+<BaseLayout 
+  title="Pakker & Priser - Nettup" 
+  description="Se våre transparente priser og pakker for webutvikling. Fra grunnleggende nettsider til avanserte e-handelsløsninger - vi har en pakke som passer deg."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Pakker & <span class="text-blue-600">Priser</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          [Spesifikasjon kommer] - Transparente priser og fleksible pakker som passer din bedrifts behov
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro tekst -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          [Spesifikasjon kommer] - Vi tilbyr faste prispakker som gjør det enkelt for deg å budsjettere og planlegge. 
+          Alle våre pakker inkluderer alt du trenger for å komme online, og du kan alltid oppgradere underveis.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pakkekort -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Bronze -->
+        <div class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Bronze</h3>
+            <div class="text-4xl font-bold text-gray-900 mb-2">
+              [Pris kommer] <span class="text-lg font-normal text-gray-600">kr</span>
+            </div>
+            <div class="text-sm text-green-600 font-medium mb-6">
+              Spar 15% vs. enkeltkjøp
+            </div>
+            <p class="text-gray-600 mb-6">Perfect for små bedrifter som trenger en enkel, profesjonell nettside.</p>
+            
+            <!-- Funksjonsliste -->
+            <ul class="text-left space-y-3 mb-8">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Opptil 5 sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Responsivt design</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Kontaktskjema</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - SEO-optimalisering</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - 1 år hosting inkludert</span>
+              </li>
+            </ul>
+            
+            <CTAButton text="Velg Bronze" href="/kontakt?pakke=bronze" class="w-full" />
+          </div>
+        </div>
+
+        <!-- Silver (Most Popular) -->
+        <div class="bg-white rounded-lg shadow-md p-8 relative border-2 border-blue-500 hover:shadow-lg transition-shadow duration-200">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">Mest populær</span>
+          </div>
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Silver</h3>
+            <div class="text-4xl font-bold text-gray-900 mb-2">
+              [Pris kommer] <span class="text-lg font-normal text-gray-600">kr</span>
+            </div>
+            <div class="text-sm text-green-600 font-medium mb-6">
+              Spar 20% vs. enkeltkjøp
+            </div>
+            <p class="text-gray-600 mb-6">Perfect for voksende bedrifter som trenger mer funksjonalitet og innholdsstyring.</p>
+            
+            <!-- Funksjonsliste -->
+            <ul class="text-left space-y-3 mb-8">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Opptil 15 sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - CMS for innholdsstyring</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Bloggfunksjonalitet</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Google Analytics</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - 2 timer opplæring</span>
+              </li>
+            </ul>
+            
+            <CTAButton text="Velg Silver" href="/kontakt?pakke=silver" class="w-full" />
+          </div>
+        </div>
+
+        <!-- Gold -->
+        <div class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Gold</h3>
+            <div class="text-4xl font-bold text-gray-900 mb-2">
+              [Pris kommer] <span class="text-lg font-normal text-gray-600">kr</span>
+            </div>
+            <div class="text-sm text-green-600 font-medium mb-6">
+              Spar 25% vs. enkeltkjøp
+            </div>
+            <p class="text-gray-600 mb-6">Perfect for etablerte bedrifter som trenger e-handel og avanserte funksjoner.</p>
+            
+            <!-- Funksjonsliste -->
+            <ul class="text-left space-y-3 mb-8">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Ubegrenset sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - E-handelsløsning</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Betalingsintegrasjon</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Avansert SEO</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - 4 timer opplæring</span>
+              </li>
+            </ul>
+            
+            <CTAButton text="Velg Gold" href="/kontakt?pakke=gold" class="w-full" />
+          </div>
+        </div>
+
+        <!-- Platinum -->
+        <div class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Platinum</h3>
+            <div class="text-4xl font-bold text-gray-900 mb-2">
+              [Pris kommer] <span class="text-lg font-normal text-gray-600">kr</span>
+            </div>
+            <div class="text-sm text-green-600 font-medium mb-6">
+              Spar 30% vs. enkeltkjøp
+            </div>
+            <p class="text-gray-600 mb-6">For enterprise-kunder som trenger tilpassede løsninger og prioritert support.</p>
+            
+            <!-- Funksjonsliste -->
+            <ul class="text-left space-y-3 mb-8">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Tilpasset løsning</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - API-integrasjoner</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Prioritert support</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Dedikert kontaktperson</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-gray-700">[Spesifikasjon kommer] - Ubegrenset opplæring</span>
+              </li>
+            </ul>
+            
+            <CTAButton text="Velg Platinum" href="/kontakt?pakke=platinum" class="w-full" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sammenligning tabell -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Detaljert sammenligning
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          [Spesifikasjon kommer] - Se nøyaktig hva som er inkludert i hver pakke
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900">Funksjon</th>
+              <th class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900">Bronze</th>
+              <th class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900">Silver</th>
+              <th class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900">Gold</th>
+              <th class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900">Platinum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">Antall sider</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">Opptil 5</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">Opptil 15</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">Ubegrenset</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">Ubegrenset</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">Responsivt design</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">CMS / Innholdsstyring</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-400">-</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">E-handelsløsning</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-400">-</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-400">-</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">Opplæring (timer)</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">1</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">2</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">4</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-gray-700">Ubegrenset</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternative CTA -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Ikke sikker på hvilken pakke som passer?
+      </h2>
+      <p class="text-xl text-gray-600 mb-8">
+        [Spesifikasjon kommer] - La oss ta en uforpliktende prat om dine behov og anbefale den beste løsningen
+      </p>
+      <CTAButton 
+        text="Eller få et gratis prisoverslag"
+        onclick="openCalendly()"
+        size="lg"
+        variant="outline"
+      />
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Ofte stilte spørsmål
+        </h2>
+        <p class="text-lg text-gray-600">
+          [Spesifikasjon kommer] - Her finner du svar på de vanligste spørsmålene om våre pakker
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <!-- FAQ 1 -->
+        <div class="border-b border-gray-200 pb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Hva er inkludert i hosting og vedlikehold?</h3>
+          <p class="text-gray-600">
+            [Spesifikasjon kommer] - Alle våre pakker inkluderer sikker hosting, automatiske sikkerhetskopier, 
+            sikkerhetsopdateringer og grunnleggende teknisk support i det første året.
+          </p>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border-b border-gray-200 pb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Kan jeg oppgradere pakken min senere?</h3>
+          <p class="text-gray-600">
+            [Spesifikasjon kommer] - Ja, du kan oppgradere til en høyere pakke når som helst. 
+            Vi beregner kun differansen i pris fra det du allerede har betalt.
+          </p>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border-b border-gray-200 pb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Hvor lang tid tar det å lage nettsiden?</h3>
+          <p class="text-gray-600">
+            [Spesifikasjon kommer] - Leveringstiden varierer fra 2-3 uker for Bronze-pakken 
+            til 6-8 uker for Platinum-pakken, avhengig av kompleksitet og dine tilbakemeldinger.
+          </p>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Hva skjer etter første år?</h3>
+          <p class="text-gray-600">
+            [Spesifikasjon kommer] - Etter første år tilbyr vi fleksible vedlikeholdspakker 
+            fra [pris kommer] kr/måned som inkluderer hosting, sikkerhetskopier og support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-16 lg:py-24 bg-blue-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Klar for å komme i gang?
+      </h2>
+      <p class="text-xl mb-8">
+        [Spesifikasjon kommer] - Velg pakken som passer deg, eller la oss hjelpe deg med å finne den perfekte løsningen
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <CTAButton 
+          text="Book gratis konsultasjon" 
+          variant="outline"
+          size="lg"
+          onclick="openCalendly()"
+          class="border-white text-white hover:bg-white hover:text-blue-600"
+        />
+        <CTAButton 
+          text="Kontakt oss direkte" 
+          href="/kontakt"
+          variant="secondary"
+          size="lg"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+ 

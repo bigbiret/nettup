@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Personvernerklæring - Nettup" 
+  description="Les vår personvernerklæring og lær hvordan vi behandler dine personopplysninger i henhold til GDPR."
+>
+  <!-- Hero Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        Personvernerklæring
+      </h1>
+      <p class="text-lg text-gray-600">
+        Sist oppdatert: {new Date().toLocaleDateString('no-NO')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none">
+        
+        <h2>1. Behandlingsansvarlig</h2>
+        <p>
+          Nettup AS er behandlingsansvarlig for behandlingen av personopplysninger som beskrevet i denne personvernerklæringen.
+        </p>
+        <p>
+          <strong>Kontaktinformasjon:</strong><br/>
+          Nettup AS<br/>
+          Kongens gate 15<br/>
+          0153 Oslo<br/>
+          E-post: personvern@nettup.no<br/>
+          Telefon: +47 22 12 34 56
+        </p>
+
+        <h2>2. Hvilke personopplysninger samler vi inn?</h2>
+        <p>Vi samler inn følgende kategorier av personopplysninger:</p>
+        
+        <h3>2.1 Kontaktskjema</h3>
+        <ul>
+          <li>Navn</li>
+          <li>E-postadresse</li>
+          <li>Telefonnummer (valgfritt)</li>
+          <li>Bedriftsnavn (valgfritt)</li>
+          <li>Melding/henvendelse</li>
+        </ul>
+
+        <h3>2.2 Nyhetsbrev</h3>
+        <ul>
+          <li>Navn</li>
+          <li>E-postadresse</li>
+        </ul>
+
+        <h3>2.3 Automatisk innsamling</h3>
+        <ul>
+          <li>IP-adresse</li>
+          <li>Nettleserinformasjon</li>
+          <li>Besøksdata (via Google Analytics)</li>
+          <li>Cookies</li>
+        </ul>
+
+        <h2>3. Formål med behandlingen</h2>
+        <p>Vi behandler personopplysninger for følgende formål:</p>
+        <ul>
+          <li>Besvare henvendelser og gi kundeservice</li>
+          <li>Sende nyhetsbrev og markedsføringsinformasjon (med samtykke)</li>
+          <li>Forbedre vår nettside og tjenester</li>
+          <li>Oppfylle juridiske forpliktelser</li>
+          <li>Gjennomføre markedsanalyse og statistikk</li>
+        </ul>
+
+        <h2>4. Rettslig grunnlag</h2>
+        <p>Behandlingen av personopplysninger baserer seg på:</p>
+        <ul>
+          <li><strong>Samtykke:</strong> For nyhetsbrev og markedsføring</li>
+          <li><strong>Berettiget interesse:</strong> For kundeservice og forretningsutvikling</li>
+          <li><strong>Oppfyllelse av kontrakt:</strong> For leveranse av tjenester</li>
+        </ul>
+
+        <h2>5. Deling av personopplysninger</h2>
+        <p>Vi deler ikke personopplysninger med tredjeparter, med unntak av:</p>
+        <ul>
+          <li>Tjenesteleverandører som hjelper oss med drift av nettsiden (Google Analytics, e-posttjenester)</li>
+          <li>Juridiske krav eller myndighetsforespørsler</li>
+        </ul>
+
+        <h2>6. Lagring av personopplysninger</h2>
+        <p>Vi lagrer personopplysninger så lenge det er nødvendig for å oppfylle formålene beskrevet i denne erklæringen:</p>
+        <ul>
+          <li><strong>Kontaktskjema:</strong> 3 år fra siste kontakt</li>
+          <li><strong>Nyhetsbrev:</strong> Til du melder deg av</li>
+          <li><strong>Analytiske data:</strong> 26 måneder (Google Analytics standard)</li>
+        </ul>
+
+        <h2>7. Dine rettigheter</h2>
+        <p>Du har følgende rettigheter i henhold til GDPR:</p>
+        <ul>
+          <li><strong>Rett til innsyn:</strong> Få informasjon om hvilke opplysninger vi har om deg</li>
+          <li><strong>Rett til retting:</strong> Korrigere feilaktige opplysninger</li>
+          <li><strong>Rett til sletting:</strong> Få slettet dine personopplysninger</li>
+          <li><strong>Rett til begrensning:</strong> Begrense behandlingen av dine opplysninger</li>
+          <li><strong>Rett til dataportabilitet:</strong> Få dine data i et maskinlesbart format</li>
+          <li><strong>Rett til å trekke tilbake samtykke:</strong> For behandling basert på samtykke</li>
+        </ul>
+
+        <h2>8. Cookies</h2>
+        <p>Vår nettside bruker cookies for å:</p>
+        <ul>
+          <li>Forbedre brukeropplevelsen</li>
+          <li>Analysere nettsidetrafikk</li>
+          <li>Tilpasse innhold og annonser</li>
+        </ul>
+        <p>Du kan administrere cookie-innstillinger i din nettleser.</p>
+
+        <h2>9. Sikkerhet</h2>
+        <p>
+          Vi implementerer passende tekniske og organisatoriske tiltak for å beskytte dine personopplysninger mot uautorisert tilgang, endring, avsløring eller ødeleggelse.
+        </p>
+
+        <h2>10. Endringer i personvernerklæringen</h2>
+        <p>
+          Vi kan oppdatere denne personvernerklæringen fra tid til annen. Vesentlige endringer vil bli kommunisert via e-post eller prominente meldinger på nettsiden.
+        </p>
+
+        <h2>11. Kontakt oss</h2>
+        <p>
+          Hvis du har spørsmål om denne personvernerklæringen eller ønsker å utøve dine rettigheter, kan du kontakte oss:
+        </p>
+        <p>
+          E-post: personvern@nettup.no<br/>
+          Telefon: +47 22 12 34 56<br/>
+          Post: Nettup AS, Kongens gate 15, 0153 Oslo
+        </p>
+        
+        <p>
+          Du har også rett til å klage til Datatilsynet hvis du mener vi behandler dine personopplysninger i strid med personvernlovgivningen.
+        </p>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout> 
