@@ -5,7 +5,7 @@ test('homepage loads correctly', async ({ page }) => {
   await expect(page).toHaveTitle(/.*Nettup.*/);
   await expect(page.locator('main h1').first()).toBeVisible();
   await expect(page.locator('main h1').first()).toContainText(
-    'Vi lager nettsider som'
+    'Nettsider som'
   );
 });
 
