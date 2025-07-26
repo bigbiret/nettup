@@ -12,7 +12,8 @@ function isActive(path: string): boolean {
 }
 
 function getNavLinkClasses(path: string): string {
-  const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
+  const baseClasses =
+    'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200';
   if (isActive(path)) {
     return `${baseClasses} bg-blue-600 text-white`;
   }
@@ -20,7 +21,7 @@ function getNavLinkClasses(path: string): string {
 }
 
 function getMobileNavLinkClasses(path: string): string {
-  const baseClasses = "block px-3 py-2 rounded-md text-base font-medium";
+  const baseClasses = 'block px-3 py-2 rounded-md text-base font-medium';
   if (isActive(path)) {
     return `${baseClasses} bg-blue-600 text-white`;
   }
@@ -42,31 +43,15 @@ function getMobileNavLinkClasses(path: string): string {
       <!-- Desktop Menu -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-4">
-          <a
-            href="/"
-            class={getNavLinkClasses('/')}
-            >Hjem</a
-          >
-          <a
-            href="/tjenester"
-            class={getNavLinkClasses('/tjenester')}
+          <a href="/" class={getNavLinkClasses('/')}>Hjem</a>
+          <a href="/tjenester" class={getNavLinkClasses('/tjenester')}
             >Tjenester</a
           >
-          <a
-            href="/pakker"
-            class={getNavLinkClasses('/pakker')}
+          <a href="/pakker" class={getNavLinkClasses('/pakker')}
             >Pakker & Priser</a
           >
-          <a
-            href="/case"
-            class={getNavLinkClasses('/case')}
-            >Prosjekter</a
-          >
-          <a
-            href="/om-oss"
-            class={getNavLinkClasses('/om-oss')}
-            >Om oss</a
-          >
+          <a href="/case" class={getNavLinkClasses('/case')}>Prosjekter</a>
+          <a href="/om-oss" class={getNavLinkClasses('/om-oss')}>Om oss</a>
           <a
             href="/kontakt"
             class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
@@ -121,31 +106,15 @@ function getMobileNavLinkClasses(path: string): string {
   <!-- Mobile menu -->
   <div class="md:hidden hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-      <a
-        href="/"
-        class={getMobileNavLinkClasses('/')}
-        >Hjem</a
-      >
-      <a
-        href="/tjenester"
-        class={getMobileNavLinkClasses('/tjenester')}
+      <a href="/" class={getMobileNavLinkClasses('/')}>Hjem</a>
+      <a href="/tjenester" class={getMobileNavLinkClasses('/tjenester')}
         >Tjenester</a
       >
-      <a
-        href="/pakker"
-        class={getMobileNavLinkClasses('/pakker')}
+      <a href="/pakker" class={getMobileNavLinkClasses('/pakker')}
         >Pakker & Priser</a
       >
-      <a
-        href="/case"
-        class={getMobileNavLinkClasses('/case')}
-        >Prosjekter</a
-      >
-      <a
-        href="/om-oss"
-        class={getMobileNavLinkClasses('/om-oss')}
-        >Om oss</a
-      >
+      <a href="/case" class={getMobileNavLinkClasses('/case')}>Prosjekter</a>
+      <a href="/om-oss" class={getMobileNavLinkClasses('/om-oss')}>Om oss</a>
       <a
         href="/kontakt"
         class="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"

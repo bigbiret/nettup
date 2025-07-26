@@ -548,7 +548,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
         showMessage(result.error, 'error');
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      // Handle form submission error
       showMessage('Noe gikk galt. Prøv igjen senere.', 'error');
     } finally {
       // Reset button

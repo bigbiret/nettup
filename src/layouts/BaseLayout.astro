@@ -26,15 +26,15 @@ const { title, description } = Astro.props;
     <!-- Optimized font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-      media="print" 
+      media="print"
       onload="this.media='all'"
     />
     <noscript>
-      <link 
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -62,8 +62,11 @@ const { title, description } = Astro.props;
       property="twitter:description"
       content={description || 'Nettup - moderne webutvikling som konverterer'}
     />
-    <meta property="twitter:image" content={new URL('/favicon.svg', Astro.url)} />
-    
+    <meta
+      property="twitter:image"
+      content={new URL('/favicon.svg', Astro.url)}
+    />
+
     <!-- Performance optimization -->
     <link rel="dns-prefetch" href="//assets.calendly.com" />
   </head>
@@ -77,28 +80,23 @@ const { title, description } = Astro.props;
     <!-- Calendly Widget Script -->
     <script>
       // Lazy load Calendly only when needed
-      window.openCalendly = function() {
+      window.openCalendly = function () {
         if (typeof Calendly !== 'undefined') {
           Calendly.initPopupWidget({
-            url: 'https://calendly.com/dittselskap/konsultasjon'
+            url: 'https://calendly.com/dittselskap/konsultasjon',
           });
         } else {
           // Load Calendly script dynamically
           const script = document.createElement('script');
           script.src = 'https://assets.calendly.com/assets/external/widget.js';
-          script.onload = function() {
+          script.onload = function () {
             Calendly.initPopupWidget({
-              url: 'https://calendly.com/dittselskap/konsultasjon'
+              url: 'https://calendly.com/dittselskap/konsultasjon',
             });
           };
           document.head.appendChild(script);
         }
       };
-    </script>
-
-    <!-- Debug logging -->
-    <script>
-      console.log('BaseLayout loaded');
     </script>
   </body>
 </html>

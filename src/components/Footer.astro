@@ -130,8 +130,7 @@
           url: 'https://calendly.com/dittselskap/konsultasjon',
         });
       } else {
-        console.warn('Calendly script not loaded');
-        // Fallback: redirect to contact page
+        // Fallback: redirect to contact page if Calendly script not loaded
         window.location.href = '/kontakt';
       }
     }
@@ -143,10 +142,5 @@
       script.async = true;
       document.head.appendChild(script);
     }
-  </script>
-
-  <!-- Console logging for debug -->
-  <script>
-    console.log('Footer component loaded');
   </script>
 </footer>

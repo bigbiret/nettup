@@ -59,15 +59,15 @@ Dette er en komplett utviklerguide for et statisk nettsted bygget med Astro, Tai
 
 ## 🔧 Scripts (Eksakt implementering)
 
-| Kommando              | Implementering                                  |
-| --------------------- | ----------------------------------------------- |
-| `npm run dev`         | `astro dev`                                     |
-| `npm run build`       | `astro build`                                   |
-| `npm run preview`     | `astro preview`                                 |
+| Kommando              | Implementering                                 |
+| --------------------- | ---------------------------------------------- |
+| `npm run dev`         | `astro dev`                                    |
+| `npm run build`       | `astro build`                                  |
+| `npm run preview`     | `astro preview`                                |
 | `npm run lint`        | `eslint . --ext .js,.ts,.astro`                |
 | `npm run format`      | `prettier --write .`                           |
-| `npm run test`        | `vitest run`                                    |
-| `npm run test:e2e`    | `playwright test`                               |
+| `npm run test`        | `vitest run`                                   |
+| `npm run test:e2e`    | `playwright test`                              |
 | `npm run test:e2e:ui` | `playwright test --ui`                         |
 | `npm run audit`       | `npm audit --audit-level moderate`             |
 | `npm run check`       | `lint + format --check + test + audit` (kjede) |
@@ -529,6 +529,7 @@ jobs:
 ## 🎯 Resultater
 
 Med dette oppsettet får du:
+
 - **Automatisk testing**: Unit + E2E i 3 browsere
 - **Kvalitetssikring**: Linting, formatting, accessibility, performance
 - **Sikkerhet**: Dependabot + npm audit

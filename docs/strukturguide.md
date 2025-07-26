@@ -58,30 +58,31 @@ my-project/
 
 ### **Root-nivå konfigurasjoner**
 
-| Fil                     | Ansvar                                    |
-| ----------------------- | ----------------------------------------- |
-| `package.json`          | Dependencies, scripts, Node.js versjon   |
-| `astro.config.mjs`      | Astro plugins, build settings, SEO       |
-| `tailwind.config.cjs`   | CSS utility classes, design tokens       |
-| `postcss.config.cjs`    | CSS preprocessing (Tailwind + autoprefixer) |
-| `.eslintrc.cjs`         | Code linting rules, Astro + TS parsers   |
-| `.prettierrc.json`      | Code formatting, Astro plugin            |
-| `vitest.config.js`      | Unit testing med happy-dom               |
-| `playwright.config.js`  | E2E testing, multi-browser               |
-| `lighthouserc.cjs`      | Performance requirements (≥90 score)     |
+| Fil                    | Ansvar                                      |
+| ---------------------- | ------------------------------------------- |
+| `package.json`         | Dependencies, scripts, Node.js versjon      |
+| `astro.config.mjs`     | Astro plugins, build settings, SEO          |
+| `tailwind.config.cjs`  | CSS utility classes, design tokens          |
+| `postcss.config.cjs`   | CSS preprocessing (Tailwind + autoprefixer) |
+| `.eslintrc.cjs`        | Code linting rules, Astro + TS parsers      |
+| `.prettierrc.json`     | Code formatting, Astro plugin               |
+| `vitest.config.js`     | Unit testing med happy-dom                  |
+| `playwright.config.js` | E2E testing, multi-browser                  |
+| `lighthouserc.cjs`     | Performance requirements (≥90 score)        |
 
 ### **GitHub-spesifikke filer**
 
-| Fil                          | Ansvar                               |
-| ---------------------------- | ------------------------------------ |
-| `.github/workflows/ci.yml`   | 4-step CI/CD pipeline                |
-| `.github/dependabot.yml`     | Ukentlige sikkerhetsopdateringer     |
+| Fil                        | Ansvar                           |
+| -------------------------- | -------------------------------- |
+| `.github/workflows/ci.yml` | 4-step CI/CD pipeline            |
+| `.github/dependabot.yml`   | Ukentlige sikkerhetsopdateringer |
 
 ---
 
 ## 📦 Kritiske avhengigheter
 
 ### **Core Astro**
+
 ```json
 "astro": "^5.12.3"
 "@astrojs/tailwind": "^5.0.0"
@@ -90,6 +91,7 @@ my-project/
 ```
 
 ### **CSS & Styling**
+
 ```json
 "tailwindcss": "^3.4.0"
 "postcss": "^8.4.0"
@@ -97,6 +99,7 @@ my-project/
 ```
 
 ### **Testing infrastruktur**
+
 ```json
 "@playwright/test": "^1.40.0"     // E2E multi-browser
 "vitest": "^3.2.4"               // Unit testing
@@ -105,6 +108,7 @@ my-project/
 ```
 
 ### **Code quality**
+
 ```json
 "eslint": "^8.57.0"
 "eslint-plugin-astro": "^0.30.0"
@@ -115,6 +119,7 @@ my-project/
 ```
 
 ### **PWA-ready**
+
 ```json
 "workbox-build": "^7.0.0"        // Service worker (klar for implementering)
 ```
@@ -124,6 +129,7 @@ my-project/
 ## 🏗️ Src-struktur anbefalinger
 
 ### **components/ organisering**
+
 ```
 components/
 ├── ui/                    # Basis UI-elementer
@@ -141,6 +147,7 @@ components/
 ```
 
 ### **pages/ routing patterns**
+
 ```
 pages/
 ├── index.astro            # Hjemmeside (/)
@@ -159,6 +166,7 @@ pages/
 ```
 
 ### **layouts/ hierarchy**
+
 ```
 layouts/
 ├── BaseLayout.astro       # Root layout (HTML, head, SEO)
@@ -172,6 +180,7 @@ layouts/
 ## 🧪 Testing struktur
 
 ### **tests/e2e/ organisering**
+
 ```
 tests/e2e/
 ├── smoke.spec.js          # Kritiske brukerflyter
@@ -181,6 +190,7 @@ tests/e2e/
 ```
 
 ### **Unit testing pattern**
+
 ```
 src/
 ├── components/
@@ -196,6 +206,7 @@ src/
 ## 🚀 Scripts workflow
 
 ### **Utvikling**
+
 ```bash
 npm run dev                # Start dev server
 npm run build              # Production build
@@ -203,6 +214,7 @@ npm run preview            # Preview production build
 ```
 
 ### **Kvalitetssikring**
+
 ```bash
 npm run lint               # ESLint kodesjekk
 npm run format             # Prettier formatering
@@ -217,6 +229,7 @@ npm run check              # Komplett kvalitetssjekk
 ## 🔍 Anbefalte IDE extensions
 
 ### **VS Code**
+
 - Astro (`astro-build.astro-vscode`)
 - ESLint (`dbaeumer.vscode-eslint`)
 - Prettier (`esbenp.prettier-vscode`)
@@ -224,6 +237,7 @@ npm run check              # Komplett kvalitetssjekk
 - Playwright Test (`ms-playwright.playwright`)
 
 ### **Konfigurasjoner (.vscode/settings.json)**
+
 ```json
 {
   "editor.formatOnSave": true,
@@ -240,6 +254,7 @@ npm run check              # Komplett kvalitetssjekk
 ## 📋 Sjekkliste for nytt prosjekt
 
 ### **Infrastruktur setup**
+
 - [ ] Kopier alle konfigurasjonsfiler
 - [ ] Installer dependencies fra package.json
 - [ ] Konfigurer GitHub repository settings
@@ -247,6 +262,7 @@ npm run check              # Komplett kvalitetssjekk
 - [ ] Oppdater site URL i astro.config.mjs
 
 ### **Utviklingsverifikasjon**
+
 - [ ] `npm run dev` starter uten feil
 - [ ] `npm run lint` passerer
 - [ ] `npm run format -- --check` passerer
@@ -255,6 +271,7 @@ npm run check              # Komplett kvalitetssjekk
 - [ ] CI/CD pipeline kjører uten feil
 
 ### **Deployment**
+
 - [ ] GitHub Pages aktivert
 - [ ] Custom domain konfigurert (hvis aktuelt)
 - [ ] Lighthouse score ≥90 på alle kategorier
@@ -265,20 +282,21 @@ npm run check              # Komplett kvalitetssjekk
 ## 🎯 Tips for vedlikehold
 
 ### **Ukentlig**
+
 - Gjennomgå Dependabot PRs
 - Kjør `npm run check` lokalt
 - Monitor CI/CD pipeline status
 
 ### **Månedlig**
+
 - Gjennomgå test coverage
 - Oppdater documentation
 - Vurder nye ESLint rules eller Prettier konfigurasjoner
 
 ### **Kvartalsvis**
+
 - Oppdater major dependencies
 - Gjennomgå Lighthouse recommendations
 - Vurder nye Astro features/plugins
 
 Denne strukturen sikrer skalerbarhet, vedlikeholdbarhet og høy kodekvalitet gjennom hele prosjektets livssyklus.
-
-

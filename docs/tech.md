@@ -5,16 +5,19 @@ Dette dokumentet beskriver den eksemplariske infrastrukturen for moderne statisk
 ## 1. Hovedteknologier og arkitektur
 
 **Astro 5.x**
+
 - Statisk sidegenerering (SSG) for innholdsdrevne sider
 - "Islands"-arkitektur for selektiv interaktivitet
 - Innebygd bildeoptimalisering
 - Content Collections for type-sikret innholdsadministrasjon
 
 **Tailwind CSS**
+
 - Utility-first CSS med design tokens definert i `tailwind.config.cjs`
 - Purging av ubrukt CSS via content-scanning
 
 **Prosjektstruktur**
+
 ```
 src/
 ├── pages/         (filbasert routing + API endpoints)
@@ -38,48 +41,51 @@ tests/
 ## 2. Testing infrastruktur
 
 ### **Vitest (Unit testing)**
+
 ```javascript
 // vitest.config.js
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    environment: 'happy-dom',      // Rask DOM simulation
-    globals: true,                 // describe, it, expect globalt
+    environment: 'happy-dom', // Rask DOM simulation
+    globals: true, // describe, it, expect globalt
     exclude: ['**/tests/e2e/**', '**/node_modules/**'],
-    passWithNoTests: true,         // Ikke feil hvis ingen tester
+    passWithNoTests: true, // Ikke feil hvis ingen tester
   },
 });
 ```
 
 **Fordeler med happy-dom:**
+
 - 10x raskere enn jsdom
 - Bedre Astro-kompatibilitet
 - Mindre memory footprint
 
 ### **Playwright (E2E testing)**
+
 ```javascript
 // playwright.config.js
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,    // Forhindre test.only i CI
+  forbidOnly: !!process.env.CI, // Forhindre test.only i CI
   retries: process.env.CI ? 2 : 0, // Retry kun på CI
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  
+
   use: {
-    baseURL: 'http://localhost:4321',  // Astro dev server
-    trace: 'on-first-retry',           // Debug på feilverminskning
+    baseURL: 'http://localhost:4321', // Astro dev server
+    trace: 'on-first-retry', // Debug på feilverminskning
   },
-  
+
   // Multi-browser testing
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] }},
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] }},
-    { name: 'webkit', use: { ...devices['Desktop Safari'] }},
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
   ],
-  
+
   // Automatisk dev server start
   webServer: {
     command: 'npm run dev',
@@ -90,6 +96,7 @@ export default defineConfig({
 ```
 
 **E2E smoke test pattern:**
+
 ```javascript
 // tests/e2e/smoke.spec.js
 import { test, expect } from '@playwright/test';
@@ -110,6 +117,7 @@ test('navigation works', async ({ page }) => {
 ## 3. Code quality infrastructure
 
 ### **ESLint (Advanced Astro + TypeScript)**
+
 ```javascript
 // .eslintrc.cjs
 module.exports = {
@@ -141,24 +149,26 @@ module.exports = {
   ],
   globals: {
     // Define globals for external libraries
-    gtag: 'readonly',           // Google Analytics
-    dataLayer: 'readonly',      // GA4 data layer
-    Calendly: 'readonly',       // Calendly widget
+    gtag: 'readonly', // Google Analytics
+    dataLayer: 'readonly', // GA4 data layer
+    Calendly: 'readonly', // Calendly widget
   },
   rules: {
-    'no-unused-vars': 'off',    // TypeScript håndterer dette
-    'no-undef': 'off',          // TypeScript håndterer dette
-    'no-console': 'warn',       // Tillatt, men advarsler
+    'no-unused-vars': 'off', // TypeScript håndterer dette
+    'no-undef': 'off', // TypeScript håndterer dette
+    'no-console': 'warn', // Tillatt, men advarsler
   },
 };
 ```
 
 **Kritiske features:**
+
 - Separate parsere for `.astro` og `.ts` filer
 - TypeScript ESLint integration
 - Global declarations for external scripts
 
 ### **Prettier (Astro formatering)**
+
 ```json
 // .prettierrc.json
 {
@@ -172,7 +182,7 @@ module.exports = {
     {
       "files": "*.astro",
       "options": {
-        "parser": "astro"          // Astro-spesifikk formatering
+        "parser": "astro" // Astro-spesifikk formatering
       }
     }
   ]
@@ -182,6 +192,7 @@ module.exports = {
 ## 4. CI/CD Pipeline (4-step workflow)
 
 ### **Job 1: lint-and-test** (Foundation)
+
 ```yaml
 jobs:
   lint-and-test:
@@ -192,45 +203,48 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - run: npm ci
-      - run: npm run lint           # ESLint
-      - run: npm run format -- --check  # Prettier check
-      - run: npm run test           # Vitest unit tests
-      - run: npm run audit          # Security vulnerabilities
-      
+      - run: npm run lint # ESLint
+      - run: npm run format -- --check # Prettier check
+      - run: npm run test # Vitest unit tests
+      - run: npm run audit # Security vulnerabilities
+
       - run: npx playwright install --with-deps
       - run: npm run build
-      - run: npm run test:e2e       # Playwright multi-browser
+      - run: npm run test:e2e # Playwright multi-browser
 ```
 
 ### **Job 2 & 3: Parallel quality audits**
-```yaml
-  accessibility-audit:
-    needs: lint-and-test
-    steps:
-      - run: npm run preview &
-      - run: sleep 10
-      - run: npx @axe-core/cli http://localhost:4321 --exit
 
-  lighthouse-audit:
-    needs: lint-and-test
-    steps:
-      - run: npm install -g @lhci/cli@0.12.x
-      - run: lhci autorun           # Performance ≥90 score
+```yaml
+accessibility-audit:
+  needs: lint-and-test
+  steps:
+    - run: npm run preview &
+    - run: sleep 10
+    - run: npx @axe-core/cli http://localhost:4321 --exit
+
+lighthouse-audit:
+  needs: lint-and-test
+  steps:
+    - run: npm install -g @lhci/cli@0.12.x
+    - run: lhci autorun # Performance ≥90 score
 ```
 
 ### **Job 4: Deploy** (Only on main)
+
 ```yaml
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: [lint-and-test, accessibility-audit, lighthouse-audit]
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+deploy:
+  if: github.ref == 'refs/heads/main'
+  needs: [lint-and-test, accessibility-audit, lighthouse-audit]
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
 ```
 
 **Pipeline features:**
+
 - **Parallellisering**: Accessibility + Lighthouse kjører simultant
 - **Fail-fast**: Deploy kun hvis alle tester passerer
 - **Artifacts**: Test results lagres i 30 dager
@@ -239,6 +253,7 @@ jobs:
 ## 5. Performance & quality requirements
 
 ### **Lighthouse CI (Strict scoring)**
+
 ```javascript
 // lighthouserc.cjs
 module.exports = {
@@ -246,7 +261,7 @@ module.exports = {
     collect: {
       startServerCommand: 'npm run preview',
       url: ['http://localhost:4321'],
-      numberOfRuns: 3,              // Konsistenssjekk
+      numberOfRuns: 3, // Konsistenssjekk
     },
     assert: {
       assertions: {
@@ -264,6 +279,7 @@ module.exports = {
 ```
 
 **Scoring rationale:**
+
 - **90% threshold**: Industri-standard for produksjon
 - **3 runs**: Eliminerer flakiness
 - **Error level**: Hard requirement, feiler build hvis ikke oppfylt
@@ -271,6 +287,7 @@ module.exports = {
 ## 6. Security & maintenance automation
 
 ### **Dependabot (Smart oppdateringer)**
+
 ```yaml
 # .github/dependabot.yml
 version: 2
@@ -278,23 +295,25 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'          # Balanse mellom sikkerhet og stabilitet
-    open-pull-requests-limit: 5   # Ikke overvelm med PRs
+      interval: 'weekly' # Balanse mellom sikkerhet og stabilitet
+    open-pull-requests-limit: 5 # Ikke overvelm med PRs
     reviewers:
       - 'owner'
     assignees:
       - 'owner'
     commit-message:
-      prefix: 'deps'              # Konsistent commit historikk
+      prefix: 'deps' # Konsistent commit historikk
       include: 'scope'
 ```
 
 **npm audit integration:**
+
 ```bash
 npm run audit                    # Moderate level som default
 ```
 
 **Rationale:**
+
 - Weekly updates balanserer sikkerhet med stabilitet
 - Alle Dependabot PRs kjører full CI pipeline
 - Moderate audit level fanger kritiske sårbarheter uten false positives
@@ -302,6 +321,7 @@ npm run audit                    # Moderate level som default
 ## 7. Astro-spesifkke optimaliseringer
 
 ### **astro.config.mjs (Production-ready)**
+
 ```javascript
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
@@ -313,14 +333,14 @@ export default defineConfig({
   base: '/',
   integrations: [
     tailwind(),
-    sitemap(),                    // Automatisk sitemap generering
+    sitemap(), // Automatisk sitemap generering
     robotsTxt({
       sitemap: 'https://your-domain.github.io/sitemap-index.xml',
     }),
   ],
-  output: 'static',               // Statisk generering
+  output: 'static', // Statisk generering
   build: {
-    assets: 'assets',             // Asset organisering
+    assets: 'assets', // Asset organisering
   },
   vite: {
     build: {
@@ -333,13 +353,14 @@ export default defineConfig({
 ```
 
 ### **Tailwind optimalisering**
+
 ```javascript
 // tailwind.config.cjs
 module.exports = {
   content: [
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
     './public/**/*.html',
-  ],                              // Komplett purging scope
+  ], // Komplett purging scope
   theme: {
     extend: {
       // Custom design tokens
@@ -358,7 +379,7 @@ module.exports = {
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18"                 // GitHub Actions kompatibilitet
+    "node": ">=18" // GitHub Actions kompatibilitet
   },
   "scripts": {
     "dev": "astro dev",
@@ -366,7 +387,7 @@ module.exports = {
     "preview": "astro preview",
     "lint": "eslint . --ext .js,.ts,.astro",
     "format": "prettier --write .",
-    "test": "vitest run",          // Non-interactive for CI
+    "test": "vitest run", // Non-interactive for CI
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "audit": "npm audit --audit-level moderate",
@@ -380,7 +401,7 @@ module.exports = {
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
-    "workbox-build": "^7.0.0"      // PWA-ready
+    "workbox-build": "^7.0.0" // PWA-ready
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
@@ -401,11 +422,13 @@ module.exports = {
 ## 9. Developer Experience optimaliseringer
 
 ### **Fast feedback loops:**
+
 - `npm run dev` - Hot reload på alle endringer
 - `npm run test` - Rask unit tests med happy-dom
 - `npm run check` - Komplett kvalitetssjekk lokalt
 
 ### **Pre-commit workflow:**
+
 ```bash
 npm run lint                    # Fang syntax errors
 npm run format -- --check      # Verify consistent formatting
@@ -414,6 +437,7 @@ npm run build                   # Build verification
 ```
 
 ### **IDE integration:**
+
 - ESLint extension for live linting
 - Prettier extension for format-on-save
 - Astro extension for syntax highlighting
@@ -421,6 +445,7 @@ npm run build                   # Build verification
 ## 10. Deployment & monitoring
 
 ### **GitHub Pages setup:**
+
 1. Repository Settings → Pages → Source: "GitHub Actions"
 2. Security & analysis → Aktiver Dependabot alerts
 3. Branch protection rules (anbefalt):
@@ -428,6 +453,7 @@ npm run build                   # Build verification
    - Require up-to-date branches
 
 ### **Performance monitoring:**
+
 - Lighthouse CI kjører på hver deploy
 - GitHub Actions artifacts for debugging
 - axe-core accessibility rapporter
@@ -436,6 +462,7 @@ npm run build                   # Build verification
 Denne infrastrukturen leverer enterprise-grade kvalitetssikring for statiske nettsider. Utviklere får øyeblikkelig feedback på code quality, security og performance, mens automatiserte pipelines sikrer at kun høykvalitets kode når produksjon.
 
 **Neste steg for nye prosjekter:**
+
 1. Kopier alle konfigurasjonsfiler
 2. Installer dependencies fra package.json
 3. Konfigurer GitHub repository settings
