@@ -1,276 +1,364 @@
-# Teknisk oversikt
+# Teknisk infrastruktur - Implementasjonsguide
 
-Dette dokumentet fungerer som en mal for oppsett av en moderne, rask og responsiv statisk nettside med Astro, Tailwind CSS og GitHub Pages.
+Dette dokumentet beskriver den eksemplariske infrastrukturen for moderne statisk nettside med Astro, Tailwind CSS og GitHub Pages. Alle konfigurasjoner er basert på faktisk implementering.
 
-## 1. Hovedteknologier og prosjektstruktur
+## 1. Hovedteknologier og arkitektur
 
 **Astro 5.x**
-
-- Statisk sidegenerering (SSG) for innholdsdrevne sider.
-- "Islands"-arkitektur for selektiv interaktivitet.
-- Innebygd bildeoptimalisering og i18n.
-- Content Collections for type-sikret innholdsadministrasjon.
+- Statisk sidegenerering (SSG) for innholdsdrevne sider
+- "Islands"-arkitektur for selektiv interaktivitet
+- Innebygd bildeoptimalisering
+- Content Collections for type-sikret innholdsadministrasjon
 
 **Tailwind CSS**
-
-- Utility-first CSS med design tokens definert i `tailwind.config.cjs`.
+- Utility-first CSS med design tokens definert i `tailwind.config.cjs`
+- Purging av ubrukt CSS via content-scanning
 
 **Prosjektstruktur**
-
 ```
 src/
-├── pages/         (filbasert routing)
+├── pages/         (filbasert routing + API endpoints)
 ├── components/    (gjenbrukbare UI-komponenter)
 ├── layouts/       (felles <head> og sideoppsett)
-├── styles/        (Tailwind-konfigurasjon)
-├── content/       (markdown-filer og innholdstyper)
-└── public/        (statisk innhold: fonter, bilder)
+├── styles/        (global CSS + Tailwind)
+└── content/       (markdown-filer, klar for Collections)
+
 tests/
-└── e2e/           (E2E smoke-tester)
+└── e2e/           (Playwright smoke-tester)
+
+.github/
+├── workflows/     (CI/CD pipeline)
+└── dependabot.yml (automatiske oppdateringer)
 ```
 
-Bygg: `npm run build` (Node.js v18+).
-Deploy: GitHub Actions → GitHub Pages.
-Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
+**Bygg**: `npm run build` (Node.js v18+)
+**Deploy**: GitHub Actions → GitHub Pages
+**Mål**: Lighthouse ≥ 90 på alle kategorier, WCAG 2.1 AA
 
-## 2. Essensielle tillegg
+## 2. Testing infrastruktur
 
-1. **HTTPS**
-   - Bruk GitHub Pages sin innebygde HTTPS (gratis, automatisk).
+### **Vitest (Unit testing)**
+```javascript
+// vitest.config.js
+import { defineConfig } from 'vitest/config';
 
-2. **Sitemap & robots.txt**
-   - Installer `@astrojs/sitemap` og generer `sitemap.xml` i `astro.config.mjs`.
-   - Legg til `robots.txt` manuelt i `public/` som peker til `sitemap.xml`.
+export default defineConfig({
+  test: {
+    environment: 'happy-dom',      // Rask DOM simulation
+    globals: true,                 // describe, it, expect globalt
+    exclude: ['**/tests/e2e/**', '**/node_modules/**'],
+    passWithNoTests: true,         // Ikke feil hvis ingen tester
+  },
+});
+```
 
-3. **Dynamiske SEO-metatagger**
-   - Legg `<script type="application/ld+json">…</script>` med JSON-LD i `BaseLayout.astro` for schema.org.
-   - Hardkod `<meta>`-tags i `BaseLayout.astro` for tittel, beskrivelse, Open Graph og canonical.
+**Fordeler med happy-dom:**
+- 10x raskere enn jsdom
+- Bedre Astro-kompatibilitet
+- Mindre memory footprint
 
-4. **Lokal business SEO**
-   - Legg til LocalBusiness JSON-LD schema for bedrifter med fysisk adresse:
+### **Playwright (E2E testing)**
+```javascript
+// playwright.config.js
+export default defineConfig({
+  testDir: './tests/e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,    // Forhindre test.only i CI
+  retries: process.env.CI ? 2 : 0, // Retry kun på CI
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+  
+  use: {
+    baseURL: 'http://localhost:4321',  // Astro dev server
+    trace: 'on-first-retry',           // Debug på feilverminskning
+  },
+  
+  // Multi-browser testing
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] }},
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] }},
+    { name: 'webkit', use: { ...devices['Desktop Safari'] }},
+  ],
+  
+  // Automatisk dev server start
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:4321',
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
 
-     ```html
-     <script type="application/ld+json">
-       {
-         "@context": "https://schema.org",
-         "@type": "LocalBusiness",
-         "name": "Bedriftsnavn",
-         "address": {
-           "@type": "PostalAddress",
-           "streetAddress": "Gateadresse 123",
-           "addressLocality": "Oslo",
-           "postalCode": "0123",
-           "addressCountry": "NO"
-         },
-         "telephone": "+47 12 34 56 78",
-         "openingHours": "Mo-Fr 09:00-17:00",
-         "url": "https://eksempel.no"
-       }
-     </script>
-     ```
+**E2E smoke test pattern:**
+```javascript
+// tests/e2e/smoke.spec.js
+import { test, expect } from '@playwright/test';
 
-5. **Bildeoptimalisering**
-   - Bruk Astro sin innebygde `<Image />`-komponent for responsive bilder med lazy loading.
+test('homepage loads correctly', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle(/.*YourSite.*/);
+  await expect(page.locator('main h1').first()).toBeVisible();
+});
 
-6. **Preload kritiske ressurser**
-   - I `src/layouts/BaseLayout.astro`:
+test('navigation works', async ({ page }) => {
+  await page.goto('/');
+  await page.click('nav a[href="/about"]');
+  await expect(page).toHaveURL(/.*about.*/);
+});
+```
 
-     ```html
-     <link
-       rel="preload"
-       href="/fonts/Inter.woff2"
-       as="font"
-       type="font/woff2"
-       crossorigin
-       font-display="swap"
-     />
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-     ```
+## 3. Code quality infrastructure
 
-7. **Canonical-tags**
-   - I `BaseLayout.astro`, inkluder `<link rel="canonical" href="https://<ditt-domene>/<path>" />`.
+### **ESLint (Advanced Astro + TypeScript)**
+```javascript
+// .eslintrc.cjs
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:astro/recommended'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  overrides: [
+    {
+      // Astro filer med TypeScript parser
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro'],
+      },
+    },
+    {
+      // Dedikert TypeScript parser
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+    },
+  ],
+  globals: {
+    // Define globals for external libraries
+    gtag: 'readonly',           // Google Analytics
+    dataLayer: 'readonly',      // GA4 data layer
+    Calendly: 'readonly',       // Calendly widget
+  },
+  rules: {
+    'no-unused-vars': 'off',    // TypeScript håndterer dette
+    'no-undef': 'off',          // TypeScript håndterer dette
+    'no-console': 'warn',       // Tillatt, men advarsler
+  },
+};
+```
 
-8. **Analytics med samtykke**
-   - Bytt ut Plausible med Google Analytics (GA4) og aktiver IP-anonymisering:
+**Kritiske features:**
+- Separate parsere for `.astro` og `.ts` filer
+- TypeScript ESLint integration
+- Global declarations for external scripts
 
-     ```html
-     <!-- Google Analytics -->
-     <script
-       async
-       src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
-     ></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag() {
-         dataLayer.push(arguments);
-       }
-       gtag('js', new Date());
-       gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
-     </script>
-     ```
-
-   - Implementer en enkel cookie-banner-komponent for GDPR-samtykke. Last først opp analytics-skriptet etter at brukeren har akseptert.
-
-9. **Dependabot og sikkerhetsskanning**
-   - Aktiver Dependabot i GitHub repo: Settings → Security & analysis → Dependabot security updates.
-   - Legg til `.github/dependabot.yml` for automatiske PR-er på npm-oppdateringer:
-
-     ```yaml
-     version: 2
-     updates:
-       - package-ecosystem: 'npm'
-         directory: '/'
-         schedule:
-           interval: 'weekly'
-         open-pull-requests-limit: 5
-     ```
-
-   - Kjør `npm audit` i CI for å fange opp sårbarheter før deploy.
-
-10. **E2E "smoke"-testing**
-
-- Installer Playwright for raske smoke-tester som sjekker at kritiske sider laster korrekt:
-
-  ```javascript
-  // tests/e2e/smoke.spec.js
-  import { test, expect } from '@playwright/test';
-
-  test('homepage loads correctly', async ({ page }) => {
-    await page.goto('/');
-    await expect(page).toHaveTitle(/.*Home.*/);
-    await expect(page.locator('h1')).toBeVisible();
-  });
-
-  test('navigation works', async ({ page }) => {
-    await page.goto('/');
-    await page.click('nav a[href="/about"]');
-    await expect(page).toHaveURL(/.*about.*/);
-  });
-  ```
-
-- Kjør smoke-tester mot `npm run preview` i CI før deploy for å fange opp byggefeil tidlig.
-
-11. **Moderne kontaktskjema**
-    - Bruk Formspree for enkle kontaktskjemaer uten backend:
-
-      ```html
-      <!-- I src/pages/kontakt.astro -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <label for="email">E-post:</label>
-        <input type="email" name="email" required />
-
-        <label for="message">Melding:</label>
-        <textarea name="message" required></textarea>
-
-        <input
-          type="hidden"
-          name="_subject"
-          value="Ny henvendelse fra nettside"
-        />
-        <input type="hidden" name="_next" value="https://ditt-domene.no/takk" />
-
-        <button type="submit">Send melding</button>
-      </form>
-      ```
-
-    - Legg til spam-beskyttelse med `_gotcha` og validering med `_replyto`.
-
-12. **Innholdsadministrasjon med Astro Content Collections**
-    - Definer innholdstyper i `src/content/config.ts`:
-
-      ```typescript
-      import { defineCollection, z } from 'astro:content';
-
-      const pages = defineCollection({
-        type: 'content',
-        schema: z.object({
-          title: z.string(),
-          description: z.string().optional(),
-          publishDate: z.date(),
-        }),
-      });
-
-      export const collections = {
-        pages,
-      };
-      ```
-
-    - Legg til innhold i `src/content/pages/`:
-
-      ```markdown
-      ---
-      title: 'Min Side'
-      description: 'En beskrivelse av siden'
-      publishDate: 2024-01-01
-      ---
-
-      # Min Side
-
-      Dette er innholdet på siden.
-      ```
-
-    - Bruk innholdet i Astro-komponenter:
-
-      ```astro
-      ---
-      import { getCollection } from 'astro:content';
-      const pages = await getCollection('pages');
-      ---
-
-      {
-        pages.map((page) => (
-          <>
-            <h2>{page.data.title}</h2>
-            <p>{page.data.description}</p>
-          </>
-        ))
+### **Prettier (Astro formatering)**
+```json
+// .prettierrc.json
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"          // Astro-spesifikk formatering
       }
-      ```
+    }
+  ]
+}
+```
 
-13. **CI-basert Lighthouse-sjekk**
-    - Legg til `lhci autorun` i GitHub Actions. Fail build hvis score < 90.
+## 4. CI/CD Pipeline (4-step workflow)
 
-## 3. Ytterligere forbedringer
+### **Job 1: lint-and-test** (Foundation)
+```yaml
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - run: npm ci
+      - run: npm run lint           # ESLint
+      - run: npm run format -- --check  # Prettier check
+      - run: npm run test           # Vitest unit tests
+      - run: npm run audit          # Security vulnerabilities
+      
+      - run: npx playwright install --with-deps
+      - run: npm run build
+      - run: npm run test:e2e       # Playwright multi-browser
+```
 
-1. **CSP & HSTS via Cloudflare**
-   - Pek DNS til Cloudflare Free Plan og aktiver HSTS (`max-age=31536000; includeSubDomains; preload`).
-   - Legg til CSP i Cloudflare Transform Rules: `default-src 'self'; script-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self';`.
+### **Job 2 & 3: Parallel quality audits**
+```yaml
+  accessibility-audit:
+    needs: lint-and-test
+    steps:
+      - run: npm run preview &
+      - run: sleep 10
+      - run: npx @axe-core/cli http://localhost:4321 --exit
 
-2. **CDN for statisk innhold**
-   - Bruk Cloudflare som edge-cache for GitHub Pages uten ekstra konfigurasjon i koden.
+  lighthouse-audit:
+    needs: lint-and-test
+    steps:
+      - run: npm install -g @lhci/cli@0.12.x
+      - run: lhci autorun           # Performance ≥90 score
+```
 
-3. **Font-subsetting**
-   - Generer subset-fonter med `google-fonts-downloader` CLI, plasser i `public/fonts`, bruk `font-display: swap`.
+### **Job 4: Deploy** (Only on main)
+```yaml
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: [lint-and-test, accessibility-audit, lighthouse-audit]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+```
 
-4. **CSS-treeshaking**
-   - Konfigurer `content` i `tailwind.config.cjs` med alle `.astro` og `.js` for å fjerne ubrukt CSS.
+**Pipeline features:**
+- **Parallellisering**: Accessibility + Lighthouse kjører simultant
+- **Fail-fast**: Deploy kun hvis alle tester passerer
+- **Artifacts**: Test results lagres i 30 dager
+- **Security**: Dependabot PRs kjører samme pipeline
 
-5. **Accessibility-audit i CI**
-   - Legg til `npx axe-core` i GitHub Actions for å feile build ved kritiske ARIA-feil.
+## 5. Performance & quality requirements
 
-6. **PWA-fallback**
-   - Legg til service worker med `workbox-build` i `astro.config.mjs` for caching av HTML, CSS og JS.
+### **Lighthouse CI (Strict scoring)**
+```javascript
+// lighthouserc.cjs
+module.exports = {
+  ci: {
+    collect: {
+      startServerCommand: 'npm run preview',
+      url: ['http://localhost:4321'],
+      numberOfRuns: 3,              // Konsistenssjekk
+    },
+    assert: {
+      assertions: {
+        'categories:performance': ['error', { minScore: 0.9 }],
+        'categories:accessibility': ['error', { minScore: 0.9 }],
+        'categories:best-practices': ['error', { minScore: 0.9 }],
+        'categories:seo': ['error', { minScore: 0.9 }],
+      },
+    },
+    upload: {
+      target: 'temporary-public-storage',
+    },
+  },
+};
+```
 
-7. **Internasjonalisering (i18n)**
-   - Bruk Astro sin innebygde i18n-støtte og konfigurer `src/pages/[lang]/...` med `hreflang`-tagger.
+**Scoring rationale:**
+- **90% threshold**: Industri-standard for produksjon
+- **3 runs**: Eliminerer flakiness
+- **Error level**: Hard requirement, feiler build hvis ikke oppfylt
 
-8. **Visuelle regresjonstester**
-   - Integrer Percy ved å kjøre visuell test mot deployet URL i GitHub Actions.
+## 6. Security & maintenance automation
 
-> **Malkonklusjon:**
-> Denne malen har alle valg forhåndsdefinert for enkel implementering av en rask, sikker og vedlikeholdsvennlig statisk nettside på GitHub Pages med Astro 5.x og Tailwind. Prosjektet er optimalisert for enkelhet, sikkerhet og ytelse uten unødvendig kompleksitet.
+### **Dependabot (Smart oppdateringer)**
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'          # Balanse mellom sikkerhet og stabilitet
+    open-pull-requests-limit: 5   # Ikke overvelm med PRs
+    reviewers:
+      - 'owner'
+    assignees:
+      - 'owner'
+    commit-message:
+      prefix: 'deps'              # Konsistent commit historikk
+      include: 'scope'
+```
 
-## 4. Oppsett av package.json
+**npm audit integration:**
+```bash
+npm run audit                    # Moderate level som default
+```
 
-Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/dev-skript og nødvendige avhengigheter:
+**Rationale:**
+- Weekly updates balanserer sikkerhet med stabilitet
+- Alle Dependabot PRs kjører full CI pipeline
+- Moderate audit level fanger kritiske sårbarheter uten false positives
+
+## 7. Astro-spesifkke optimaliseringer
+
+### **astro.config.mjs (Production-ready)**
+```javascript
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
+import robotsTxt from 'astro-robots-txt';
+
+export default defineConfig({
+  site: 'https://your-domain.github.io',
+  base: '/',
+  integrations: [
+    tailwind(),
+    sitemap(),                    // Automatisk sitemap generering
+    robotsTxt({
+      sitemap: 'https://your-domain.github.io/sitemap-index.xml',
+    }),
+  ],
+  output: 'static',               // Statisk generering
+  build: {
+    assets: 'assets',             // Asset organisering
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['workbox-build'], // PWA-ready dependency
+      },
+    },
+  },
+});
+```
+
+### **Tailwind optimalisering**
+```javascript
+// tailwind.config.cjs
+module.exports = {
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './public/**/*.html',
+  ],                              // Komplett purging scope
+  theme: {
+    extend: {
+      // Custom design tokens
+    },
+  },
+  plugins: [],
+};
+```
+
+## 8. Package.json (Komplett setup)
 
 ```json
 {
-  "name": "mitt-prosjekt",
+  "name": "my-project",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18"
+    "node": ">=18"                 // GitHub Actions kompatibilitet
   },
   "scripts": {
     "dev": "astro dev",
@@ -278,34 +366,78 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
     "preview": "astro preview",
     "lint": "eslint . --ext .js,.ts,.astro",
     "format": "prettier --write .",
-    "test": "vitest",
+    "test": "vitest run",          // Non-interactive for CI
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "audit": "npm audit --audit-level moderate",
     "check": "npm run lint && npm run format -- --check && npm run test && npm run audit"
   },
   "dependencies": {
-    "astro": "^5.12.3",
-    "@astrojs/tailwind": "^5.0.0",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0",
     "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "astro": "^5.12.3",
     "astro-robots-txt": "^1.0.0",
-    "workbox-build": "^7.0.0"
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "workbox-build": "^7.0.0"      // PWA-ready
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "axe-core": "^4.8.0",
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^0.30.0",
+    "happy-dom": "^18.0.1",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.12.0",
-    "vitest": "^3.2.4",
-    "axe-core": "^4.8.0",
-    "@playwright/test": "^1.40.0",
-    "happy-dom": "^18.0.1"
+    "vitest": "^3.2.4"
   },
   "browserslist": [">0.2%", "not dead", "not op_mini all"]
 }
 ```
 
-Dette oppsettet dekker bygg- og utviklingsflyt, linting, formatering, testing, E2E smoke-tester, sikkerhetsskanning, kontaktskjemaer, type-sikker innholdsadministrasjon, bilde-/SEO-plugin'er, PWA-fallback og CI-audits.
+## 9. Developer Experience optimaliseringer
+
+### **Fast feedback loops:**
+- `npm run dev` - Hot reload på alle endringer
+- `npm run test` - Rask unit tests med happy-dom
+- `npm run check` - Komplett kvalitetssjekk lokalt
+
+### **Pre-commit workflow:**
+```bash
+npm run lint                    # Fang syntax errors
+npm run format -- --check      # Verify consistent formatting
+npm run test                    # Unit test verification
+npm run build                   # Build verification
+```
+
+### **IDE integration:**
+- ESLint extension for live linting
+- Prettier extension for format-on-save
+- Astro extension for syntax highlighting
+
+## 10. Deployment & monitoring
+
+### **GitHub Pages setup:**
+1. Repository Settings → Pages → Source: "GitHub Actions"
+2. Security & analysis → Aktiver Dependabot alerts
+3. Branch protection rules (anbefalt):
+   - Require status checks to pass
+   - Require up-to-date branches
+
+### **Performance monitoring:**
+- Lighthouse CI kjører på hver deploy
+- GitHub Actions artifacts for debugging
+- axe-core accessibility rapporter
+
+**Malkonklusjon:**
+Denne infrastrukturen leverer enterprise-grade kvalitetssikring for statiske nettsider. Utviklere får øyeblikkelig feedback på code quality, security og performance, mens automatiserte pipelines sikrer at kun høykvalitets kode når produksjon.
+
+**Neste steg for nye prosjekter:**
+1. Kopier alle konfigurasjonsfiler
+2. Installer dependencies fra package.json
+3. Konfigurer GitHub repository settings
+4. Tilpass site URL i astro.config.mjs
+5. Kjør `npm run check` for å verifisere setup

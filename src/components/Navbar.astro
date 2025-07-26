@@ -1,5 +1,31 @@
 ---
-// No script needed for this component
+const currentPath = Astro.url.pathname;
+
+function isActive(path: string): boolean {
+  if (path === '/' && currentPath === '/') {
+    return true;
+  }
+  if (path !== '/' && currentPath.startsWith(path)) {
+    return true;
+  }
+  return false;
+}
+
+function getNavLinkClasses(path: string): string {
+  const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
+  if (isActive(path)) {
+    return `${baseClasses} bg-blue-600 text-white`;
+  }
+  return `${baseClasses} text-gray-700 hover:text-blue-600`;
+}
+
+function getMobileNavLinkClasses(path: string): string {
+  const baseClasses = "block px-3 py-2 rounded-md text-base font-medium";
+  if (isActive(path)) {
+    return `${baseClasses} bg-blue-600 text-white`;
+  }
+  return `${baseClasses} text-gray-700 hover:text-blue-600`;
+}
 ---
 
 <nav class="bg-white shadow-lg sticky top-0 z-50">
@@ -18,27 +44,27 @@
         <div class="ml-10 flex items-baseline space-x-4">
           <a
             href="/"
-            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            class={getNavLinkClasses('/')}
             >Hjem</a
           >
           <a
             href="/tjenester"
-            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            class={getNavLinkClasses('/tjenester')}
             >Tjenester</a
           >
           <a
             href="/pakker"
-            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            class={getNavLinkClasses('/pakker')}
             >Pakker & Priser</a
           >
           <a
             href="/case"
-            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            class={getNavLinkClasses('/case')}
             >Prosjekter</a
           >
           <a
             href="/om-oss"
-            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            class={getNavLinkClasses('/om-oss')}
             >Om oss</a
           >
           <a
@@ -97,38 +123,33 @@
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
       <a
         href="/"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        class={getMobileNavLinkClasses('/')}
         >Hjem</a
       >
       <a
         href="/tjenester"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        class={getMobileNavLinkClasses('/tjenester')}
         >Tjenester</a
       >
       <a
         href="/pakker"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        class={getMobileNavLinkClasses('/pakker')}
         >Pakker & Priser</a
       >
       <a
         href="/case"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        class={getMobileNavLinkClasses('/case')}
         >Prosjekter</a
       >
       <a
         href="/om-oss"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        class={getMobileNavLinkClasses('/om-oss')}
         >Om oss</a
       >
       <a
         href="/kontakt"
         class="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
         >Kontakt</a
-      >
-      <a
-        href="#"
-        class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
-        >Portfolio</a
       >
     </div>
   </div>

@@ -1,6 +1,6 @@
 # Prosjektoppsett: Astro + Tailwind + GitHub Pages
 
-Dette er en mal-README for et statisk nettsted bygget med Astro, Tailwind CSS og deployet på GitHub Pages. Følg stegene under for å komme raskt i gang.
+Dette er en komplett utviklerguide for et statisk nettsted bygget med Astro, Tailwind CSS og deployet på GitHub Pages. Følg stegene under for å replikere den eksemplariske infrastrukturen.
 
 ---
 
@@ -10,167 +10,530 @@ Dette er en mal-README for et statisk nettsted bygget med Astro, Tailwind CSS og
 - **CSS:** Tailwind CSS (utility-first)
 - **Bygg:** Node.js v18+
 - **Deploy:** GitHub Pages via GitHub Actions
-- **CI/Audit:** Lighthouse CI, axe-core
-- **Testing:** Vitest (enhetstester) + Playwright (E2E smoke-tester)
+- **Linting:** ESLint med Astro + TypeScript support
+- **Formatering:** Prettier med Astro plugin
+- **Testing:** Vitest (enhetstester med happy-dom) + Playwright (E2E multi-browser)
+- **CI/CD:** Lighthouse CI (≥90 score), axe-core accessibility audit
 - **Sikkerhet:** Dependabot, npm audit, automatiske sikkerhetsskanning
-- **SEO:** @astrojs/sitemap, astro-robots-txt, JSON-LD schema, LocalBusiness SEO
-- **Bilder:** Astro innebygd bildeoptimalisering
-- **Kontaktskjema:** Formspree (gratis, spam-beskyttelse)
-- **Innhold:** Markdown-filer og Astro Content Collections
-- **Analytics:** Google Analytics (IP-anonymisering og enkel cookie-banner)
-- **PWA-fallback:** workbox-build
-- **i18n:** Astro innebygd internasjonalisering
+- **SEO:** @astrojs/sitemap, astro-robots-txt
+- **PWA-ready:** workbox-build dependency (klar for implementering)
 
 ---
 
 ## 🚀 Komme i gang
 
-1. **Clone repo**
+1. **Opprett nytt prosjekt**
 
    ```bash
-   git clone https://github.com/<org>/<repo>.git
-   cd <repo>
+   npm create astro@latest my-project
+   cd my-project
    ```
 
-2. **Installer avhengigheter**
+2. **Installer alle avhengigheter**
 
    ```bash
-   npm install
+   npm install @astrojs/sitemap @astrojs/tailwind astro-robots-txt autoprefixer postcss tailwindcss workbox-build
    ```
 
-3. **Installer Playwright (for E2E-testing)**
+3. **Installer utviklingsverktøy**
+
+   ```bash
+   npm install -D @playwright/test @typescript-eslint/eslint-plugin @typescript-eslint/parser axe-core eslint eslint-plugin-astro happy-dom prettier prettier-plugin-astro vitest
+   ```
+
+4. **Installer Playwright browsers**
 
    ```bash
    npx playwright install
    ```
 
-4. **Utvikling**
+5. **Kopier alle konfigurasjonsfiler** (se seksjon nedenfor)
+
+6. **Utvikling**
 
    ```bash
    npm run dev
    ```
 
-   Starter Astro på [http://localhost:3000](http://localhost:3000)
+---
 
-5. **Bygg for produksjon**
+## 🔧 Scripts (Eksakt implementering)
 
-   ```bash
-   npm run build
-   ```
-
-6. **Preview produksjon**
-
-   ```bash
-   npm run preview
-   ```
-
-7. **Kjør tester**
-
-   ```bash
-   npm run test        # Enhetstester
-   npm run test:e2e    # E2E smoke-tester
-   ```
+| Kommando              | Implementering                                  |
+| --------------------- | ----------------------------------------------- |
+| `npm run dev`         | `astro dev`                                     |
+| `npm run build`       | `astro build`                                   |
+| `npm run preview`     | `astro preview`                                 |
+| `npm run lint`        | `eslint . --ext .js,.ts,.astro`                |
+| `npm run format`      | `prettier --write .`                           |
+| `npm run test`        | `vitest run`                                    |
+| `npm run test:e2e`    | `playwright test`                               |
+| `npm run test:e2e:ui` | `playwright test --ui`                         |
+| `npm run audit`       | `npm audit --audit-level moderate`             |
+| `npm run check`       | `lint + format --check + test + audit` (kjede) |
 
 ---
 
-## 🔧 Scripts
+## 📁 Kritiske konfigurasjonsfiler
 
-| Kommando              | Beskrivelse                                 |
-| --------------------- | ------------------------------------------- |
-| `npm run dev`         | Starter lokal dev-server                    |
-| `npm run build`       | Prod-build (output i `dist/`)               |
-| `npm run preview`     | Preview av prod-build                       |
-| `npm run lint`        | ESLint på alle `.js`, `.ts`, `.astro` filer |
-| `npm run format`      | Prettier formaterer alle filer              |
-| `npm run test`        | Kjører Vitest-enhetstester                  |
-| `npm run test:e2e`    | Kjører Playwright E2E smoke-tester          |
-| `npm run test:e2e:ui` | Kjører E2E-tester med visuell UI            |
-| `npm run audit`       | Kjører npm audit for sikkerhetssårbarheter  |
-| `npm run check`       | Lint + format --check + test + audit        |
+### **package.json** (Komplette avhengigheter)
+
+```json
+{
+  "name": "my-project",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "audit": "npm audit --audit-level moderate",
+    "check": "npm run lint && npm run format -- --check && npm run test && npm run audit"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "astro": "^5.12.3",
+    "astro-robots-txt": "^1.0.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "workbox-build": "^7.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "axe-core": "^4.8.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^0.30.0",
+    "happy-dom": "^18.0.1",
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.12.0",
+    "vitest": "^3.2.4"
+  },
+  "browserslist": [">0.2%", "not dead", "not op_mini all"]
+}
+```
+
+### **astro.config.mjs**
+
+```javascript
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
+import robotsTxt from 'astro-robots-txt';
+
+export default defineConfig({
+  site: 'https://your-domain.github.io',
+  base: '/',
+  integrations: [
+    tailwind(),
+    sitemap(),
+    robotsTxt({
+      sitemap: 'https://your-domain.github.io/sitemap-index.xml',
+    }),
+  ],
+  output: 'static',
+  build: {
+    assets: 'assets',
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['workbox-build'],
+      },
+    },
+  },
+});
+```
+
+### **tailwind.config.cjs**
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './public/**/*.html',
+  ],
+  theme: {
+    extend: {
+      // Legg til dine design tokens her
+    },
+  },
+  plugins: [],
+};
+```
 
 ---
 
-## 🔨 Konfigurasjonsfiler
+## 🧪 Testing-konfigurasjon
 
-- **`tailwind.config.cjs`**: design tokens og content paths
-- **`astro.config.mjs`**: sitemap, robots.txt, image plugin, workbox
-- **`playwright.config.js`**: E2E test-konfigurasjon
-- **`.github/workflows/ci.yml`**: Lighthouse CI, axe-core audits, E2E-tester, deploy til Pages
-- **`.github/dependabot.yml`**: automatiske sikkerhetsopdateringer
-- **`tests/e2e/`**: E2E smoke-tester for kritiske brukerflyter
-- **`src/content/`**: Markdown-filer og innholdstyper
-- **`public/404.html`**: tilpasset 404-side
-- **`public/CNAME`**: egendomenenavn (valgfritt)
+### **vitest.config.js**
+
+```javascript
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'happy-dom',
+    globals: true,
+    // Ekskluder Playwright e2e tester fra Vitest
+    exclude: ['**/tests/e2e/**', '**/node_modules/**'],
+    // Ikke feil hvis ingen tester finnes
+    passWithNoTests: true,
+  },
+});
+```
+
+### **playwright.config.js** (Multi-browser + CI-optimalisert)
+
+```javascript
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+  use: {
+    baseURL: 'http://localhost:4321',
+    trace: 'on-first-retry',
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+  ],
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:4321',
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
+
+### **E2E smoke test eksempel** (`tests/e2e/smoke.spec.js`)
+
+```javascript
+import { test, expect } from '@playwright/test';
+
+test('homepage loads correctly', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle(/.*MyProject.*/);
+  await expect(page.locator('main h1').first()).toBeVisible();
+});
+
+test('navigation works', async ({ page }) => {
+  await page.goto('/');
+  await page.click('nav a[href="/about"]');
+  await expect(page).toHaveURL(/.*about.*/);
+});
+```
 
 ---
 
-## 🌐 Deploy til GitHub Pages
+## 🔍 Linting & formatering
 
-1. **Sett opp GitHub Pages**: I repo Settings → Pages → Source: "GitHub Actions"
-2. **Aktiver sikkerhetsfunksjoner**: I repo Settings → Security & analysis:
+### **.eslintrc.cjs** (Astro + TypeScript support)
+
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:astro/recommended'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  overrides: [
+    {
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro'],
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+    },
+  ],
+  rules: {
+    'no-unused-vars': 'off',
+    'no-undef': 'off',
+    'no-console': 'warn',
+  },
+};
+```
+
+### **.prettierrc.json** (Astro plugin)
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
+```
+
+### **postcss.config.cjs**
+
+```javascript
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+---
+
+## ⚡ Performance & kvalitet
+
+### **lighthouserc.cjs** (Score ≥90 krav)
+
+```javascript
+module.exports = {
+  ci: {
+    collect: {
+      startServerCommand: 'npm run preview',
+      url: ['http://localhost:4321'],
+      numberOfRuns: 3,
+    },
+    assert: {
+      assertions: {
+        'categories:performance': ['error', { minScore: 0.9 }],
+        'categories:accessibility': ['error', { minScore: 0.9 }],
+        'categories:best-practices': ['error', { minScore: 0.9 }],
+        'categories:seo': ['error', { minScore: 0.9 }],
+      },
+    },
+    upload: {
+      target: 'temporary-public-storage',
+    },
+  },
+};
+```
+
+---
+
+## 🔒 Sikkerhet & vedlikehold
+
+### **.github/dependabot.yml**
+
+```yaml
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 5
+    reviewers:
+      - 'owner'
+    assignees:
+      - 'owner'
+    commit-message:
+      prefix: 'deps'
+      include: 'scope'
+```
+
+---
+
+## 🚀 GitHub Actions CI/CD
+
+### **.github/workflows/ci.yml** (4 parallelle jobs)
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  lint-and-test:
+    name: Lint, Format & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+      - name: Check formatting
+        run: npm run format -- --check
+      - name: Run unit tests
+        run: npm run test
+      - name: Security audit
+        run: npm run audit
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      - name: Build project
+        run: npm run build
+      - name: Run E2E tests
+        run: npm run test:e2e
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 30
+
+  accessibility-audit:
+    name: Accessibility Audit
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Start preview server and run accessibility tests
+        run: |
+          npm run preview &
+          sleep 10
+          npx @axe-core/cli http://localhost:4321 --exit
+          kill %1
+
+  lighthouse-audit:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.12.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [lint-and-test, accessibility-audit, lighthouse-audit]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+---
+
+## ✅ Deploy setup
+
+1. **GitHub Pages**: I repo Settings → Pages → Source: "GitHub Actions"
+2. **Security features**: I repo Settings → Security & analysis:
    - Aktiver "Dependency graph"
    - Aktiver "Dependabot alerts"
    - Aktiver "Dependabot security updates"
-3. **Eget domene (valgfritt)**: Legg til `CNAME` i `public/` for eget domene
-4. **Deploy**: Push til `main` trigges GitHub Actions som:
-   - Kjører linting og formatering
-   - Kjører enhetstester og E2E smoke-tester
-   - Kjører sikkerhetsskanning (`npm audit`)
-   - Kjører Lighthouse CI og accessibility audits
-   - Bygger og publiserer til GitHub Pages
+3. **Custom domain** (valgfritt): Legg til `CNAME` i `public/` for eget domene
 
 ---
 
-## 🔒 Sikkerhet & personvern
+## 🎯 Resultater
 
-- **Dependabot**: Automatiske sikkerhetsopdateringer for npm-pakker
-- **Sikkerhetsskanning**: `npm audit` kjøres i CI for å fange sårbarheter
-- **CSP & HSTS:** Konfigurer via Cloudflare Transform Rules
-- **CDN:** Cloudflare Free Plan som edge-cache
-- **Preload:** Fonts og kritiske ressurser i `<head>`
-- **Font-subsetting:** subset-filer i `public/fonts` med `font-display: swap`
-- **CSS-treeshaking:** Tailwind fjerner ubrukt CSS automatisert
-- **Personvern:** IP-anonymisering for Google Analytics og enkel cookie-banner for GDPR-kompatibel sporing
-
----
-
-## 🧪 Testing
-
-- **Enhetstester**: Vitest for komponent- og funksjonstesting
-- **E2E Smoke-tester**: Playwright for å sikre at kritiske sider og navigasjon fungerer
-- **Accessibility**: axe-core i CI for WCAG 2.1 AA-kompatibilitet
-- **Performance**: Lighthouse CI med krav om score ≥ 90
-- **Sikkerhet**: npm audit for å fange kjente sårbarheter
-
-E2E-testene kjøres mot `npm run preview` for å sikre at byggeprosessen ikke har introdusert feil.
-
----
-
-## 📝 Innholdsadministrasjon & Kontakt
-
-- **Kontaktskjema**: Formspree gir gratis kontaktskjemaer uten backend-kode
-  - Spam-beskyttelse innebygd
-  - E-post notifikasjoner på henvendelser
-  - Enkel HTML-form som fungerer med statiske sider
-
-- **Innholdsadministrasjon**: Enkelt filbasert system
-  - Markdown-filer i `src/content/` mappen
-  - Astro Content Collections for type-sikkerhet
-  - Git-basert versjonskontroll
-  - Direkte redigering i kode-editor eller GitHub web interface
-
----
-
-## 🤝 Bidra
-
-1. Fork repo
-2. Lag feature-branch (`git checkout -b feature/foo`)
-3. Kjør tester lokalt (`npm run check`)
-4. Commit endringer (`git commit -am 'Legger til foo'`)
-5. Push til origin (`git push origin feature/foo`)
-6. Åpne en Pull Request
-
-Dependabot vil automatisk lage PR-er for sikkerhetsopdateringer som kan merges etter gjennomgang.
+Med dette oppsettet får du:
+- **Automatisk testing**: Unit + E2E i 3 browsere
+- **Kvalitetssikring**: Linting, formatting, accessibility, performance
+- **Sikkerhet**: Dependabot + npm audit
+- **Professional deployment**: Zero-downtime med Pages
+- **Utvikleropplevelse**: Hot reload, TypeScript support, moderne tooling
 
 ---
 
