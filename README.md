@@ -6,7 +6,7 @@ Dette er en mal-README for et statisk nettsted bygget med Astro, Tailwind CSS og
 
 ## 📦 Teknologistack
 
-* **Rammeverk:** Astro (SSG + islands)
+* **Rammeverk:** Astro 5.x (SSG + islands)
 * **CSS:** Tailwind CSS (utility-first)
 * **Bygg:** Node.js v18+
 * **Deploy:** GitHub Pages via GitHub Actions
@@ -14,12 +14,12 @@ Dette er en mal-README for et statisk nettsted bygget med Astro, Tailwind CSS og
 * **Testing:** Vitest (enhetstester) + Playwright (E2E smoke-tester)
 * **Sikkerhet:** Dependabot, npm audit, automatiske sikkerhetsskanning
 * **SEO:** @astrojs/sitemap, astro-robots-txt, JSON-LD schema, LocalBusiness SEO
-* **Bilder:** @astrojs/image (lazy loading)
+* **Bilder:** Astro innebygd bildeoptimalisering
 * **Kontaktskjema:** Formspree (gratis, spam-beskyttelse)
-* **CMS:** Decap CMS (Git-basert, gratis innholdsredigering)
+* **Innhold:** Markdown-filer og Astro Content Collections
 * **Analytics:** Google Analytics (IP-anonymisering og enkel cookie-banner)
 * **PWA-fallback:** workbox-build
-* **i18n:** @astrojs/i18n (valgfritt)
+* **i18n:** Astro innebygd internasjonalisering
 
 ---
 
@@ -98,7 +98,7 @@ Dette er en mal-README for et statisk nettsted bygget med Astro, Tailwind CSS og
 * **`.github/workflows/ci.yml`**: Lighthouse CI, axe-core audits, E2E-tester, deploy til Pages
 * **`.github/dependabot.yml`**: automatiske sikkerhetsopdateringer
 * **`tests/e2e/`**: E2E smoke-tester for kritiske brukerflyter
-* **`public/admin/`**: Decap CMS for innholdsadministrasjon
+* **`src/content/`**: Markdown-filer og innholdstyper
 * **`public/404.html`**: tilpasset 404-side
 * **`public/CNAME`**: egendomenenavn (valgfritt)
 
@@ -153,11 +153,11 @@ E2E-testene kjøres mot `npm run preview` for å sikre at byggeprosessen ikke ha
   - E-post notifikasjoner på henvendelser
   - Enkel HTML-form som fungerer med statiske sider
 
-* **CMS for ikke-tekniske brukere**: Decap CMS lar redaktører redigere innhold via nettleser
-  - Git-basert: alle endringer lagres som commits
-  - Markdown-editor med live preview
-  - Bildeopplasting og mediahåndtering
-  - Tilgang via `/admin` på nettsiden
+* **Innholdsadministrasjon**: Enkelt filbasert system
+  - Markdown-filer i `src/content/` mappen
+  - Astro Content Collections for type-sikkerhet
+  - Git-basert versjonskontroll
+  - Direkte redigering i kode-editor eller GitHub web interface
 
 ---
 

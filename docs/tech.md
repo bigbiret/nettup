@@ -4,10 +4,12 @@ Dette dokumentet fungerer som en mal for oppsett av en moderne, rask og responsi
 
 ## 1. Hovedteknologier og prosjektstruktur
 
-**Astro**
+**Astro 5.x**
 
 * Statisk sidegenerering (SSG) for innholdsdrevne sider.
 * "Islands"-arkitektur for selektiv interaktivitet.
+* Innebygd bildeoptimalisering og i18n.
+* Content Collections for type-sikret innholdsadministrasjon.
 
 **Tailwind CSS**
 
@@ -21,6 +23,7 @@ src/
 ├── components/    (gjenbrukbare UI-komponenter)
 ├── layouts/       (felles <head> og sideoppsett)
 ├── styles/        (Tailwind-konfigurasjon)
+├── content/       (markdown-filer og innholdstyper)
 └── public/        (statisk innhold: fonter, bilder)
 tests/
 └── e2e/           (E2E smoke-tester)
@@ -69,8 +72,6 @@ Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
      }
      </script>
      ```
-
-5. **Bildeoptimalisering**
 
 5. **Bildeoptimalisering**
 
@@ -168,52 +169,54 @@ Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
 
     * Legg til spam-beskyttelse med `_gotcha` og validering med `_replyto`.
 
-12. **Innholdsadministrasjon med Decap CMS**
+12. **Innholdsadministrasjon med Astro Content Collections**
 
-    * Installer Decap CMS for Git-basert innholdsredigering:
+    * Definer innholdstyper i `src/content/config.ts`:
 
-      ```bash
-      npm install netlify-cms-app
+      ```typescript
+      import { defineCollection, z } from 'astro:content';
+
+      const pages = defineCollection({
+        type: 'content',
+        schema: z.object({
+          title: z.string(),
+          description: z.string().optional(),
+          publishDate: z.date(),
+        }),
+      });
+
+      export const collections = {
+        pages,
+      };
       ```
 
-    * Opprett `public/admin/index.html`:
+    * Legg til innhold i `src/content/pages/`:
 
-      ```html
-      <!doctype html>
-      <html>
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Innhold Admin</title>
-      </head>
-      <body>
-        <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-      </body>
-      </html>
+      ```markdown
+      ---
+      title: "Min Side"
+      description: "En beskrivelse av siden"
+      publishDate: 2024-01-01
+      ---
+
+      # Min Side
+
+      Dette er innholdet på siden.
       ```
 
-    * Legg til `public/admin/config.yml` for konfigurasjon:
+    * Bruk innholdet i Astro-komponenter:
 
-      ```yaml
-      backend:
-        name: git-gateway
-        branch: main
+      ```astro
+      ---
+      import { getCollection } from 'astro:content';
+      const pages = await getCollection('pages');
+      ---
 
-      media_folder: "public/images"
-      public_folder: "/images"
-
-      collections:
-        - name: "pages"
-          label: "Sider"
-          folder: "src/content/pages"
-          create: true
-          fields:
-            - {label: "Tittel", name: "title", widget: "string"}
-            - {label: "Beskrivelse", name: "description", widget: "text"}
-            - {label: "Innhold", name: "body", widget: "markdown"}
+      {pages.map(page => (
+        <h2>{page.data.title}</h2>
+        <p>{page.data.description}</p>
+      ))}
       ```
-
-    * Aktiver Git Gateway i Netlify (gratis) for autentisering til `/admin`.
 
 13. **CI-basert Lighthouse-sjekk**
 
@@ -248,14 +251,14 @@ Mål: Lighthouse ≥ 90 (ytelse, tilgjengelighet, SEO) og WCAG 2.1 AA.
 
 7. **Internasjonalisering (i18n)**
 
-   * Installer `@astrojs/i18n` og konfigurer `src/pages/[lang]/...` med `hreflang`-tagger.
+   * Bruk Astro sin innebygde i18n-støtte og konfigurer `src/pages/[lang]/...` med `hreflang`-tagger.
 
 8. **Visuelle regresjonstester**
 
    * Integrer Percy ved å kjøre visuell test mot deployet URL i GitHub Actions.
 
 > **Malkonklusjon:**
-> Denne malen har alle valg forhåndsdefinert for enkel implementering av en rask, sikker og vedlikeholdsvennlig statisk nettside på GitHub Pages med Astro og Tailwind. (middels innsats)
+> Denne malen har alle valg forhåndsdefinert for enkel implementering av en rask, sikker og vedlikeholdsvennlig statisk nettside på GitHub Pages med Astro 5.x og Tailwind. Prosjektet er optimalisert for enkelhet, sikkerhet og ytelse uten unødvendig kompleksitet.
 
 ## 4. Oppsett av package.json
 
@@ -282,24 +285,24 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
     "check": "npm run lint && npm run format -- --check && npm run test && npm run audit"
   },
   "dependencies": {
-    "astro": "^3.0.0",
-    "tailwindcss": "^3.3.0",
+    "astro": "^5.12.3",
+    "@astrojs/tailwind": "^5.0.0",
+    "tailwindcss": "^3.4.0",
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0",
-    "@astrojs/image": "^0.6.0",
-    "@astrojs/sitemap": "^0.2.0",
+    "@astrojs/sitemap": "^3.0.0",
     "astro-robots-txt": "^1.0.0",
-    "@astrojs/i18n": "^1.0.0",
-    "workbox-build": "^6.5.0",
-    "netlify-cms-app": "^2.15.0"
+    "workbox-build": "^7.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.0.0",
-    "eslint-plugin-astro": "^0.8.0",
-    "prettier": "^2.8.0",
-    "vitest": "^0.25.0",
-    "axe-core": "^4.4.0",
-    "@playwright/test": "^1.40.0"
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^0.30.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.12.0",
+    "vitest": "^3.2.4",
+    "axe-core": "^4.8.0",
+    "@playwright/test": "^1.40.0",
+    "happy-dom": "^18.0.1"
   },
   "browserslist": [
     ">0.2%",
@@ -309,4 +312,4 @@ Legg følgende innhold i `package.json` for å sikre riktig Node-versjon, bygg/d
 }
 ```
 
-Dette oppsettet dekker bygg- og utviklingsflyt, linting, formatering, testing, E2E smoke-tester, sikkerhetsskanning, kontaktskjemaer, innholdsadministrasjon, bilde-/SEO-plugin'er, PWA-fallback og CI-audits.
+Dette oppsettet dekker bygg- og utviklingsflyt, linting, formatering, testing, E2E smoke-tester, sikkerhetsskanning, kontaktskjemaer, type-sikker innholdsadministrasjon, bilde-/SEO-plugin'er, PWA-fallback og CI-audits.
