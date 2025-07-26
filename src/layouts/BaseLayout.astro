@@ -23,9 +23,21 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Font optimization - preconnect to Google Fonts -->
+    <!-- Optimized font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+      rel="stylesheet"
+      media="print" 
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>{title}</title>
 
@@ -40,8 +52,9 @@ const { title, description } = Astro.props;
       property="og:description"
       content={description || 'Nettup - moderne webutvikling som konverterer'}
     />
+    <meta property="og:image" content={new URL('/favicon.svg', Astro.url)} />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />
@@ -49,78 +62,43 @@ const { title, description } = Astro.props;
       property="twitter:description"
       content={description || 'Nettup - moderne webutvikling som konverterer'}
     />
-
-    <!-- Calendly embed styles -->
-    <link
-      href="https://assets.calendly.com/assets/external/widget.css"
-      rel="stylesheet"
-    />
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      // Replace GA_MEASUREMENT_ID with your actual Google Analytics ID
-      gtag('config', 'GA_MEASUREMENT_ID', {
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-    </script>
+    <meta property="twitter:image" content={new URL('/favicon.svg', Astro.url)} />
+    
+    <!-- Performance optimization -->
+    <link rel="dns-prefetch" href="//assets.calendly.com" />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen bg-white">
     <Navbar />
-    <main class="flex-grow">
+    <main>
       <slot />
     </main>
     <Footer />
 
-    <!-- Calendly badge widget -->
-    <script
-      src="https://assets.calendly.com/assets/external/widget.js"
-      type="text/javascript"
-      async></script>
-
-    <!-- Global Calendly integration -->
+    <!-- Calendly Widget Script -->
     <script>
-      // Global function to open Calendly modal
-      window.openCalendly = function () {
-        Calendly.initPopupWidget({
-          url: 'https://calendly.com/nettup/konsultasjon', // Oppdater med din faktiske Calendly URL
-        });
-        return false;
-      };
-
-      // Analytics tracking for Calendly events
-      window.addEventListener('message', function (e) {
-        if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-          if (e.data.event === 'calendly.event_scheduled') {
-            // Track conversion event
-            console.log('Calendly booking completed');
-
-            // Google Analytics event tracking
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'calendly_booking', {
-                event_category: 'engagement',
-                event_label: 'consultation_scheduled',
-                value: 1,
-              });
-
-              // Google Ads conversion tracking (if applicable)
-              // gtag('event', 'conversion', {
-              //   'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL'
-              // });
-            }
-          }
+      // Lazy load Calendly only when needed
+      window.openCalendly = function() {
+        if (typeof Calendly !== 'undefined') {
+          Calendly.initPopupWidget({
+            url: 'https://calendly.com/dittselskap/konsultasjon'
+          });
+        } else {
+          // Load Calendly script dynamically
+          const script = document.createElement('script');
+          script.src = 'https://assets.calendly.com/assets/external/widget.js';
+          script.onload = function() {
+            Calendly.initPopupWidget({
+              url: 'https://calendly.com/dittselskap/konsultasjon'
+            });
+          };
+          document.head.appendChild(script);
         }
-      });
+      };
+    </script>
+
+    <!-- Debug logging -->
+    <script>
+      console.log('BaseLayout loaded');
     </script>
   </body>
 </html>
