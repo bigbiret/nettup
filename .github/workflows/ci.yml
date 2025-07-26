@@ -83,8 +83,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Run accessibility tests
-        run: npx axe-core --exit
+      - name: Start preview server and run accessibility tests
+        run: |
+          npm run preview &
+          sleep 10
+          npx @axe-core/cli http://localhost:4321 --exit
+          kill %1
 
   lighthouse-audit:
     name: Lighthouse CI
