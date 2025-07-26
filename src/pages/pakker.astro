@@ -39,21 +39,21 @@ import CTAButton from '../components/CTAButton.astro';
   <section class="py-16 lg:py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Bronze -->
+        <!-- Start -->
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200"
         >
           <div class="text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Bronze</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Start</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              2000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              8000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
-            <div class="text-sm text-green-600 font-medium mb-6">
-              Leveringstid: 2-3 uker
+            <div class="text-lg text-gray-500 mb-4">
+              500,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
-              Perfect for små bedrifter som trenger en enkel, profesjonell
-              nettside.
+              Perfekt for små bedrifter som ønsker en profesjonell digital
+              tilstedeværelse
             </p>
 
             <!-- Funksjonsliste -->
@@ -71,9 +71,52 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700"
-                  >Opptil 5 sider + kontaktskjema</span
+                <span class="text-sm text-gray-700">Opptil 5 sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Enkel CMS / statisk</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Responsivt design</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Grunnleggende SEO</span>
               </li>
               <li class="flex items-start">
                 <svg
@@ -89,7 +132,7 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Responsivt design for mobil & desktop</span
+                  >SSL‑sertifikat & hosting (1 år)</span
                 >
               </li>
               <li class="flex items-start">
@@ -105,38 +148,19 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700"
-                  >Grunnleggende SEO optimalisering</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >SSL sertifikat & 1 års hosting inkludert</span
-                >
+                <span class="text-sm text-gray-700">Kontaktskjema & Forms</span>
               </li>
             </ul>
 
             <CTAButton
-              text="Velg Bronze"
-              href="/kontakt?pakke=bronze"
+              text="Velg Start"
+              href="/kontakt?pakke=start"
               class="w-full"
             />
           </div>
         </div>
 
-        <!-- Silver (Most Popular) -->
+        <!-- Plus (Most Popular) -->
         <div
           class="bg-white rounded-lg shadow-md p-8 relative border-2 border-blue-500 hover:shadow-lg transition-shadow duration-200"
         >
@@ -147,16 +171,16 @@ import CTAButton from '../components/CTAButton.astro';
             >
           </div>
           <div class="text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Silver</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              5000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              12000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
-            <div class="text-sm text-green-600 font-medium mb-6">
-              Leveringstid: 3-4 uker
+            <div class="text-lg text-gray-500 mb-4">
+              800,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
-              Perfect for voksende bedrifter som trenger mer funksjonalitet og
-              innholdsstyring.
+              Perfekt for voksende bedrifter som trenger mer funksjonalitet og
+              innholdsstyring
             </p>
 
             <!-- Funksjonsliste -->
@@ -174,8 +198,83 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
+                <span class="text-sm text-gray-700">Opptil 10 sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">WordPress CMS</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Responsivt design</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Grunnleggende SEO</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
                 <span class="text-sm text-gray-700"
-                  >Alt fra Bronze + opptil 15 sider</span
+                  >SSL‑sertifikat & hosting (1 år)</span
                 >
               </li>
               <li class="flex items-start">
@@ -192,85 +291,34 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >CMS (WordPress) for enkel oppdatering</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >Blog funksjonalitet inkludert</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >Google Analytics & sosiale medier integrasjon</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >Avansert SEO & performance optimalisering</span
+                  >Google Analytics-oppsett</span
                 >
               </li>
             </ul>
 
             <CTAButton
-              text="Velg Silver"
-              href="/kontakt?pakke=silver"
+              text="Velg Plus"
+              href="/kontakt?pakke=plus"
               class="w-full"
             />
           </div>
         </div>
 
-        <!-- Gold -->
+        <!-- Pro -->
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200"
         >
           <div class="text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Gold</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              7900,- <span class="text-lg font-normal text-gray-600">kr</span>
+              18000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
-            <div class="text-sm text-green-600 font-medium mb-6">
-              Leveringstid: 4-6 uker
+            <div class="text-lg text-gray-500 mb-4">
+              1500,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
-              Perfect for etablerte bedrifter som trenger e-handel og avanserte
-              funksjoner.
+              Perfekt for etablerte bedrifter som trenger avanserte funksjoner
+              og API-integrasjoner
             </p>
 
             <!-- Funksjonsliste -->
@@ -288,8 +336,68 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
+                <span class="text-sm text-gray-700">Ubegrenset sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">WordPress CMS</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Avansert SEO</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
                 <span class="text-sm text-gray-700"
-                  >Alt fra Silver + ubegrenset antall sider</span
+                  >API-integrasjon (1 ekstern API)</span
                 >
               </li>
               <li class="flex items-start">
@@ -306,7 +414,7 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >E-handel eller booking system</span
+                  >Opplæring i CMS (1 time)</span
                 >
               </li>
               <li class="flex items-start">
@@ -323,68 +431,34 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Avanserte integrasjoner (CRM, betalingsløsninger)</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >Custom funksjonalitet etter behov</span
-                >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >3 måneders gratis vedlikehold inkludert</span
+                  >Support & oppdateringer (3 måneder)</span
                 >
               </li>
             </ul>
 
             <CTAButton
-              text="Velg Gold"
-              href="/kontakt?pakke=gold"
+              text="Velg Pro"
+              href="/kontakt?pakke=pro"
               class="w-full"
             />
           </div>
         </div>
 
-        <!-- Platinum -->
+        <!-- Premium -->
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200"
         >
           <div class="text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Platinum</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              15000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              25000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
-            <div class="text-sm text-green-600 font-medium mb-6">
-              Leveringstid: 6-8 uker
+            <div class="text-lg text-gray-500 mb-4">
+              3500,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
               For enterprise-kunder som trenger tilpassede løsninger og
-              prioritert support.
+              prioritert support
             </p>
 
             <!-- Funksjonsliste -->
@@ -402,8 +476,68 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
+                <span class="text-sm text-gray-700">Ubegrenset sider</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">WordPress CMS</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Avansert SEO</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
                 <span class="text-sm text-gray-700"
-                  >Alt fra Gold + multi-language support</span
+                  >API-integrasjon (flere API-er)</span
                 >
               </li>
               <li class="flex items-start">
@@ -420,7 +554,7 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Avanserte API-integrasjoner og automating</span
+                  >Opplæring (5 timer workshop)</span
                 >
               </li>
               <li class="flex items-start">
@@ -437,7 +571,7 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Dedikert prosjektleder og 24/7 support</span
+                  >Support & oppdateringer (6 måneder)</span
                 >
               </li>
               <li class="flex items-start">
@@ -453,9 +587,7 @@ import CTAButton from '../components/CTAButton.astro';
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700"
-                  >Enterprise sikkerhet og compliance</span
-                >
+                <span class="text-sm text-gray-700">Prioritert support</span>
               </li>
               <li class="flex items-start">
                 <svg
@@ -471,14 +603,29 @@ import CTAButton from '../components/CTAButton.astro';
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >6 måneders gratis vedlikehold og opplæring</span
+                  >Hastighets‑optimalisering</span
                 >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Flerspråklig innhold</span>
               </li>
             </ul>
 
             <CTAButton
-              text="Velg Platinum"
-              href="/kontakt?pakke=platinum"
+              text="Velg Premium"
+              href="/kontakt?pakke=premium"
               class="w-full"
             />
           </div>
@@ -509,27 +656,30 @@ import CTAButton from '../components/CTAButton.astro';
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Bronze<br /><span class="text-sm font-normal">2000,-</span></th
+                >Start<br /><span class="text-sm font-normal">8000,-</span><br
+                /><span class="text-xs text-gray-500">500,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Silver<br /><span class="text-sm font-normal">5000,-</span></th
+                >Plus<br /><span class="text-sm font-normal">12000,-</span><br
+                /><span class="text-xs text-gray-500">800,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Gold<br /><span class="text-sm font-normal">7900,-</span></th
+                >Pro<br /><span class="text-sm font-normal">18000,-</span><br
+                /><span class="text-xs text-gray-500">1500,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Platinum<br /><span class="text-sm font-normal">15000,-</span
-                ></th
+                >Premium<br /><span class="text-sm font-normal">25000,-</span
+                ><br /><span class="text-xs text-gray-500">3500,-/mnd</span></th
               >
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Antall sider</td
+                >Inkluderte sider</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
@@ -537,7 +687,7 @@ import CTAButton from '../components/CTAButton.astro';
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Opptil 15</td
+                >Opptil 10</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
@@ -547,222 +697,257 @@ import CTAButton from '../components/CTAButton.astro';
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
                 >Ubegrenset</td
               >
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">CMS</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >Enkel CMS / statisk</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >WordPress</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >WordPress</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >WordPress</td
+              >
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Bloggfunksjonalitet</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
             </tr>
             <tr class="bg-gray-50">
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
                 >Responsivt design</td
               >
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >CMS / Innholdsstyring</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-400"
-                >-</td
+                >Grunnleggende SEO</td
               >
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
               </td>
             </tr>
             <tr class="bg-gray-50">
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >E-handelsløsning</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-400"
-                >-</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-400"
-                >-</td
+                >Avansert SEO</td
               >
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-red-500 text-xl">❌</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <svg
-                  class="w-5 h-5 text-green-500 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
               </td>
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >SEO Optimalisering</td
+                >SSL‑sertifikat & hosting</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Grunnleggende</td
+                >✅ (1 år)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Avansert</td
+                >✅ (1 år)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Avansert</td
+                >✅ (1 år)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Enterprise</td
+                >✅ (1 år)</td
               >
             </tr>
             <tr class="bg-gray-50">
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Vedlikehold inkludert</td
+                >Kontaktskjema & Forms</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Google Analytics-oppsett</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >API-integrasjon</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >✅ (1 ekstern API)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >1 år</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >1 år</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >3 måneder</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >6 måneder</td
+                >✅ (flere API-er)</td
               >
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Leveringstid</td
+                >Opplæring i CMS</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >✅ (1 time)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >2-3 uker</td
+                >✅ (5 timer workshop)</td
+              >
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Support og oppdateringer</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >✅ (3 måneder)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >3-4 uker</td
+                >✅ (6 måneder)</td
               >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >4-6 uker</td
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Prioritert support</td
               >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >6-8 uker</td
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Hastighets‑optimalisering</td
               >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 text-gray-700"
+                >Flerspråklig innhold</td
+              >
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-red-500 text-xl">❌</span>
+              </td>
+              <td class="border border-gray-200 px-4 py-3 text-center">
+                <span class="text-green-500 text-xl">✅</span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -831,8 +1016,7 @@ import CTAButton from '../components/CTAButton.astro';
             Hvor lang tid tar det å lage nettsiden?
           </h3>
           <p class="text-gray-600">
-            Leveringstiden varierer fra 2-3 uker for Bronze-pakken til 6-8 uker
-            for Platinum-pakken, avhengig av kompleksitet og dine
+            Leveringstiden varierer avhengig av kompleksitet og dine
             tilbakemeldinger.
           </p>
         </div>

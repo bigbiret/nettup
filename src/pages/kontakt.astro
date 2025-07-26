@@ -126,23 +126,21 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               >
                 <option value="">Velg pakke (valgfritt)</option>
                 <option
-                  value="bronze"
-                  {selectedPackage === 'bronze' ? 'selected' : ''}
-                  >Bronze</option
+                  value="start"
+                  {selectedPackage === 'start' ? 'selected' : ''}>Start</option
                 >
                 <option
-                  value="silver"
-                  {selectedPackage === 'silver' ? 'selected' : ''}
-                  >Silver</option
+                  value="plus"
+                  {selectedPackage === 'plus' ? 'selected' : ''}>Plus</option
                 >
                 <option
-                  value="gold"
-                  {selectedPackage === 'gold' ? 'selected' : ''}>Gold</option
+                  value="pro"
+                  {selectedPackage === 'pro' ? 'selected' : ''}>Pro</option
                 >
                 <option
-                  value="platinum"
-                  {selectedPackage === 'platinum' ? 'selected' : ''}
-                  >Platinum</option
+                  value="premium"
+                  {selectedPackage === 'premium' ? 'selected' : ''}
+                  >Premium</option
                 >
                 <option value="custom">Tilpasset løsning</option>
               </select>

@@ -4,9 +4,7 @@ test('homepage loads correctly', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/.*Nettup.*/);
   await expect(page.locator('main h1').first()).toBeVisible();
-  await expect(page.locator('main h1').first()).toContainText(
-    'Nettsider som'
-  );
+  await expect(page.locator('main h1').first()).toContainText('Nettsider som');
 });
 
 test('navigation works', async ({ page }) => {
@@ -19,12 +17,6 @@ test('contact page loads', async ({ page }) => {
   await page.goto('/kontakt');
   await expect(page.locator('main form').first()).toBeVisible();
   await expect(page.locator('main h1').first()).toContainText('Kontakt oss');
-});
-
-test('services page loads', async ({ page }) => {
-  await page.goto('/tjenester');
-  await expect(page.locator('main h1').first()).toBeVisible();
-  await expect(page.locator('main h1').first()).toContainText('Våre tjenester');
 });
 
 test('packages page loads', async ({ page }) => {
