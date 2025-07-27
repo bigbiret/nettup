@@ -61,7 +61,7 @@ const categories = [
             <div class="text-sm text-gray-600">Nye nettsider fra null</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-green-600">300%</div>
+            <div class="text-3xl font-bold text-green-700">300%</div>
             <div class="text-sm text-gray-600">Gjennomsnittlig vekst</div>
           </div>
           <div class="text-center">
@@ -100,13 +100,13 @@ const categories = [
                   <span class="text-gray-500">[Bilde kommer]</span>
                 </div>
                 {/* Category badge */}
-                <div class="absolute top-6 left-6">
-                  <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
-                    index === 0 ? 'bg-green-600' : 'bg-purple-600'
-                  }`}>
-                    {caseItem.category}
-                  </span>
-                </div>
+                                 <div class="absolute top-6 left-6">
+                   <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
+                     index === 0 ? 'bg-green-800' : 'bg-purple-700'
+                   }`}>
+                     {caseItem.category}
+                   </span>
+                 </div>
                 {/* Featured badge */}
                 {caseItem.featured && (
                   <div class="absolute top-6 right-6">
@@ -135,9 +135,9 @@ const categories = [
                 <div class="grid grid-cols-1 gap-3 mb-6">
                   {caseItem.results.map((result) => (
                     <div class="flex items-center text-sm">
-                      <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
+                                             <svg class="w-4 h-4 text-green-700 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                       </svg>
                       <span class="text-gray-700 font-medium">{result}</span>
                     </div>
                   ))}
@@ -199,18 +199,18 @@ const categories = [
             <p class="text-sm text-gray-600">Fra idé til lansering på 2-6 uker</p>
           </div>
           
-          <div class="text-center">
-            <div class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-              </svg>
-            </div>
-            <h4 class="font-semibold text-gray-900 mb-2">Full veiledning</h4>
-            <p class="text-sm text-gray-600">Vi følger deg gjennom hele prosessen</p>
-          </div>
+                     <div class="text-center">
+             <div class="w-16 h-16 bg-green-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+               </svg>
+             </div>
+             <h4 class="font-semibold text-gray-900 mb-2">Full veiledning</h4>
+             <p class="text-sm text-gray-600">Vi følger deg gjennom hele prosessen</p>
+           </div>
           
-          <div class="text-center">
-            <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                     <div class="text-center">
+             <div class="w-16 h-16 bg-purple-700 text-white rounded-full flex items-center justify-center mx-auto mb-4">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
               </svg>
