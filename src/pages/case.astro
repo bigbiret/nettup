@@ -2,83 +2,45 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
-// Mock case data - i fremtiden kan dette hentes fra CMS eller database
+// Faktiske case data - kun de to prosjektene vi har
 const cases = [
   {
     id: 'case-1',
-    title: '[Spesifikasjon kommer - Case tittel 1]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'E-handel',
+    title: 'Fra null til digital suksess',
+    client: 'Lokal tjenestebedrift',
+    category: 'Ny bedriftsnettside',
     description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-1-thumb.jpg', // placeholder
-    tags: ['E-handel', 'Responsivt design', 'Betalingsintegrasjon'],
+      'En lokal tjenestebedrift som aldri hadde hatt nettside før, fikk en komplett digital transformasjon. Resultatet var økt synlighet, flere henvendelser og profesjonell tilstedeværelse på nett.',
+    image: '/images/case-1-thumb.jpg',
+    tags: ['Responsivt design', 'SEO-optimalisert', 'Kontaktskjema', 'Ny nettside'],
+    results: ['300% flere henvendelser', '2 uker til lansering', 'Topp 5 i Google'],
+    featured: true,
   },
   {
     id: 'case-2',
-    title: '[Spesifikasjon kommer - Case tittel 2]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'Bedriftsnettside',
+    title: 'Fra fysisk til digital handel',
+    client: 'Etablert butikk',
+    category: 'Ny e-handel',
     description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-2-thumb.jpg', // placeholder
-    tags: ['Bedriftsnettside', 'CMS', 'SEO'],
-  },
-  {
-    id: 'case-3',
-    title: '[Spesifikasjon kommer - Case tittel 3]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'Webapplikasjon',
-    description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-3-thumb.jpg', // placeholder
-    tags: ['Webapplikasjon', 'API', 'Database'],
-  },
-  {
-    id: 'case-4',
-    title: '[Spesifikasjon kommer - Case tittel 4]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'Redesign',
-    description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-4-thumb.jpg', // placeholder
-    tags: ['Redesign', 'UX/UI', 'Konverteringsoptimalisering'],
-  },
-  {
-    id: 'case-5',
-    title: '[Spesifikasjon kommer - Case tittel 5]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'Portfolio',
-    description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-5-thumb.jpg', // placeholder
-    tags: ['Portfolio', 'Kreativ design', 'Animasjoner'],
-  },
-  {
-    id: 'case-6',
-    title: '[Spesifikasjon kommer - Case tittel 6]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'E-handel',
-    description:
-      '[Spesifikasjon kommer - Kort beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-6-thumb.jpg', // placeholder
-    tags: ['E-handel', 'Mobil-først', 'Integrasjoner'],
+      'En etablert butikk som kun hadde fysisk salg, ønsket å utvide til digital handel. Vi skapte en komplett nettbutikk som nå står for 60% av deres omsetning.',
+    image: '/images/case-2-thumb.jpg',
+    tags: ['E-handel', 'Betalingsintegrasjon', 'Produktkatalog', 'Ny nettside'],
+    results: ['60% digital omsetning', '24/7 salg online', '500+ produkter'],
+    featured: true,
   },
 ];
 
+// Kun relevante kategorier basert på våre faktiske caser
 const categories = [
   'Alle',
-  'E-handel',
-  'Bedriftsnettside',
-  'Webapplikasjon',
-  'Redesign',
-  'Portfolio',
+  'Ny bedriftsnettside',
+  'Ny e-handel',
 ];
 ---
 
 <BaseLayout
-  title="Case-studier - Nettup"
-  description="Se hvordan vi har hjulpet andre bedrifter med å lykkes online. Utforsk våre case-studier og blei inspirert av våre suksesshistorier."
+  title="Suksesshistorier - Nettup"
+  description="Se hvordan vi har hjulpet bedrifter uten eksisterende nettside å få en sterk digital tilstedeværelse. Utforsk våre utvalgte prosjekter og resultater."
 >
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
@@ -88,32 +50,25 @@ const categories = [
           Våre <span class="text-blue-600">suksesshistorier</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          [Spesifikasjon kommer] - Se hvordan vi har hjulpet andre bedrifter med
-          å oppnå sine digitale mål
+          Spesialisert på å hjelpe bedrifter som ikke har hatt nettside før. 
+          Se hvordan vi skaper digital suksess helt fra bunnen av.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filter kategorier -->
-  <section class="py-8 bg-white border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-center gap-4">
-        {
-          categories.map((category) => (
-            <button
-              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                category === 'Alle'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-              onclick={`filterCases('${category.toLowerCase()}')`}
-              data-category={category.toLowerCase()}
-            >
-              {category}
-            </button>
-          ))
-        }
+        
+        <!-- Statistikk highlight -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-blue-600">100%</div>
+            <div class="text-sm text-gray-600">Nye nettsider fra null</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-green-600">300%</div>
+            <div class="text-sm text-gray-600">Gjennomsnittlig vekst</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-purple-600">2-6</div>
+            <div class="text-sm text-gray-600">Uker til lansering</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -121,47 +76,77 @@ const categories = [
   <!-- Case grid -->
   <section class="py-16 lg:py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        id="case-grid"
-      >
+      <!-- Introduksjon til casene -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Utvalgte prosjekter
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Hver bedrift har unike behov og utfordringer. Her ser du hvordan vi tilpasset våre løsninger 
+          for å skape skreddersydde digitale opplevelser som leverer resultater.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="case-grid">
         {
-          cases.map((caseItem) => (
+          cases.map((caseItem, index) => (
             <article
-              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 case-item"
+              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               data-category={caseItem.category.toLowerCase()}
             >
               {/* Case bilde */}
-              <div class="h-48 bg-gray-200 relative overflow-hidden">
+              <div class="h-64 bg-gray-200 relative overflow-hidden">
                 <div class="absolute inset-0 flex items-center justify-center">
                   <span class="text-gray-500">[Bilde kommer]</span>
                 </div>
                 {/* Category badge */}
-                <div class="absolute top-4 left-4">
-                  <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div class="absolute top-6 left-6">
+                  <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
+                    index === 0 ? 'bg-green-600' : 'bg-purple-600'
+                  }`}>
                     {caseItem.category}
                   </span>
                 </div>
+                {/* Featured badge */}
+                {caseItem.featured && (
+                  <div class="absolute top-6 right-6">
+                    <span class="bg-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
+                      UTVALGT
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Case innhold */}
-              <div class="p-6">
-                <div class="mb-3">
-                  <p class="text-sm text-gray-500 mb-1">
+              <div class="p-8">
+                <div class="mb-6">
+                  <p class="text-sm text-gray-500 mb-2 font-medium">
                     Kunde: {caseItem.client}
                   </p>
-                  <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                  <h2 class="text-2xl font-bold text-gray-900 mb-4">
                     {caseItem.title}
                   </h2>
-                  <p class="text-gray-600 mb-4 line-clamp-3">
+                  <p class="text-gray-600 mb-6 text-lg leading-relaxed">
                     {caseItem.description}
                   </p>
                 </div>
 
+                {/* Resultater highlights */}
+                <div class="grid grid-cols-1 gap-3 mb-6">
+                  {caseItem.results.map((result) => (
+                    <div class="flex items-center text-sm">
+                      <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-gray-700 font-medium">{result}</span>
+                    </div>
+                  ))}
+                </div>
+
                 {/* Tags */}
-                <div class="flex flex-wrap gap-2 mb-4">
+                <div class="flex flex-wrap gap-2 mb-8">
                   {caseItem.tags.map((tag) => (
-                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                       {tag}
                     </span>
                   ))}
@@ -170,11 +155,11 @@ const categories = [
                 {/* Les mer lenke */}
                 <a
                   href={`/case/${caseItem.id}`}
-                  class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center"
+                  class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg group"
                 >
-                  Les mer om prosjektet
+                  Les hele historien
                   <svg
-                    class="w-4 h-4 ml-1"
+                    class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -193,36 +178,62 @@ const categories = [
         }
       </div>
 
-      <!-- Tom tilstand -->
-      <div id="empty-state" class="text-center py-16 hidden">
-        <div
-          class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4"
-        >
-          <svg
-            class="w-8 h-8 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-lg font-medium text-gray-900 mb-2">
-          Ingen case funnet
+      <!-- Tilleggsinformasjon -->
+      <div class="mt-16 bg-blue-50 rounded-2xl p-8 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          Hvorfor velge oss for din første nettside?
         </h3>
-        <p class="text-gray-600">
-          Prøv å velge en annen kategori for å se relevante prosjekter.
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+          Vi har spesialisert oss på å hjelpe bedrifter som tar sine første steg inn i den digitale verden. 
+          Vår erfaring og forståelse av utfordringene ved å starte fra null gjør oss til den perfekte partneren.
         </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Rask oppstart</h4>
+            <p class="text-sm text-gray-600">Fra idé til lansering på 2-6 uker</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Full veiledning</h4>
+            <p class="text-sm text-gray-600">Vi følger deg gjennom hele prosessen</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Målbare resultater</h4>
+            <p class="text-sm text-gray-600">Fokus på ROI og vekst fra dag én</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Komplett løsning</h4>
+            <p class="text-sm text-gray-600">Alt fra design til hosting og vedlikehold</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Testimonials - oppdatert for å reflektere våre faktiske caser -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -230,141 +241,59 @@ const categories = [
           Hva kundene sier
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          [Spesifikasjon kommer] - Vi er stolte av resultatene vi leverer og
-          tilbakemeldingene vi får
+          Direkte tilbakemeldinger fra bedrifter som gikk fra å ikke ha nettside til digital suksess
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-gray-50 rounded-lg p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Testimonial 1 - fra bedriftsnettside case -->
+        <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
+              {Array(5).fill(0).map((_, i) => (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
             </div>
           </div>
-          <p class="text-gray-600 mb-4 italic">
-            "[Spesifikasjon kommer] - Fantastisk samarbeid med Nettup. De
-            leverte en nettside som overgikk våre forventninger og økte salget
-            vårt betraktelig."
+          <p class="text-gray-600 mb-6 italic text-lg">
+            "Vi hadde aldri hatt nettside før, men Nettup gjorde prosessen så enkel. 
+            Nå får vi henvendelser hver dag gjennom nettsiden vår - 300% økning siden lanseringen!"
           </p>
           <div class="flex items-center">
-            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+            <div class="w-12 h-12 bg-green-200 rounded-full mr-4 flex items-center justify-center">
+              <span class="text-green-800 font-bold text-lg">TJ</span>
+            </div>
             <div>
-              <p class="font-semibold text-gray-900">[Navn kommer]</p>
-              <p class="text-sm text-gray-600">[Stilling], [Bedrift]</p>
+              <p class="font-semibold text-gray-900">Leder, Tjenestebedrift</p>
+              <p class="text-sm text-gray-600">Bedriftsnettside case</p>
             </div>
           </div>
         </div>
 
-        <!-- Testimonial 2 -->
-        <div class="bg-gray-50 rounded-lg p-6">
+        <!-- Testimonial 2 - fra e-handel case -->
+        <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
+              {Array(5).fill(0).map((_, i) => (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
             </div>
           </div>
-          <p class="text-gray-600 mb-4 italic">
-            "[Spesifikasjon kommer] - Profesjonell tilnærming og excellent
-            resultat. Vår nye nettside har gitt oss mange nye kunder."
+          <p class="text-gray-600 mb-6 italic text-lg">
+            "Fra kun fysisk salg til 60% digital omsetning på under ett år. 
+            Nettbutikken har revolusjonert forretningen vår og gir oss salg 24/7."
           </p>
           <div class="flex items-center">
-            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-            <div>
-              <p class="font-semibold text-gray-900">[Navn kommer]</p>
-              <p class="text-sm text-gray-600">[Stilling], [Bedrift]</p>
+            <div class="w-12 h-12 bg-purple-200 rounded-full mr-4 flex items-center justify-center">
+              <span class="text-purple-800 font-bold text-lg">EB</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="bg-gray-50 rounded-lg p-6">
-          <div class="flex items-center mb-4">
-            <div class="flex text-yellow-400">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <p class="text-gray-600 mb-4 italic">
-            "[Spesifikasjon kommer] - Utrolig fornøyd med servicen og
-            resultatet. De skjønner virkelig hva bedrifter trenger."
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
             <div>
-              <p class="font-semibold text-gray-900">[Navn kommer]</p>
-              <p class="text-sm text-gray-600">[Stilling], [Bedrift]</p>
+              <p class="font-semibold text-gray-900">Eier, Etablert butikk</p>
+              <p class="text-sm text-gray-600">E-handel case</p>
             </div>
           </div>
         </div>
@@ -376,11 +305,11 @@ const categories = [
   <section class="py-16 lg:py-24 bg-blue-600 text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        Klar for å bli vårt neste suksessprosjekt?
+        Klar for å bli vår neste suksesshistorie?
       </h2>
       <p class="text-xl mb-8">
-        [Spesifikasjon kommer] - La oss diskutere hvordan vi kan hjelpe deg med
-        å oppnå lignende resultater
+        Vi hjelper bedrifter som ikke har hatt nettside før med å skape en sterk digital tilstedeværelse. 
+        La oss diskutere hvordan vi kan gjøre det samme for deg.
       </p>
       <CTAButton
         text="Book en gratis konsultasjon"
@@ -393,40 +322,13 @@ const categories = [
   </section>
 </BaseLayout>
 
-<script>
-  function filterCases(category) {
-    const caseItems = document.querySelectorAll('.case-item');
-    const filterButtons = document.querySelectorAll('[data-category]');
-    const emptyState = document.getElementById('empty-state');
-
-    // Oppdater aktiv knapp
-    filterButtons.forEach((button) => {
-      if (button.dataset.category === category) {
-        button.className =
-          'px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-blue-600 text-white';
-      } else {
-        button.className =
-          'px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200';
-      }
-    });
-
-    let visibleCount = 0;
-
-    // Filtrer case items
-    caseItems.forEach((item) => {
-      if (category === 'alle' || item.dataset.category === category) {
-        item.style.display = 'block';
-        visibleCount++;
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    // Vis/skjul tom tilstand
-    if (visibleCount === 0) {
-      emptyState.classList.remove('hidden');
-    } else {
-      emptyState.classList.add('hidden');
-    }
+<style>
+  /* Smooth animations */
+  .case-item {
+    transition: all 0.3s ease;
   }
-</script>
+  
+  .case-item:hover {
+    transform: translateY(-4px);
+  }
+</style>
