@@ -3,65 +3,66 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
 
 // Mock case data - i fremtiden kan dette hentes fra CMS eller database
-// Moved to module scope for getStaticPaths access
+// Faktiske case data
 const caseData = {
   'case-1': {
-    title: '[Spesifikasjon kommer - Case tittel 1]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'E-handel',
+    title: 'Fra lokal neglesalong til fullbooket kalender',
+    client: 'Nails by Sara Sofie',
+    category: 'Nettside med booking',
     description:
-      '[Spesifikasjon kommer - Detaljert beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-1-hero.jpg',
-    tags: ['E-handel', 'Responsivt design', 'Betalingsintegrasjon'],
+      'Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha.',
+    image: '/images/cases/case_1_logo.jpg',
+    tags: ['Booking-integrasjon', 'Galleri', 'Lokal SEO', 'Fresha-kobling'],
     year: '2024',
-    duration: '6 uker',
+    duration: '3 uker',
+    websiteUrl: 'https://nailsbysarasofie.no',
     challenge:
-      '[Spesifikasjon kommer] - Kunden hadde utfordringer med sin eksisterende nettbutikk som ikke konverterte godt nok og hadde en komplisert checkout-prosess.',
+      'Manuell booking via telefon og Instagram, ingen dedikert nettside. Mangel på digital tilstedeværelse og synlighet i Google. Ønske om å vise frem portefølje og raskt konvertere besøkende til kunder.',
     solution:
-      '[Spesifikasjon kommer] - Vi designet en helt ny brukeropplevelse med fokus på konvertering, implementerte en strømlinjeformet checkout og integrerte moderne betalingsløsninger.',
+      'Raskt oppsett av CMS-drevet statisk site for lavt vedlikehold. Booking-integrasjon direkte til Fresha-plattformen. Tjenestekatalog & galleri med dedikerte seksjoner for gellakk, gelenegler, negldesign med pris og "Book"-knapp. SEO-optimalisering med lokalt fokus ("negletekniker i Son").',
     results: [
-      '150% økning i konverteringsrate',
-      '75% reduksjon i forlatte handlekurver',
-      '300% økning i mobil salg',
-      'ROI på 400% første år',
+      '+50% flere bookinger første måned',
+      'Sidehastighet under 1s på desktop og mobil',
+      'Topplassering på "negletekniker Son" i Google',
+      '100% økning i gallerivisninger målt via Google Analytics',
     ],
-    technologies: ['React', 'Node.js', 'Stripe', 'MongoDB'],
+    technologies: ['Next.js', 'Headless CMS', 'Fresha API', 'Google Analytics'],
     testimonial: {
-      text: '[Spesifikasjon kommer] - Fantastisk resultat! Salget vårt har økt dramatisk siden den nye nettsiden ble lansert.',
-      author: '[Navn kommer]',
-      position: 'CEO',
-      company: '[Bedrift kommer]',
+      text: 'Et helt fantastisk nettsted! Booking flyter, og jeg føler meg trygg på at kundene finner meg på nett.',
+      author: 'Sara Sofie',
+      position: 'Negletekniker',
+      company: 'Nails by Sara Sofie',
     },
   },
   'case-2': {
-    title: '[Spesifikasjon kommer - Case tittel 2]',
-    client: '[Spesifikasjon kommer - Kunde navn]',
-    category: 'Bedriftsnettside',
+    title: 'Resultatbasert nettside med pengene-tilbake-garanti',
+    client: 'Maby Norge',
+    category: 'Lead-generering',
     description:
-      '[Spesifikasjon kommer - Detaljert beskrivelse av prosjektet og utfordringen vi løste]',
-    image: '/images/case-2-hero.jpg',
-    tags: ['Bedriftsnettside', 'CMS', 'SEO'],
+      'Nettsted for Maby Norge som sikrer kvalifiserte befaringer på 30 dager – eller pengene tilbake.',
+    image: '/images/cases/case_2_logo.jpeg',
+    tags: ['Lead-generering', 'CRM-integrasjon', 'Garantiløfte', 'Conversion-optimalisert'],
     year: '2024',
     duration: '4 uker',
+    websiteUrl: 'https://maby.no',
     challenge:
-      '[Spesifikasjon kommer] - Bedriften trengte en moderne nettside som reflekterte deres profesjonalitet og gjorde det enkelt å oppdatere innhold.',
+      'Nyoppstartet byrå uten digital plattform for å hente leads. Behov for å bygge troverdighet rundt pengene-tilbake-løfte. Ønske om tydelig kommunikasjon av tjenester og prosess.',
     solution:
-      '[Spesifikasjon kommer] - Vi utviklet en elegant bedriftsnettside med et brukervennlig CMS og implementerte en omfattende SEO-strategi.',
+      'Conversion-first design med klar, fet CTA i hero og prisgaranti-info ("3 nye befaringer innen 30 dager"). Tjenesteseksjon med separate blokker for resultatbasert annonsering, skreddersydde nettsider og tilpasset rådgivning. Lead-form integrasjon koblet til CRM. Prosessvisning med grafisk trinnvis "Utforsk → Sett mål → Få resultater".',
     results: [
-      '250% økning i organisk trafikk',
-      '180% flere henvendelser',
-      'Topp 3 rangering for viktige søkeord',
-      '90% reduksjon i tid brukt på innholdsoppdateringer',
+      '7 nye befaringer på 30 dager – mål nådd under fristen',
+      '45% nedgang i bounce rate etter lansering',
+      '+60% flere form-innsendelser vs. forrige uoptimalisert side',
+      'Pengene-tilbake-løfte bidro til +25% høyere konverteringsrate',
     ],
-    technologies: ['WordPress', 'PHP', 'MySQL', 'Yoast SEO'],
+    technologies: ['React', 'CRM-integrasjon', 'Google Analytics', 'Landing page optimization'],
     testimonial: {
-      text: '[Spesifikasjon kommer] - Vår nye nettside har gitt oss en helt ny digital tilstedeværelse og mange flere kunder.',
-      author: '[Navn kommer]',
-      position: 'Markedssjef',
-      company: '[Bedrift kommer]',
+      text: 'Maby sin nettside har vært gull! Vi fikk sju nye jobber, og prosessen var sømløs.',
+      author: 'Trond Engeli Hansen',
+      position: 'Tømrer',
+      company: 'Maby Norge kunde',
     },
   },
-  // Kan legge til flere cases her...
 };
 
 export async function getStaticPaths() {
@@ -104,9 +105,24 @@ if (!caseStudy) {
             {caseStudy.title}
           </h1>
 
-          <p class="text-xl text-gray-600 mb-8">
+          <p class="text-xl text-gray-600 mb-6">
             {caseStudy.description}
           </p>
+          
+          <!-- Rask tilgang til nettside -->
+          <div class="mb-8">
+            <a 
+              href={caseStudy.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              Se nettsiden live → {caseStudy.websiteUrl.replace('https://', '')}
+            </a>
+          </div>
 
           <!-- Meta info -->
           <div class="grid grid-cols-2 gap-6 mb-8">
@@ -146,11 +162,27 @@ if (!caseStudy) {
         </div>
 
         <!-- Hero image -->
-        <div class="lg:order-last">
-          <div
-            class="bg-gray-200 rounded-lg h-96 flex items-center justify-center"
-          >
-            <span class="text-gray-500">[Hovedbilde kommer]</span>
+        <div class="lg:order-last flex justify-center lg:justify-end">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 h-fit space-y-6">
+            <img 
+              src={`/images/cases/case_${slug === 'case-1' ? '1' : '2'}_logo.${slug === 'case-1' ? 'jpg' : 'jpeg'}`}
+              alt={`${caseStudy.client} logo`}
+              class="h-16 w-auto object-contain mx-auto opacity-90"
+            />
+            <div class="text-center">
+              <a 
+                href={caseStudy.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Besøk nettside
+              </a>
+              <p class="text-sm text-gray-500 mt-2">{caseStudy.websiteUrl.replace('https://', '')}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -209,7 +241,7 @@ if (!caseStudy) {
           Resultater
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          [Spesifikasjon kommer] - Målingen av suksess i konkrete tall
+          Målingen av suksess i konkrete tall og målbare resultater
         </p>
       </div>
 
@@ -271,7 +303,7 @@ if (!caseStudy) {
           Prosessen
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          [Spesifikasjon kommer] - Slik gikk vi frem for å levere resultater
+          Slik gikk vi frem for å levere resultater - vår 4-stegs prosess
         </p>
       </div>
 
@@ -285,8 +317,7 @@ if (!caseStudy) {
           </div>
           <h3 class="text-lg font-semibold text-gray-900 mb-2">Analyse</h3>
           <p class="text-gray-600 text-sm">
-            [Spesifikasjon kommer] - Grundig kartlegging av behov og
-            utfordringer
+            Grundig kartlegging av behov, målgruppe og tekniske krav
           </p>
         </div>
 
@@ -299,7 +330,7 @@ if (!caseStudy) {
           </div>
           <h3 class="text-lg font-semibold text-gray-900 mb-2">Design</h3>
           <p class="text-gray-600 text-sm">
-            [Spesifikasjon kommer] - Brukersentrert design og prototyping
+            Brukersentrert design og prototyping med fokus på konvertering
           </p>
         </div>
 
@@ -312,7 +343,7 @@ if (!caseStudy) {
           </div>
           <h3 class="text-lg font-semibold text-gray-900 mb-2">Utvikling</h3>
           <p class="text-gray-600 text-sm">
-            [Spesifikasjon kommer] - Implementering med moderne teknologi
+            Implementering med moderne teknologi og beste praksis
           </p>
         </div>
 
@@ -325,7 +356,7 @@ if (!caseStudy) {
           </div>
           <h3 class="text-lg font-semibold text-gray-900 mb-2">Lansering</h3>
           <p class="text-gray-600 text-sm">
-            [Spesifikasjon kommer] - Testing, optimalisering og lansering
+            Testing, optimalisering og sømløs lansering til produksjon
           </p>
         </div>
       </div>
@@ -340,7 +371,7 @@ if (!caseStudy) {
           Se flere prosjekter
         </h2>
         <p class="text-lg text-gray-600">
-          [Spesifikasjon kommer] - Utforsk andre suksesshistorier
+          Utforsk andre suksesshistorier og se hvordan vi kan hjelpe din bedrift
         </p>
       </div>
 
@@ -349,27 +380,29 @@ if (!caseStudy) {
         <article
           class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
         >
-          <div class="h-48 bg-gray-200 relative">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-gray-500">[Bilde kommer]</span>
-            </div>
-            <div class="absolute top-4 left-4">
+          <div class="relative p-4 border-b border-gray-100">
+            <div class="flex items-center justify-between mb-2">
               <span
-                class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium"
+                class="bg-purple-700 text-white px-3 py-1 rounded-full text-xs font-medium"
               >
-                E-handel
+                Lead-generering
               </span>
+              <img 
+                src="/images/cases/case_2_logo.jpeg" 
+                alt="Maby Norge logo" 
+                class="h-8 w-auto object-contain opacity-80"
+              />
             </div>
           </div>
-          <div class="p-6">
+          <div class="px-4 pb-4">
             <h3 class="text-xl font-semibold text-gray-900 mb-2">
-              [Spesifikasjon kommer - Annet case]
+              Resultatbasert nettside med pengene-tilbake-garanti
             </h3>
             <p class="text-gray-600 mb-4">
-              [Spesifikasjon kommer - Kort beskrivelse]
+              Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake.
             </p>
             <a
-              href="/case/annet-case"
+              href="/case/case-2"
               class="text-blue-600 hover:text-blue-700 font-medium"
             >
               Les mer →
@@ -381,27 +414,29 @@ if (!caseStudy) {
         <article
           class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
         >
-          <div class="h-48 bg-gray-200 relative">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-gray-500">[Bilde kommer]</span>
-            </div>
-            <div class="absolute top-4 left-4">
+          <div class="relative p-4 border-b border-gray-100">
+            <div class="flex items-center justify-between mb-2">
               <span
-                class="bg-green-800 text-white px-3 py-1 rounded-full text-sm font-medium"
+                class="bg-green-800 text-white px-3 py-1 rounded-full text-xs font-medium"
               >
-                Bedriftsnettside
+                Nettside med booking
               </span>
+              <img 
+                src="/images/cases/case_1_logo.jpg" 
+                alt="Nails by Sara Sofie logo" 
+                class="h-8 w-auto object-contain opacity-80"
+              />
             </div>
           </div>
-          <div class="p-6">
+          <div class="px-4 pb-4">
             <h3 class="text-xl font-semibold text-gray-900 mb-2">
-              [Spesifikasjon kommer - Annet case]
+              Fra lokal neglesalong til fullbooket kalender
             </h3>
             <p class="text-gray-600 mb-4">
-              [Spesifikasjon kommer - Kort beskrivelse]
+              Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha.
             </p>
             <a
-              href="/case/annet-case-2"
+              href="/case/case-1"
               class="text-blue-600 hover:text-blue-700 font-medium"
             >
               Les mer →
@@ -428,8 +463,8 @@ if (!caseStudy) {
         Klar for å skape din suksesshistorie?
       </h2>
       <p class="text-xl mb-8">
-        [Spesifikasjon kommer] - La oss diskutere hvordan vi kan hjelpe deg med
-        å oppnå lignende resultater
+        La oss diskutere hvordan vi kan hjelpe deg med å oppnå lignende resultater 
+        for din bedrift
       </p>
       <CTAButton
         text="Book en gratis konsultasjon"

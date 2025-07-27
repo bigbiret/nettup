@@ -299,10 +299,10 @@ import CTAButton from '../components/CTAButton.astro';
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <!-- Start -->
-        <div class="bg-gray-50 rounded-lg p-8 relative">
+        <div class="bg-gray-50 rounded-lg p-8 relative flex flex-col">
           <h3 class="text-2xl font-bold text-gray-900 mb-2">Start</h3>
           <div class="text-3xl font-bold text-gray-900 mb-4">
-            8000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            5000,- <span class="text-lg font-normal text-gray-600">kr</span>
           </div>
           <div class="text-sm text-gray-700 mb-4">500,- kr/mnd vedlikehold</div>
           <p class="text-gray-600 mb-6">
@@ -386,16 +386,18 @@ import CTAButton from '../components/CTAButton.astro';
               SSL‑sertifikat & hosting (1 år)
             </li>
           </ul>
-          <CTAButton
-            text="Velg Start"
-            href="/kontakt?pakke=start"
-            class="w-full"
-          />
+          <div class="mt-auto">
+            <CTAButton
+              text="Velg Start"
+              href="/kontakt?pakke=start"
+              class="w-full"
+            />
+          </div>
         </div>
 
         <!-- Plus (Most Popular) -->
         <div
-          class="bg-blue-50 rounded-lg p-8 relative border-2 border-blue-200"
+          class="bg-blue-50 rounded-lg p-8 relative border-2 border-blue-200 flex flex-col"
         >
           <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
             <span
@@ -405,7 +407,7 @@ import CTAButton from '../components/CTAButton.astro';
           </div>
           <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
           <div class="text-3xl font-bold text-gray-900 mb-4">
-            12000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            8000,- <span class="text-lg font-normal text-gray-600">kr</span>
           </div>
           <div class="text-sm text-gray-700 mb-4">800,- kr/mnd vedlikehold</div>
           <p class="text-gray-600 mb-6">
@@ -474,21 +476,23 @@ import CTAButton from '../components/CTAButton.astro';
               Google Analytics-oppsett
             </li>
           </ul>
-          <CTAButton
-            text="Velg Plus"
-            href="/kontakt?pakke=plus"
-            class="w-full"
-          />
+          <div class="mt-auto">
+            <CTAButton
+              text="Velg Plus"
+              href="/kontakt?pakke=plus"
+              class="w-full"
+            />
+          </div>
         </div>
 
         <!-- Pro -->
-        <div class="bg-yellow-50 rounded-lg p-8 relative">
+        <div class="bg-yellow-50 rounded-lg p-8 relative flex flex-col">
           <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
           <div class="text-3xl font-bold text-gray-900 mb-4">
-            18000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            12000,- <span class="text-lg font-normal text-gray-600">kr</span>
           </div>
           <div class="text-sm text-gray-700 mb-4">
-            1500,- kr/mnd vedlikehold
+            1200,- kr/mnd vedlikehold
           </div>
           <p class="text-gray-600 mb-6">
             For etablerte bedrifter som krever avanserte løsninger og
@@ -571,19 +575,21 @@ import CTAButton from '../components/CTAButton.astro';
               Support & oppdateringer (3 måneder)
             </li>
           </ul>
-          <CTAButton text="Velg Pro" href="/kontakt?pakke=pro" class="w-full" />
+          <div class="mt-auto">
+            <CTAButton text="Velg Pro" href="/kontakt?pakke=pro" class="w-full" />
+          </div>
         </div>
 
         <!-- Premium -->
         <div
-          class="bg-purple-50 rounded-lg p-8 relative border border-purple-200"
+          class="bg-purple-50 rounded-lg p-8 relative border border-purple-200 flex flex-col"
         >
           <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
           <div class="text-3xl font-bold text-gray-900 mb-4">
-            25000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            20000,- <span class="text-lg font-normal text-gray-600">kr</span>
           </div>
           <div class="text-sm text-gray-700 mb-4">
-            3500,- kr/mnd vedlikehold
+            2000,- kr/mnd vedlikehold
           </div>
           <p class="text-gray-600 mb-6">
             For enterprise-kunder som trenger tilpassede løsninger og prioritert
@@ -666,11 +672,13 @@ import CTAButton from '../components/CTAButton.astro';
               Prioritert support & Flerspråklig innhold
             </li>
           </ul>
-          <CTAButton
-            text="Velg Premium"
-            href="/kontakt?pakke=premium"
-            class="w-full"
-          />
+          <div class="mt-auto">
+            <CTAButton
+              text="Velg Premium"
+              href="/kontakt?pakke=premium"
+              class="w-full"
+            />
+          </div>
         </div>
       </div>
 
@@ -703,52 +711,68 @@ import CTAButton from '../components/CTAButton.astro';
         <div
           class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
-          <div class="h-64 bg-gray-200 flex items-center justify-center relative">
-            <span class="text-gray-600">[Bilde kommer]</span>
-            <!-- Case kategori badge -->
-            <div class="absolute top-4 left-4">
+          <div class="relative p-8 border-b border-gray-100">
+            <div class="flex items-center justify-between mb-4">
               <span class="bg-green-800 text-white px-4 py-2 rounded-full text-sm font-medium">
-                Ny bedriftsnettside
+                Nettside med booking
               </span>
+              <img 
+                src="/images/cases/case_1_logo.jpg" 
+                alt="Nails by Sara Sofie logo" 
+                class="h-12 w-auto object-contain opacity-80"
+              />
             </div>
           </div>
-          <div class="p-8">
+          <div class="px-8 pb-8">
             <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-              Fra null til digital suksess
+              Fra lokal neglesalong til fullbooket kalender
             </h3>
             <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-              En lokal tjenestebedrift som aldri hadde hatt nettside før, fikk en komplett digital transformasjon. 
-              Resultatet var økt synlighet, flere henvendelser og profesjonell tilstedeværelse på nett.
+              Nails by Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha. 
+              Resultatet var en profesjonell digital tilstedeværelse som økte bookingene dramatisk.
             </p>
             
             <!-- Resultater highlights -->
             <div class="grid grid-cols-2 gap-4 mb-6">
               <div class="text-center p-3 bg-blue-50 rounded-lg">
-                <div class="text-2xl font-bold text-blue-600">300%</div>
-                <div class="text-sm text-gray-600">Flere henvendelser</div>
+                <div class="text-2xl font-bold text-blue-600">+50%</div>
+                <div class="text-sm text-gray-600">Flere bookinger</div>
               </div>
               <div class="text-center p-3 bg-green-50 rounded-lg">
-                <div class="text-2xl font-bold text-green-700">2 uker</div>
-                <div class="text-sm text-gray-600">Til lansering</div>
+                <div class="text-2xl font-bold text-green-700">&lt;1s</div>
+                <div class="text-sm text-gray-600">Lastetid</div>
               </div>
             </div>
 
             <!-- Tags -->
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Responsivt design</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">SEO-optimalisert</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kontaktskjema</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Booking-integrasjon</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Galleri</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Lokal SEO</span>
             </div>
 
-            <a
-              href="/case/case-1"
-              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg"
-            >
-              Les hele historien
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href="/case/case-1"
+                class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg"
+              >
+                Les hele historien
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a
+                href="https://nailsbysarasofie.no"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium"
+              >
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Se nettside
+              </a>
+            </div>
           </div>
         </div>
 
@@ -756,52 +780,68 @@ import CTAButton from '../components/CTAButton.astro';
         <div
           class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
-          <div class="h-64 bg-gray-200 flex items-center justify-center relative">
-            <span class="text-gray-600">[Bilde kommer]</span>
-            <!-- Case kategori badge -->
-            <div class="absolute top-4 left-4">
+          <div class="relative p-8 border-b border-gray-100">
+            <div class="flex items-center justify-between mb-4">
               <span class="bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium">
-                Ny e-handel
+                Lead-generering
               </span>
+              <img 
+                src="/images/cases/case_2_logo.jpeg" 
+                alt="Maby Norge logo" 
+                class="h-12 w-auto object-contain opacity-80"
+              />
             </div>
           </div>
-          <div class="p-8">
+          <div class="px-8 pb-8">
             <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-              Fra fysisk til digital handel
+              Resultatbasert nettside med pengene-tilbake-garanti
             </h3>
             <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-              En etablert butikk som kun hadde fysisk salg, ønsket å utvide til digital handel. 
-              Vi skapte en komplett nettbutikk som nå står for 60% av deres omsetning.
+              Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake. 
+              Vi skapte en conversion-fokusert nettside som overgikk forventningene.
             </p>
             
             <!-- Resultater highlights -->
             <div class="grid grid-cols-2 gap-4 mb-6">
               <div class="text-center p-3 bg-purple-50 rounded-lg">
-                <div class="text-2xl font-bold text-purple-600">60%</div>
-                <div class="text-sm text-gray-600">Digital omsetning</div>
+                <div class="text-2xl font-bold text-purple-600">7</div>
+                <div class="text-sm text-gray-600">Befaringer på 30 dager</div>
               </div>
               <div class="text-center p-3 bg-orange-50 rounded-lg">
-                <div class="text-2xl font-bold text-orange-600">24/7</div>
-                <div class="text-sm text-gray-600">Salg online</div>
+                <div class="text-2xl font-bold text-orange-600">+60%</div>
+                <div class="text-sm text-gray-600">Flere leads</div>
               </div>
             </div>
 
             <!-- Tags -->
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">E-handel</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Betalingsintegrasjon</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Produktkatalog</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Lead-generering</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">CRM-integrasjon</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Garantiløfte</span>
             </div>
 
-            <a
-              href="/case/case-2"
-              class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg"
-            >
-              Les hele historien
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href="/case/case-2"
+                class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg"
+              >
+                Les hele historien
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a
+                href="https://maby.no"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium"
+              >
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Se nettside
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -3,39 +3,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
 // Faktiske case data - kun de to prosjektene vi har
-const cases = [
-  {
-    id: 'case-1',
-    title: 'Fra null til digital suksess',
-    client: 'Lokal tjenestebedrift',
-    category: 'Ny bedriftsnettside',
-    description:
-      'En lokal tjenestebedrift som aldri hadde hatt nettside før, fikk en komplett digital transformasjon. Resultatet var økt synlighet, flere henvendelser og profesjonell tilstedeværelse på nett.',
-    image: '/images/case-1-thumb.jpg',
-    tags: ['Responsivt design', 'SEO-optimalisert', 'Kontaktskjema', 'Ny nettside'],
-    results: ['300% flere henvendelser', '2 uker til lansering', 'Topp 5 i Google'],
-    featured: true,
-  },
-  {
-    id: 'case-2',
-    title: 'Fra fysisk til digital handel',
-    client: 'Etablert butikk',
-    category: 'Ny e-handel',
-    description:
-      'En etablert butikk som kun hadde fysisk salg, ønsket å utvide til digital handel. Vi skapte en komplett nettbutikk som nå står for 60% av deres omsetning.',
-    image: '/images/case-2-thumb.jpg',
-    tags: ['E-handel', 'Betalingsintegrasjon', 'Produktkatalog', 'Ny nettside'],
-    results: ['60% digital omsetning', '24/7 salg online', '500+ produkter'],
-    featured: true,
-  },
-];
+  const cases = [
+    {
+      id: 'case-1',
+      title: 'Fra lokal neglesalong til fullbooket kalender',
+      client: 'Nails by Sara Sofie',
+      category: 'Nettside med booking',
+      description:
+        'Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha. Resultatet var en profesjonell digital tilstedeværelse som økte bookingene dramatisk.',
+      image: '/images/cases/case_1_logo.jpg',
+      tags: ['Booking-integrasjon', 'Galleri', 'Lokal SEO', 'Fresha-kobling'],
+      results: ['+50% flere bookinger', 'Under 1s lastetid', 'Topplassering i Google'],
+      featured: true,
+      websiteUrl: 'https://nailsbysarasofie.no',
+    },
+    {
+      id: 'case-2',
+      title: 'Resultatbasert nettside med pengene-tilbake-garanti',
+      client: 'Maby Norge',
+      category: 'Lead-generering',
+      description:
+        'Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake. Vi skapte en conversion-fokusert nettside som overgikk forventningene.',
+      image: '/images/cases/case_2_logo.jpeg',
+      tags: ['Lead-generering', 'CRM-integrasjon', 'Garantiløfte', 'Conversion-optimalisert'],
+      results: ['7 befaringer på 30 dager', '-45% bounce rate', '+60% flere leads'],
+      featured: true,
+      websiteUrl: 'https://maby.no',
+    },
+  ];
 
-// Kun relevante kategorier basert på våre faktiske caser
-const categories = [
-  'Alle',
-  'Ny bedriftsnettside',
-  'Ny e-handel',
-];
+  // Kun relevante kategorier basert på våre faktiske caser
+  const categories = [
+    'Alle',
+    'Nettside med booking',
+    'Lead-generering',
+  ];
 ---
 
 <BaseLayout
@@ -94,31 +96,31 @@ const categories = [
               class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               data-category={caseItem.category.toLowerCase()}
             >
-              {/* Case bilde */}
-              <div class="h-64 bg-gray-200 relative overflow-hidden">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <span class="text-gray-500">[Bilde kommer]</span>
-                </div>
-                {/* Category badge */}
-                                 <div class="absolute top-6 left-6">
-                   <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
-                     index === 0 ? 'bg-green-800' : 'bg-purple-700'
-                   }`}>
-                     {caseItem.category}
-                   </span>
-                 </div>
-                {/* Featured badge */}
-                {caseItem.featured && (
-                  <div class="absolute top-6 right-6">
-                    <span class="bg-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
-                      UTVALGT
+                            {/* Case bilde */}
+              <div class="relative p-6 border-b border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex gap-2 items-center">
+                    <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
+                      index === 0 ? 'bg-green-800' : 'bg-purple-700'
+                    }`}>
+                      {caseItem.category}
                     </span>
+                    {caseItem.featured && (
+                      <span class="bg-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold text-center">
+                        UTVALGT
+                      </span>
+                    )}
                   </div>
-                )}
+                  <img 
+                    src={`/images/cases/case_${index + 1}_logo.${index === 0 ? 'jpg' : 'jpeg'}`}
+                    alt={`${caseItem.client} logo`}
+                    class="h-10 w-auto object-contain opacity-80"
+                  />
+                </div>
               </div>
 
               {/* Case innhold */}
-              <div class="p-8">
+              <div class="px-6 pb-6">
                 <div class="mb-6">
                   <p class="text-sm text-gray-500 mb-2 font-medium">
                     Kunde: {caseItem.client}
@@ -153,25 +155,38 @@ const categories = [
                 </div>
 
                 {/* Les mer lenke */}
-                <a
-                  href={`/case/${caseItem.id}`}
-                  class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg group"
-                >
-                  Les hele historien
-                  <svg
-                    class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`/case/${caseItem.id}`}
+                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-lg group"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </a>
+                    Les hele historien
+                    <svg
+                      class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    href={caseItem.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium"
+                  >
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Se nettside
+                  </a>
+                </div>
               </div>
             </article>
           ))
@@ -246,7 +261,7 @@ const categories = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Testimonial 1 - fra bedriftsnettside case -->
+        <!-- Testimonial 1 - fra Nails by Sara Sofie case -->
         <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
@@ -258,21 +273,20 @@ const categories = [
             </div>
           </div>
           <p class="text-gray-600 mb-6 italic text-lg">
-            "Vi hadde aldri hatt nettside før, men Nettup gjorde prosessen så enkel. 
-            Nå får vi henvendelser hver dag gjennom nettsiden vår - 300% økning siden lanseringen!"
+            "Et helt fantastisk nettsted! Booking flyter, og jeg føler meg trygg på at kundene finner meg på nett."
           </p>
           <div class="flex items-center">
             <div class="w-12 h-12 bg-green-200 rounded-full mr-4 flex items-center justify-center">
-              <span class="text-green-800 font-bold text-lg">TJ</span>
+              <span class="text-green-800 font-bold text-lg">SS</span>
             </div>
             <div>
-              <p class="font-semibold text-gray-900">Leder, Tjenestebedrift</p>
-              <p class="text-sm text-gray-600">Bedriftsnettside case</p>
+              <p class="font-semibold text-gray-900">Sara Sofie</p>
+              <p class="text-sm text-gray-600">Negletekniker, Nails by Sara Sofie</p>
             </div>
           </div>
         </div>
 
-        <!-- Testimonial 2 - fra e-handel case -->
+        <!-- Testimonial 2 - fra Maby Norge case -->
         <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
@@ -284,16 +298,15 @@ const categories = [
             </div>
           </div>
           <p class="text-gray-600 mb-6 italic text-lg">
-            "Fra kun fysisk salg til 60% digital omsetning på under ett år. 
-            Nettbutikken har revolusjonert forretningen vår og gir oss salg 24/7."
+            "Maby sin nettside har vært gull! Vi fikk sju nye jobber, og prosessen var sømløs."
           </p>
           <div class="flex items-center">
             <div class="w-12 h-12 bg-purple-200 rounded-full mr-4 flex items-center justify-center">
-              <span class="text-purple-800 font-bold text-lg">EB</span>
+              <span class="text-purple-800 font-bold text-lg">TE</span>
             </div>
             <div>
-              <p class="font-semibold text-gray-900">Eier, Etablert butikk</p>
-              <p class="text-sm text-gray-600">E-handel case</p>
+              <p class="font-semibold text-gray-900">Trond Engeli Hansen</p>
+              <p class="text-sm text-gray-600">Tømrer, Maby Norge kunde</p>
             </div>
           </div>
         </div>

@@ -41,12 +41,12 @@ import CTAButton from '../components/CTAButton.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Start -->
         <div
-          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200"
+          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 flex flex-col"
         >
-          <div class="text-center">
+          <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Start</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              8000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              5000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
             <div class="text-lg text-gray-500 mb-4">
               500,- kr/mnd vedlikehold
@@ -152,17 +152,19 @@ import CTAButton from '../components/CTAButton.astro';
               </li>
             </ul>
 
-            <CTAButton
-              text="Velg Start"
-              href="/kontakt?pakke=start"
-              class="w-full"
-            />
+            <div class="mt-auto">
+              <CTAButton
+                text="Velg Start"
+                href="/kontakt?pakke=start"
+                class="w-full"
+              />
+            </div>
           </div>
         </div>
 
         <!-- Plus (Most Popular) -->
         <div
-          class="bg-white rounded-lg shadow-md p-8 relative border-2 border-blue-500 hover:shadow-lg transition-shadow duration-200"
+          class="bg-white rounded-lg shadow-md p-8 relative border-2 border-blue-500 hover:shadow-lg transition-shadow duration-200 flex flex-col"
         >
           <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
             <span
@@ -170,7 +172,7 @@ import CTAButton from '../components/CTAButton.astro';
               >Mest populær</span
             >
           </div>
-          <div class="text-center">
+          <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
               12000,- <span class="text-lg font-normal text-gray-600">kr</span>
@@ -296,25 +298,27 @@ import CTAButton from '../components/CTAButton.astro';
               </li>
             </ul>
 
-            <CTAButton
-              text="Velg Plus"
-              href="/kontakt?pakke=plus"
-              class="w-full"
-            />
+            <div class="mt-auto">
+              <CTAButton
+                text="Velg Plus"
+                href="/kontakt?pakke=plus"
+                class="w-full"
+              />
+            </div>
           </div>
         </div>
 
         <!-- Pro -->
         <div
-          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200"
+          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 flex flex-col"
         >
-          <div class="text-center">
+          <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              18000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              12000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
             <div class="text-lg text-gray-500 mb-4">
-              1500,- kr/mnd vedlikehold
+              1200,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
               Perfekt for etablerte bedrifter som trenger avanserte funksjoner
@@ -436,25 +440,27 @@ import CTAButton from '../components/CTAButton.astro';
               </li>
             </ul>
 
-            <CTAButton
-              text="Velg Pro"
-              href="/kontakt?pakke=pro"
-              class="w-full"
-            />
+            <div class="mt-auto">
+              <CTAButton
+                text="Velg Pro"
+                href="/kontakt?pakke=pro"
+                class="w-full"
+              />
+            </div>
           </div>
         </div>
 
         <!-- Premium -->
         <div
-          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200"
+          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200 flex flex-col"
         >
-          <div class="text-center">
+          <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
-              25000,- <span class="text-lg font-normal text-gray-600">kr</span>
+              20000,- <span class="text-lg font-normal text-gray-600">kr</span>
             </div>
             <div class="text-lg text-gray-500 mb-4">
-              3500,- kr/mnd vedlikehold
+              2500,- kr/mnd vedlikehold
             </div>
             <p class="text-gray-600 mb-6">
               For enterprise-kunder som trenger tilpassede løsninger og
@@ -623,11 +629,13 @@ import CTAButton from '../components/CTAButton.astro';
               </li>
             </ul>
 
-            <CTAButton
-              text="Velg Premium"
-              href="/kontakt?pakke=premium"
-              class="w-full"
-            />
+            <div class="mt-auto">
+              <CTAButton
+                text="Velg Premium"
+                href="/kontakt?pakke=premium"
+                class="w-full"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -656,23 +664,23 @@ import CTAButton from '../components/CTAButton.astro';
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Start<br /><span class="text-sm font-normal">8000,-</span><br
+                >Start<br /><span class="text-sm font-normal">5000,-</span><br
                 /><span class="text-xs text-gray-500">500,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Plus<br /><span class="text-sm font-normal">12000,-</span><br
+                >Plus<br /><span class="text-sm font-normal">8000,-</span><br
                 /><span class="text-xs text-gray-500">800,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Pro<br /><span class="text-sm font-normal">18000,-</span><br
-                /><span class="text-xs text-gray-500">1500,-/mnd</span></th
+                >Pro<br /><span class="text-sm font-normal">12000,-</span><br
+                /><span class="text-xs text-gray-500">1200,-/mnd</span></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Premium<br /><span class="text-sm font-normal">25000,-</span
-                ><br /><span class="text-xs text-gray-500">3500,-/mnd</span></th
+                >Premium<br /><span class="text-sm font-normal">20000,-</span
+                ><br /><span class="text-xs text-gray-500">2500,-/mnd</span></th
               >
             </tr>
           </thead>
