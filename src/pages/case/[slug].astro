@@ -41,7 +41,12 @@ const caseData = {
     description:
       'Nettsted for Maby Norge som sikrer kvalifiserte befaringer på 30 dager – eller pengene tilbake.',
     image: '/images/cases/case_2_logo.jpeg',
-    tags: ['Lead-generering', 'CRM-integrasjon', 'Garantiløfte', 'Conversion-optimalisert'],
+    tags: [
+      'Lead-generering',
+      'CRM-integrasjon',
+      'Garantiløfte',
+      'Conversion-optimalisert',
+    ],
     year: '2024',
     duration: '4 uker',
     websiteUrl: 'https://maby.no',
@@ -55,7 +60,12 @@ const caseData = {
       '+60% flere form-innsendelser vs. forrige uoptimalisert side',
       'Pengene-tilbake-løfte bidro til +25% høyere konverteringsrate',
     ],
-    technologies: ['React', 'CRM-integrasjon', 'Google Analytics', 'Landing page optimization'],
+    technologies: [
+      'React',
+      'CRM-integrasjon',
+      'Google Analytics',
+      'Landing page optimization',
+    ],
     testimonial: {
       text: 'Maby sin nettside har vært gull! Vi fikk sju nye jobber, og prosessen var sømløs.',
       author: 'Trond Engeli Hansen',
@@ -108,17 +118,27 @@ if (!caseStudy) {
           <p class="text-xl text-gray-600 mb-6">
             {caseStudy.description}
           </p>
-          
+
           <!-- Rask tilgang til nettside -->
           <div class="mb-8">
-            <a 
+            <a
               href={caseStudy.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
             >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path>
               </svg>
               Se nettsiden live → {caseStudy.websiteUrl.replace('https://', '')}
             </a>
@@ -163,25 +183,39 @@ if (!caseStudy) {
 
         <!-- Hero image -->
         <div class="lg:order-last flex justify-center lg:justify-end">
-          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 h-fit space-y-6">
-            <img 
+          <div
+            class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 h-fit space-y-6"
+          >
+            <img
               src={`/images/cases/case_${slug === 'case-1' ? '1' : '2'}_logo.${slug === 'case-1' ? 'jpg' : 'jpeg'}`}
               alt={`${caseStudy.client} logo`}
               class="h-16 w-auto object-contain mx-auto opacity-90"
             />
             <div class="text-center">
-              <a 
+              <a
                 href={caseStudy.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
                 </svg>
                 Besøk nettside
               </a>
-              <p class="text-sm text-gray-500 mt-2">{caseStudy.websiteUrl.replace('https://', '')}</p>
+              <p class="text-sm text-gray-500 mt-2">
+                {caseStudy.websiteUrl.replace('https://', '')}
+              </p>
             </div>
           </div>
         </div>
@@ -387,9 +421,9 @@ if (!caseStudy) {
               >
                 Lead-generering
               </span>
-              <img 
-                src="/images/cases/case_2_logo.jpeg" 
-                alt="Maby Norge logo" 
+              <img
+                src="/images/cases/case_2_logo.jpeg"
+                alt="Maby Norge logo"
                 class="h-8 w-auto object-contain opacity-80"
               />
             </div>
@@ -399,7 +433,8 @@ if (!caseStudy) {
               Resultatbasert nettside med pengene-tilbake-garanti
             </h3>
             <p class="text-gray-600 mb-4">
-              Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake.
+              Maby Norge trengte en nettside som kunne sikre kvalifiserte
+              befaringer på 30 dager – eller pengene tilbake.
             </p>
             <a
               href="/case/case-2"
@@ -421,9 +456,9 @@ if (!caseStudy) {
               >
                 Nettside med booking
               </span>
-              <img 
-                src="/images/cases/case_1_logo.jpg" 
-                alt="Nails by Sara Sofie logo" 
+              <img
+                src="/images/cases/case_1_logo.jpg"
+                alt="Nails by Sara Sofie logo"
                 class="h-8 w-auto object-contain opacity-80"
               />
             </div>
@@ -433,7 +468,8 @@ if (!caseStudy) {
               Fra lokal neglesalong til fullbooket kalender
             </h3>
             <p class="text-gray-600 mb-4">
-              Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha.
+              Sara Sofie trengte en enkel, rask nettside som presenterer
+              tjenester, galleri og gjør det sømløst å booke time via Fresha.
             </p>
             <a
               href="/case/case-1"
@@ -463,8 +499,8 @@ if (!caseStudy) {
         Klar for å skape din suksesshistorie?
       </h2>
       <p class="text-xl mb-8">
-        La oss diskutere hvordan vi kan hjelpe deg med å oppnå lignende resultater 
-        for din bedrift
+        La oss diskutere hvordan vi kan hjelpe deg med å oppnå lignende
+        resultater for din bedrift
       </p>
       <CTAButton
         text="Book en gratis konsultasjon"

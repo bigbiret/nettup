@@ -8,7 +8,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
 ---
 
 <BaseLayout
-  title="Kontakt oss - Nettup"
+  title="Ta kontakt - Nettup"
   description="Ta kontakt med Nettup for en uforpliktende samtale om ditt webprosjekt. Vi tilbyr gratis konsultasjon og skreddersøm tilbud."
 >
   <!-- Hero Section -->
@@ -16,12 +16,19 @@ const selectedPackage = url.searchParams.get('pakke') || '';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Kontakt <span class="text-blue-600">oss</span>
+          Ta <span class="text-blue-600">kontakt</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          [Spesifikasjon kommer] - Klar for å starte ditt webprosjekt? La oss ta
-          en uforpliktende prat om dine behov
+          Klar for å starte ditt webprosjekt? La oss ta en uforpliktende prat om
+          dine behov
         </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <CTAButton
+            text="Book gratis konsultasjon"
+            onclick="openCalendly()"
+            size="lg"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -32,15 +39,12 @@ const selectedPackage = url.searchParams.get('pakke') || '';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <!-- Kontaktskjema -->
         <div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">
-            Send oss en melding
-          </h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Send en melding</h2>
           <p class="text-lg text-gray-600 mb-8">
-            [Spesifikasjon kommer] - Fyll ut skjemaet under, så tar vi kontakt
-            med deg innen 24 timer.
+            Fyll ut skjemaet under, så tar vi kontakt med deg innen 24 timer.
           </p>
 
-          <form class="space-y-6" onsubmit="submitContactForm(event)">
+          <form class="space-y-6" id="contact-form">
             <!-- Navn -->
             <div>
               <label
@@ -85,13 +89,25 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               >
                 Telefon
               </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                placeholder="+47 xxx xx xxx"
-              />
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <input
+                    type="text"
+                    id="country-code"
+                    name="country-code"
+                    value="+47"
+                    class="w-16 px-3 py-3 border border-gray-300 border-r-0 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-center text-sm h-[52px]"
+                    placeholder="+47"
+                  />
+                </div>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 h-[52px]"
+                  placeholder="123 45 678"
+                />
+              </div>
             </div>
 
             <!-- Bedrift -->
@@ -100,7 +116,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 for="company"
                 class="block text-sm font-medium text-gray-700 mb-2"
               >
-                Bedrift / Organisasjon
+                Bedrift / Organisasjon *
               </label>
               <input
                 type="text"
@@ -108,6 +124,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 name="company"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                 placeholder="Bedriftsnavn"
+                required
               />
             </div>
 
@@ -159,12 +176,12 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 name="budget"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
               >
-                <option value="">Velg budsjettramme</option>
-                <option value="under-50k">Under 50.000 kr</option>
-                <option value="50k-100k">50.000 - 100.000 kr</option>
-                <option value="100k-200k">100.000 - 200.000 kr</option>
-                <option value="200k-500k">200.000 - 500.000 kr</option>
-                <option value="over-500k">Over 500.000 kr</option>
+                <option value="">Velg budsjettramme (valgfritt)</option>
+                <option value="under-50k">Under 10.000 kr</option>
+                <option value="50k-100k">10.000 - 20.000 kr</option>
+                <option value="100k-200k">20.000 - 50.000 kr</option>
+                <option value="200k-500k">50.000 - 100.000 kr</option>
+                <option value="over-500k">Over 100.000 kr</option>
               </select>
             </div>
 
@@ -182,7 +199,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 rows="6"
                 required
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                placeholder="Fortell oss om ditt prosjekt. Hva er dine mål, utfordringer og forventninger?"
+                placeholder="Fortell om ditt prosjekt. Hva er dine mål, utfordringer og forventninger?"
               ></textarea>
             </div>
 
@@ -206,12 +223,12 @@ const selectedPackage = url.searchParams.get('pakke') || '';
             </div>
 
             <!-- Submit knapp -->
-            <CTAButton
-              text="Send melding"
-              size="lg"
-              class="w-full"
-              onclick="submitContactForm(event)"
-            />
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white font-medium rounded-lg px-6 py-3 text-base transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Send melding
+            </button>
           </form>
         </div>
 
@@ -222,8 +239,8 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               Eller book direkte
             </h3>
             <p class="text-gray-600 mb-6">
-              [Spesifikasjon kommer] - Foretrekker du en direkte samtale? Book
-              et gratis konsultasjonsmøte.
+              Foretrekker du en direkte samtale? Book et gratis
+              konsultasjonsmøte.
             </p>
             <CTAButton
               text="Book gratis konsultasjon"
@@ -232,7 +249,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               class="w-full mb-6"
             />
             <p class="text-sm text-gray-500">
-              📅 30 minutter<br />
+              📅 20 minutter<br />
               💬 Uforpliktende<br />
               🎯 Tilpasset dine behov
             </p>
@@ -270,10 +287,8 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               </div>
               <div>
                 <h4 class="font-medium text-gray-900">Adresse</h4>
-                <p class="text-gray-600">[Spesifikasjon kommer - Adresse]</p>
-                <p class="text-gray-600">
-                  [Spesifikasjon kommer - Postnummer og sted]
-                </p>
+                <p class="text-gray-600">Trollåsveien 4</p>
+                <p class="text-gray-600">1414 Trollåsen</p>
               </div>
             </div>
 
@@ -299,7 +314,11 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               <div>
                 <h4 class="font-medium text-gray-900">Telefon</h4>
                 <p class="text-gray-600">
-                  [Spesifikasjon kommer - Telefonnummer]
+                  <a
+                    href="tel:+4747331298"
+                    class="hover:text-blue-600 transition-colors"
+                    >+47 473 31 298</a
+                  >
                 </p>
                 <p class="text-sm text-gray-500">
                   Mandag - Fredag, 08:00 - 16:00
@@ -329,77 +348,13 @@ const selectedPackage = url.searchParams.get('pakke') || '';
               <div>
                 <h4 class="font-medium text-gray-900">E-post</h4>
                 <p class="text-gray-600">
-                  [Spesifikasjon kommer - E-postadresse]
+                  <a
+                    href="mailto:post@nettup.no"
+                    class="hover:text-blue-600 transition-colors"
+                    >post@nettup.no</a
+                  >
                 </p>
                 <p class="text-sm text-gray-500">Vi svarer innen 24 timer</p>
-              </div>
-            </div>
-
-            <!-- Sosiale medier -->
-            <div class="flex items-start space-x-4">
-              <div
-                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0"
-              >
-                <svg
-                  class="w-6 h-6 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                  ></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-medium text-gray-900">Sosiale medier</h4>
-                <div class="flex space-x-3 mt-2">
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-600 transition-colors duration-200"
-                  >
-                    <svg
-                      class="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                      ></path>
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-600 transition-colors duration-200"
-                  >
-                    <svg
-                      class="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                      ></path>
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-600 transition-colors duration-200"
-                  >
-                    <svg
-                      class="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.748.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -412,38 +367,24 @@ const selectedPackage = url.searchParams.get('pakke') || '';
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Finn oss</h2>
-        <p class="text-lg text-gray-600">
-          [Spesifikasjon kommer] - Velkommen til vårt kontor for en kaffe og en
-          uforpliktende prat
-        </p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Bedriftens lokaler
+        </h2>
+        <p class="text-lg text-gray-600">Her befinner kontoret seg</p>
       </div>
 
-      <!-- Google Maps placeholder -->
-      <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-        <div class="text-center">
-          <svg
-            class="w-16 h-16 text-gray-400 mx-auto mb-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            ></path>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-          <p class="text-gray-500">
-            [Spesifikasjon kommer] - Google Maps embed kommer her
-          </p>
-        </div>
+      <!-- Google Maps embed -->
+      <div class="w-full h-96 rounded-lg overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2005.7691423547344!2d10.77833837812491!3d59.81975497485552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464168f71d9f8c29%3A0x94af311b9198daaf!2sTroll%C3%A5sveien%204%2C%201414%20Troll%C3%A5sen!5e0!3m2!1sno!2sno!4v1753692474993!5m2!1sno!2sno"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
       </div>
     </div>
   </section>
@@ -470,8 +411,8 @@ const selectedPackage = url.searchParams.get('pakke') || '';
             </div>
           </div>
           <p class="text-sm text-gray-500 mt-4">
-            [Spesifikasjon kommer] - Utenom åpningstidene? Send oss en e-post,
-            så svarer vi så snart som mulig.
+            [Spesifikasjon kommer] - Utenom åpningstidene? Send en e-post, så
+            svarer vi så snart som mulig.
           </p>
         </div>
 
@@ -486,8 +427,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 Hvor raskt kan dere starte?
               </h4>
               <p class="text-sm text-gray-600">
-                [Spesifikasjon kommer] - Vi kan vanligvis starte innen 1-2 uker
-                etter signert kontrakt.
+                Vi kan vanligvis starte innen 1-2 uker etter signert kontrakt.
               </p>
             </div>
             <div>
@@ -495,8 +435,8 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 Hvor lang tid tar et prosjekt?
               </h4>
               <p class="text-sm text-gray-600">
-                [Spesifikasjon kommer] - Avhenger av størrelse, men 3-8 uker er
-                typisk for de fleste prosjekter.
+                Avhenger av størrelse, men 1-5 uker er typisk for de fleste
+                prosjekter.
               </p>
             </div>
             <div>
@@ -504,8 +444,7 @@ const selectedPackage = url.searchParams.get('pakke') || '';
                 Tilbyr dere vedlikehold?
               </h4>
               <p class="text-sm text-gray-600">
-                [Spesifikasjon kommer] - Ja, vi har fleksible vedlikeholdspakker
-                fra [pris] kr/måned.
+                Ja, vi har fleksible vedlikeholdspakker fra 300,- kr/måned.
               </p>
             </div>
           </div>
@@ -516,6 +455,14 @@ const selectedPackage = url.searchParams.get('pakke') || '';
 </BaseLayout>
 
 <script>
+  // Wait for DOM to be fully loaded before attaching event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', submitContactForm);
+    }
+  });
+
   async function submitContactForm(event) {
     event.preventDefault();
 
@@ -523,12 +470,24 @@ const selectedPackage = url.searchParams.get('pakke') || '';
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
 
-    // Disable form og vis loading state
+    // Disable button and show loading
     submitButton.disabled = true;
     submitButton.textContent = 'Sender...';
 
     try {
       const formData = new FormData(form);
+
+      // Combine country code and phone number
+      const countryCode = formData.get('country-code') || '+47';
+      const phoneNumber = formData.get('phone') || '';
+      const fullPhone = phoneNumber ? `${countryCode} ${phoneNumber}` : '';
+
+      // Remove individual fields and add combined phone
+      formData.delete('country-code');
+      formData.delete('phone');
+      if (fullPhone) {
+        formData.append('phone', fullPhone);
+      }
 
       const response = await fetch('/api/kontakt', {
         method: 'POST',
@@ -538,36 +497,134 @@ const selectedPackage = url.searchParams.get('pakke') || '';
       const result = await response.json();
 
       if (result.success) {
-        // Vis suksessmelding
-        showMessage(result.message, 'success');
+        showSuccessMessage();
         form.reset();
       } else {
-        // Vis feilmelding
-        showMessage(result.error, 'error');
+        showErrorMessage(result.error || 'Noe gikk galt. Prøv igjen senere.');
       }
     } catch (error) {
-      // Handle form submission error
-      showMessage('Noe gikk galt. Prøv igjen senere.', 'error');
+      showErrorMessage('Noe gikk galt. Prøv igjen senere.');
     } finally {
-      // Reset button
       submitButton.disabled = false;
       submitButton.textContent = originalText;
     }
   }
 
-  function showMessage(message, type) {
-    // Lag en toast melding
-    const toast = document.createElement('div');
-    toast.className = `fixed top-4 right-4 p-4 rounded-lg text-white z-50 ${
-      type === 'success' ? 'bg-green-500' : 'bg-red-500'
-    }`;
-    toast.textContent = message;
+  function showSuccessMessage() {
+    const modal = document.createElement('div');
+    modal.className =
+      'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0">
+        <div class="p-8 text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Takk for din henvendelse!</h3>
+          <p class="text-gray-600 mb-6">Vi har mottatt din melding og kommer tilbake til deg innen 24 timer.</p>
+          <button class="w-full bg-blue-600 text-white font-medium rounded-lg px-6 py-3 text-base transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Lukk
+          </button>
+        </div>
+      </div>
+    `;
 
-    document.body.appendChild(toast);
+    document.body.appendChild(modal);
 
-    // Fjern etter 5 sekunder
+    // Animate in
     setTimeout(() => {
-      toast.remove();
-    }, 5000);
+      const modalContent = modal.querySelector('div');
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
+
+    // Handle close button
+    const closeButton = modal.querySelector('button');
+    closeButton.addEventListener('click', () => {
+      closeModal(modal);
+    });
+
+    // Handle backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    // Auto close after 8 seconds
+    setTimeout(() => {
+      if (document.body.contains(modal)) {
+        closeModal(modal);
+      }
+    }, 8000);
+  }
+
+  function showErrorMessage(text) {
+    const modal = document.createElement('div');
+    modal.className =
+      'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0">
+        <div class="p-8 text-center">
+          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Noe gikk galt</h3>
+          <p class="text-gray-600 mb-6">${text}</p>
+          <button class="w-full bg-blue-600 text-white font-medium rounded-lg px-6 py-3 text-base transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Lukk
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Animate in
+    setTimeout(() => {
+      const modalContent = modal.querySelector('div');
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
+
+    // Handle close button
+    const closeButton = modal.querySelector('button');
+    closeButton.addEventListener('click', () => {
+      closeModal(modal);
+    });
+
+    // Handle backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    // Auto close after 8 seconds
+    setTimeout(() => {
+      if (document.body.contains(modal)) {
+        closeModal(modal);
+      }
+    }, 8000);
+  }
+
+  function closeModal(modal) {
+    const modalContent = modal.querySelector('div');
+    modalContent.classList.remove('scale-100', 'opacity-100');
+    modalContent.classList.add('scale-95', 'opacity-0');
+
+    setTimeout(() => {
+      if (document.body.contains(modal)) {
+        modal.remove();
+      }
+    }, 300);
+  }
+
+  function openCalendly() {
+    window.open('https://calendly.com/post-nettup/30min', '_blank');
   }
 </script>

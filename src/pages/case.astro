@@ -3,41 +3,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
 // Faktiske case data - kun de to prosjektene vi har
-  const cases = [
-    {
-      id: 'case-1',
-      title: 'Fra lokal neglesalong til fullbooket kalender',
-      client: 'Nails by Sara Sofie',
-      category: 'Nettside med booking',
-      description:
-        'Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha. Resultatet var en profesjonell digital tilstedeværelse som økte bookingene dramatisk.',
-      image: '/images/cases/case_1_logo.jpg',
-      tags: ['Booking-integrasjon', 'Galleri', 'Lokal SEO', 'Fresha-kobling'],
-      results: ['+50% flere bookinger', 'Under 1s lastetid', 'Topplassering i Google'],
-      featured: true,
-      websiteUrl: 'https://nailsbysarasofie.no',
-    },
-    {
-      id: 'case-2',
-      title: 'Resultatbasert nettside med pengene-tilbake-garanti',
-      client: 'Maby Norge',
-      category: 'Lead-generering',
-      description:
-        'Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake. Vi skapte en conversion-fokusert nettside som overgikk forventningene.',
-      image: '/images/cases/case_2_logo.jpeg',
-      tags: ['Lead-generering', 'CRM-integrasjon', 'Garantiløfte', 'Conversion-optimalisert'],
-      results: ['7 befaringer på 30 dager', '-45% bounce rate', '+60% flere leads'],
-      featured: true,
-      websiteUrl: 'https://maby.no',
-    },
-  ];
+const cases = [
+  {
+    id: 'case-1',
+    title: 'Fra lokal neglesalong til fullbooket kalender',
+    client: 'Nails by Sara Sofie',
+    category: 'Nettside med booking',
+    description:
+      'Sara Sofie trengte en enkel, rask nettside som presenterer tjenester, galleri og gjør det sømløst å booke time via Fresha. Resultatet var en profesjonell digital tilstedeværelse som økte bookingene dramatisk.',
+    image: '/images/cases/case_1_logo.jpg',
+    tags: ['Booking-integrasjon', 'Galleri', 'Lokal SEO', 'Fresha-kobling'],
+    results: [
+      '+50% flere bookinger',
+      'Under 1s lastetid',
+      'Topplassering i Google',
+    ],
+    featured: true,
+    websiteUrl: 'https://nailsbysarasofie.no',
+  },
+  {
+    id: 'case-2',
+    title: 'Resultatbasert nettside med pengene-tilbake-garanti',
+    client: 'Maby Norge',
+    category: 'Lead-generering',
+    description:
+      'Maby Norge trengte en nettside som kunne sikre kvalifiserte befaringer på 30 dager – eller pengene tilbake. Vi skapte en conversion-fokusert nettside som overgikk forventningene.',
+    image: '/images/cases/case_2_logo.jpeg',
+    tags: [
+      'Lead-generering',
+      'CRM-integrasjon',
+      'Garantiløfte',
+      'Conversion-optimalisert',
+    ],
+    results: [
+      '7 befaringer på 30 dager',
+      '-45% bounce rate',
+      '+60% flere leads',
+    ],
+    featured: true,
+    websiteUrl: 'https://maby.no',
+  },
+];
 
-  // Kun relevante kategorier basert på våre faktiske caser
-  const categories = [
-    'Alle',
-    'Nettside med booking',
-    'Lead-generering',
-  ];
+// Kun relevante kategorier basert på våre faktiske caser
+const categories = ['Alle', 'Nettside med booking', 'Lead-generering'];
 ---
 
 <BaseLayout
@@ -52,12 +61,14 @@ import CTAButton from '../components/CTAButton.astro';
           Våre <span class="text-blue-600">suksesshistorier</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Spesialisert på å hjelpe bedrifter som ikke har hatt nettside før. 
-          Se hvordan vi skaper digital suksess helt fra bunnen av.
+          Spesialisert på å hjelpe bedrifter som ikke har hatt nettside før. Se
+          hvordan vi skaper digital suksess helt fra bunnen av.
         </p>
-        
+
         <!-- Statistikk highlight -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12"
+        >
           <div class="text-center">
             <div class="text-3xl font-bold text-blue-600">100%</div>
             <div class="text-sm text-gray-600">Nye nettsider fra null</div>
@@ -84,8 +95,9 @@ import CTAButton from '../components/CTAButton.astro';
           Utvalgte prosjekter
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Hver bedrift har unike behov og utfordringer. Her ser du hvordan vi tilpasset våre løsninger 
-          for å skape skreddersydde digitale opplevelser som leverer resultater.
+          Hver bedrift har unike behov og utfordringer. Her ser du hvordan vi
+          tilpasset våre løsninger for å skape skreddersydde digitale
+          opplevelser som leverer resultater.
         </p>
       </div>
 
@@ -96,13 +108,15 @@ import CTAButton from '../components/CTAButton.astro';
               class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               data-category={caseItem.category.toLowerCase()}
             >
-                            {/* Case bilde */}
+              {/* Case bilde */}
               <div class="relative p-6 border-b border-gray-100">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex gap-2 items-center">
-                    <span class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
-                      index === 0 ? 'bg-green-800' : 'bg-purple-700'
-                    }`}>
+                    <span
+                      class={`text-white px-4 py-2 rounded-full text-sm font-medium ${
+                        index === 0 ? 'bg-green-800' : 'bg-purple-700'
+                      }`}
+                    >
                       {caseItem.category}
                     </span>
                     {caseItem.featured && (
@@ -111,7 +125,7 @@ import CTAButton from '../components/CTAButton.astro';
                       </span>
                     )}
                   </div>
-                  <img 
+                  <img
                     src={`/images/cases/case_${index + 1}_logo.${index === 0 ? 'jpg' : 'jpeg'}`}
                     alt={`${caseItem.client} logo`}
                     class="h-10 w-auto object-contain opacity-80"
@@ -137,9 +151,19 @@ import CTAButton from '../components/CTAButton.astro';
                 <div class="grid grid-cols-1 gap-3 mb-6">
                   {caseItem.results.map((result) => (
                     <div class="flex items-center text-sm">
-                                             <svg class="w-4 h-4 text-green-700 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                       </svg>
+                      <svg
+                        class="w-4 h-4 text-green-700 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
                       <span class="text-gray-700 font-medium">{result}</span>
                     </div>
                   ))}
@@ -181,8 +205,18 @@ import CTAButton from '../components/CTAButton.astro';
                     rel="noopener noreferrer"
                     class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium"
                   >
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
                     </svg>
                     Se nettside
                   </a>
@@ -199,49 +233,105 @@ import CTAButton from '../components/CTAButton.astro';
           Hvorfor velge oss for din første nettside?
         </h3>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-          Vi har spesialisert oss på å hjelpe bedrifter som tar sine første steg inn i den digitale verden. 
-          Vår erfaring og forståelse av utfordringene ved å starte fra null gjør oss til den perfekte partneren.
+          Vi har spesialisert oss på å hjelpe bedrifter som tar sine første steg
+          inn i den digitale verden. Vår erfaring og forståelse av utfordringene
+          ved å starte fra null gjør oss til den perfekte partneren.
         </p>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="text-center">
-            <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            <div
+              class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
             <h4 class="font-semibold text-gray-900 mb-2">Rask oppstart</h4>
-            <p class="text-sm text-gray-600">Fra idé til lansering på 2-6 uker</p>
+            <p class="text-sm text-gray-600">
+              Fra idé til lansering på 2-6 uker
+            </p>
           </div>
-          
-                     <div class="text-center">
-             <div class="w-16 h-16 bg-green-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-               </svg>
-             </div>
-             <h4 class="font-semibold text-gray-900 mb-2">Full veiledning</h4>
-             <p class="text-sm text-gray-600">Vi følger deg gjennom hele prosessen</p>
-           </div>
-          
-                     <div class="text-center">
-             <div class="w-16 h-16 bg-purple-700 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-green-800 text-white rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Full veiledning</h4>
+            <p class="text-sm text-gray-600">
+              Vi følger deg gjennom hele prosessen
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-purple-700 text-white rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
               </svg>
             </div>
             <h4 class="font-semibold text-gray-900 mb-2">Målbare resultater</h4>
-            <p class="text-sm text-gray-600">Fokus på ROI og vekst fra dag én</p>
+            <p class="text-sm text-gray-600">
+              Fokus på ROI og vekst fra dag én
+            </p>
           </div>
-          
+
           <div class="text-center">
-            <div class="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            <div
+              class="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
               </svg>
             </div>
             <h4 class="font-semibold text-gray-900 mb-2">Komplett løsning</h4>
-            <p class="text-sm text-gray-600">Alt fra design til hosting og vedlikehold</p>
+            <p class="text-sm text-gray-600">
+              Alt fra design til hosting og vedlikehold
+            </p>
           </div>
         </div>
       </div>
@@ -256,7 +346,8 @@ import CTAButton from '../components/CTAButton.astro';
           Hva kundene sier
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Direkte tilbakemeldinger fra bedrifter som gikk fra å ikke ha nettside til digital suksess
+          Direkte tilbakemeldinger fra bedrifter som gikk fra å ikke ha nettside
+          til digital suksess
         </p>
       </div>
 
@@ -265,23 +356,36 @@ import CTAButton from '../components/CTAButton.astro';
         <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
-              {Array(5).fill(0).map((_, i) => (
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-              ))}
+              {
+                Array(5)
+                  .fill(0)
+                  .map((_, i) => (
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))
+              }
             </div>
           </div>
           <p class="text-gray-600 mb-6 italic text-lg">
-            "Et helt fantastisk nettsted! Booking flyter, og jeg føler meg trygg på at kundene finner meg på nett."
+            "Et helt fantastisk nettsted! Booking flyter, og jeg føler meg trygg
+            på at kundene finner meg på nett."
           </p>
           <div class="flex items-center">
-            <div class="w-12 h-12 bg-green-200 rounded-full mr-4 flex items-center justify-center">
+            <div
+              class="w-12 h-12 bg-green-200 rounded-full mr-4 flex items-center justify-center"
+            >
               <span class="text-green-800 font-bold text-lg">SS</span>
             </div>
             <div>
               <p class="font-semibold text-gray-900">Sara Sofie</p>
-              <p class="text-sm text-gray-600">Negletekniker, Nails by Sara Sofie</p>
+              <p class="text-sm text-gray-600">
+                Negletekniker, Nails by Sara Sofie
+              </p>
             </div>
           </div>
         </div>
@@ -290,18 +394,29 @@ import CTAButton from '../components/CTAButton.astro';
         <div class="bg-gray-50 rounded-xl p-8">
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
-              {Array(5).fill(0).map((_, i) => (
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-              ))}
+              {
+                Array(5)
+                  .fill(0)
+                  .map((_, i) => (
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))
+              }
             </div>
           </div>
           <p class="text-gray-600 mb-6 italic text-lg">
-            "Maby sin nettside har vært gull! Vi fikk sju nye jobber, og prosessen var sømløs."
+            "Maby sin nettside har vært gull! Vi fikk sju nye jobber, og
+            prosessen var sømløs."
           </p>
           <div class="flex items-center">
-            <div class="w-12 h-12 bg-purple-200 rounded-full mr-4 flex items-center justify-center">
+            <div
+              class="w-12 h-12 bg-purple-200 rounded-full mr-4 flex items-center justify-center"
+            >
               <span class="text-purple-800 font-bold text-lg">TE</span>
             </div>
             <div>
@@ -321,8 +436,9 @@ import CTAButton from '../components/CTAButton.astro';
         Klar for å bli vår neste suksesshistorie?
       </h2>
       <p class="text-xl mb-8">
-        Vi hjelper bedrifter som ikke har hatt nettside før med å skape en sterk digital tilstedeværelse. 
-        La oss diskutere hvordan vi kan gjøre det samme for deg.
+        Vi hjelper bedrifter som ikke har hatt nettside før med å skape en sterk
+        digital tilstedeværelse. La oss diskutere hvordan vi kan gjøre det samme
+        for deg.
       </p>
       <CTAButton
         text="Book en gratis konsultasjon"
@@ -340,7 +456,7 @@ import CTAButton from '../components/CTAButton.astro';
   .case-item {
     transition: all 0.3s ease;
   }
-  
+
   .case-item:hover {
     transform: translateY(-4px);
   }
