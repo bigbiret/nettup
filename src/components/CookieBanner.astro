@@ -1,0 +1,161 @@
+---
+// Cookie Banner Component
+// GDPR-compliant cookie consent banner with analytics tracking control
+// Follows Norwegian and EU privacy regulations
+
+export interface Props {
+  show?: boolean;
+}
+
+const { show = true } = Astro.props;
+---
+
+{show && (
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Informasjonskapsler (Cookies)</h3>
+          <p class="text-sm text-gray-600 mb-3">
+            Vi bruker informasjonskapsler for å forbedre nettstedet vårt. Vi samler ikke inn personlig informasjon eller IP-adresser. 
+            Du kan velge hvilke informasjonskapsler du vil tillate.
+          </p>
+          <div class="text-xs text-gray-500">
+            <strong>Analytics:</strong> Hjelper oss å forstå hvordan nettstedet brukes (ingen personlig informasjon)
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <button 
+            id="accept-cookies"
+            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          >
+            Godta alle
+          </button>
+          <button 
+            id="decline-cookies"
+            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors text-sm font-medium"
+          >
+            Kun nødvendige
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  // Cookie consent management
+  class CookieConsent {
+    constructor() {
+      this.cookieName = 'cookie-consent';
+      this.banner = document.getElementById('cookie-banner');
+      this.acceptBtn = document.getElementById('accept-cookies');
+      this.declineBtn = document.getElementById('decline-cookies');
+      
+      this.init();
+    }
+
+    init() {
+      // Check if user has already made a choice
+      const consent = this.getConsent();
+      
+      if (consent === null) {
+        // No choice made yet, show banner
+        this.showBanner();
+      } else {
+        // Choice already made, apply it
+        this.applyConsent(consent);
+      }
+
+      // Add event listeners
+      this.acceptBtn?.addEventListener('click', () => this.acceptAll());
+      this.declineBtn?.addEventListener('click', () => this.declineAll());
+    }
+
+    showBanner() {
+      if (this.banner) {
+        this.banner.style.display = 'block';
+      }
+    }
+
+    hideBanner() {
+      if (this.banner) {
+        this.banner.style.display = 'none';
+      }
+    }
+
+    acceptAll() {
+      this.setConsent('accepted');
+      this.applyConsent('accepted');
+      this.hideBanner();
+    }
+
+    declineAll() {
+      this.setConsent('declined');
+      this.applyConsent('declined');
+      this.hideBanner();
+    }
+
+    applyConsent(consent) {
+      if (consent === 'accepted') {
+        // Enable analytics tracking
+        this.enableAnalytics();
+      } else {
+        // Disable analytics tracking
+        this.disableAnalytics();
+      }
+    }
+
+    enableAnalytics() {
+      // Analytics is already loaded, just ensure it's enabled
+      if (window.gtag) {
+        // Re-initialize with consent
+        window.gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+      }
+    }
+
+    disableAnalytics() {
+      // Disable analytics tracking
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+      }
+    }
+
+    setConsent(consent) {
+      // Set cookie for 1 year
+      const expires = new Date();
+      expires.setFullYear(expires.getFullYear() + 1);
+      document.cookie = `${this.cookieName}=${consent}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+    }
+
+    getConsent() {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === this.cookieName) {
+          return value;
+        }
+      }
+      return null;
+    }
+  }
+
+  // Initialize cookie consent when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new CookieConsent();
+    });
+  } else {
+    new CookieConsent();
+  }
+</script> 

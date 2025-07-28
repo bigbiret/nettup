@@ -1,0 +1,67 @@
+---
+// Google Analytics Component
+// This component handles Google Analytics 4 (GA4) tracking with consent management
+// Uses environment variable for the GA ID for better security and flexibility
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
+---
+
+<!-- Google tag (gtag.js) -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // Initialize with consent mode - default to denied until user makes choice
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+
+  gtag('config', '${GA_ID}', {
+    // Enhanced configuration for better tracking
+    page_title: document.title,
+    page_location: window.location.href,
+    // IP anonymization for privacy
+    anonymize_ip: true,
+    // Disable advertising features for GDPR compliance
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    // Disable user ID tracking
+    user_id: null,
+    // Disable demographic and interest reporting
+    allow_display_features: false,
+    // Disable enhanced link attribution
+    link_attribution: false,
+    // Disable cross-domain tracking
+    allow_linker: false
+  });
+
+  // Track page views for SPA-like behavior (only if consent granted)
+  document.addEventListener('astro:page-load', () => {
+    // Only track if analytics consent is granted
+    const consent = getCookieConsent();
+    if (consent === 'accepted') {
+      gtag('config', '${GA_ID}', {
+        page_title: document.title,
+        page_location: window.location.href,
+        anonymize_ip: true
+      });
+    }
+  });
+
+  // Helper function to get cookie consent
+  function getCookieConsent() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'cookie-consent') {
+        return value;
+      }
+    }
+    return null;
+  }
+</script> 

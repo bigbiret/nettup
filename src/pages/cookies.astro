@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Informasjonskapsler og personvern | Nettup" description="Lær om hvordan vi bruker informasjonskapsler og håndterer personvern på nettstedet vårt.">
+  <div class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-sm p-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Informasjonskapsler og personvern</h1>
+        
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Hva er informasjonskapsler?</h2>
+          <p class="text-gray-600 mb-6">
+            Informasjonskapsler (cookies) er små tekstfiler som lagres på din enhet når du besøker nettsteder. 
+            De hjelper nettsteder å huske dine preferanser og gi deg en bedre brukeropplevelse.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Hvordan bruker vi informasjonskapsler?</h2>
+          <div class="space-y-4 mb-6">
+            <div class="border-l-4 border-blue-500 pl-4">
+              <h3 class="text-lg font-medium text-gray-900">Nødvendige informasjonskapsler</h3>
+              <p class="text-gray-600">Disse er nødvendige for at nettstedet skal fungere. De kan ikke deaktiveres.</p>
+            </div>
+            
+            <div class="border-l-4 border-green-500 pl-4">
+              <h3 class="text-lg font-medium text-gray-900">Analytics informasjonskapsler</h3>
+              <p class="text-gray-600">
+                Vi bruker Google Analytics for å forstå hvordan nettstedet brukes. Dette hjelper oss å forbedre 
+                brukeropplevelsen. Vi samler <strong>ikke inn personlig informasjon eller IP-adresser</strong>.
+              </p>
+            </div>
+          </div>
+
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Personvern og datainnsamling</h2>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <h3 class="text-lg font-medium text-blue-900 mb-2">Viktig informasjon</h3>
+            <ul class="text-blue-800 space-y-1">
+              <li>• Vi samler <strong>ikke inn personlig informasjon</strong></li>
+              <li>• Vi samler <strong>ikke inn IP-adresser</strong></li>
+              <li>• Vi deler <strong>ikke data med tredjeparter</strong></li>
+              <li>• Analytics-data er anonymisert</li>
+              <li>• Du kan når som helst endre dine preferanser</li>
+            </ul>
+          </div>
+
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Dine valg</h2>
+          <p class="text-gray-600 mb-4">
+            Du kan når som helst endre dine informasjonskapsel-preferanser ved å klikke på "Informasjonskapsler" 
+            i bunnen av siden eller ved å slette informasjonskapsler i nettleseren din.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-medium text-gray-900 mb-2">Godta alle</h3>
+              <p class="text-sm text-gray-600">Tillater analytics for å forbedre nettstedet</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="font-medium text-gray-900 mb-2">Kun nødvendige</h3>
+              <p class="text-sm text-gray-600">Bare nødvendige informasjonskapsler for funksjonalitet</p>
+            </div>
+          </div>
+
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Kontakt</h2>
+          <p class="text-gray-600 mb-6">
+            Har du spørsmål om informasjonskapsler eller personvern? Kontakt oss på 
+            <a href="/kontakt" class="text-blue-600 hover:text-blue-800 underline">kontaktsiden vår</a>.
+          </p>
+
+          <div class="text-sm text-gray-500 border-t pt-6">
+            <p>Sist oppdatert: {new Date().toLocaleDateString('nb-NO')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout> 
