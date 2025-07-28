@@ -90,13 +90,5 @@
         window.location.href = '/kontakt';
       }
     }
-
-    // Load Calendly script
-    if (!document.querySelector('script[src*="calendly"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.head.appendChild(script);
-    }
   </script>
 </footer>

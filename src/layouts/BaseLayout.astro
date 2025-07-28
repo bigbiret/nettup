@@ -3,14 +3,34 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
 import '../styles/global.css';
+
+import {
+  organizationSchema,
+  websiteSchema,
+  breadcrumbSchema,
+  faqSchema
+} from '../utils/schema';
 
 export interface Props {
   title: string;
   description?: string;
+  schemaType?: 'default' | 'faq' | 'service' | 'case';
+  breadcrumbs?: { name: string; url: string }[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, schemaType = 'default', breadcrumbs } = Astro.props;
+
+// Build dynamic breadcrumbs if not provided
+const defaultBreadcrumbs = [
+  { name: 'Hjem', url: Astro.site || 'https://nettup.no' },
+  ...(Astro.url.pathname !== '/' 
+    ? [{ name: title, url: Astro.url.href }] 
+    : [])
+];
+
+const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
 ---
 
 <!doctype html>
@@ -62,6 +82,14 @@ const { title, description } = Astro.props;
     <!-- Performance optimization -->
     <link rel="dns-prefetch" href="//assets.calendly.com" />
   </head>
+
+  <!-- Schema.org Structured Data -->
+  <SchemaOrg data={organizationSchema} />
+  <SchemaOrg data={websiteSchema} />
+  <SchemaOrg data={breadcrumbSchema(currentBreadcrumbs)} />
+  
+  <!-- Conditional Schema based on page type -->
+  {schemaType === 'faq' && <SchemaOrg data={faqSchema} />}
   <body class="min-h-screen bg-white">
     <Navbar />
     <main>
@@ -74,22 +102,68 @@ const { title, description } = Astro.props;
     <script>
       // Lazy load Calendly only when needed
       window.openCalendly = function () {
+        // Track booking consultation click as conversion event
+        if (typeof window.trackConversion === 'function') {
+          window.trackConversion('booking_consultation_click', {
+            event_label: 'calendly_booking',
+            value: 1
+          });
+        }
+        
+        // If Calendly is already loaded, use it
         if (typeof Calendly !== 'undefined') {
           Calendly.initPopupWidget({
-            url: 'https://calendly.com/dittselskap/konsultasjon',
+            url: 'https://calendly.com/post-nettup/30min',
           });
-        } else {
-          // Load Calendly script dynamically
-          const script = document.createElement('script');
-          script.src = 'https://assets.calendly.com/assets/external/widget.js';
-          script.onload = function () {
-            Calendly.initPopupWidget({
-              url: 'https://calendly.com/dittselskap/konsultasjon',
-            });
-          };
-          document.head.appendChild(script);
+          return;
         }
+        
+        // Check if script is already being loaded
+        if (window.calendlyLoading) {
+          return;
+        }
+        
+        // Set loading flag to prevent multiple loads
+        window.calendlyLoading = true;
+        
+        // Load Calendly script dynamically
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        
+        script.onload = function () {
+          window.calendlyLoading = false;
+          Calendly.initPopupWidget({
+            url: 'https://calendly.com/post-nettup/30min',
+          });
+        };
+        
+        script.onerror = function () {
+          window.calendlyLoading = false;
+          // Fallback: redirect to contact page if script fails to load
+          window.location.href = '/kontakt';
+        };
+        
+        document.head.appendChild(script);
       };
+    </script>
+
+    <!-- Conversion Tracking for Thank You Page -->
+    <script>
+      // Track thank you page as conversion
+      if (window.location.pathname === '/takk') {
+        // Wait for GA to load
+        window.addEventListener('load', function() {
+          if (typeof window.trackConversion === 'function') {
+            window.trackConversion('thank_you_page_view', {
+              event_label: 'contact_form_submission',
+              value: 1,
+              custom_parameter_1: 'form_completion',
+              custom_parameter_2: 'contact_page'
+            });
+          }
+        });
+      }
     </script>
   </body>
 </html>

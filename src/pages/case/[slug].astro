@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { caseStudySchema, reviewSchema } from '../../utils/schema';
 
 // Mock case data - i fremtiden kan dette hentes fra CMS eller database
 // Faktiske case data
@@ -93,11 +95,40 @@ const caseStudy = caseData[slug];
 if (!caseStudy) {
   return Astro.redirect('/case');
 }
+
+// Generate case study schema
+const caseSchema = caseStudySchema(
+  caseStudy.title,
+  caseStudy.description,
+  `https://nettup.no/case/${slug}`,
+  caseStudy.client
+);
+
+// Generate review schema from testimonial
+const testimonialSchema = reviewSchema(
+  caseStudy.testimonial.text,
+  5, // Assuming 5-star review
+  caseStudy.testimonial.author,
+  caseStudy.testimonial.company
+);
+
+// Custom breadcrumbs for case study
+const breadcrumbs = [
+  { name: 'Hjem', url: 'https://nettup.no' },
+  { name: 'Case Studies', url: 'https://nettup.no/case' },
+  { name: caseStudy.title, url: `https://nettup.no/case/${slug}` }
+];
 ---
+
+<!-- Case Study Schema Markup -->
+<SchemaOrg data={caseSchema} />
+<SchemaOrg data={testimonialSchema} />
 
 <BaseLayout
   title={`${caseStudy.title} - Case Study - Nettup`}
   description={`Se hvordan vi hjalp ${caseStudy.client} med ${caseStudy.category.toLowerCase()}. ${caseStudy.description}`}
+  schemaType="case"
+  breadcrumbs={breadcrumbs}
 >
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">

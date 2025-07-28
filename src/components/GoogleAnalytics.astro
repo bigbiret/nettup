@@ -40,7 +40,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     // Disable enhanced link attribution
     link_attribution: false,
     // Disable cross-domain tracking
-    allow_linker: false,
+    allow_linker: false
   });
 
   // Track page views for SPA-like behavior (only if consent granted)
@@ -79,6 +79,50 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     
     return null;
   }
+
+  // Helper function to track conversions
+  window.trackConversion = function(eventName, parameters = {}) {
+    const consent = getCookieConsent();
+    
+    if (consent === 'accepted' && typeof gtag !== 'undefined') {
+      // Track as GA4 custom event
+      gtag('event', eventName, {
+        event_category: 'conversion',
+        event_label: parameters.event_label || 'general',
+        value: parameters.value || 1,
+        currency: 'NOK',
+        // Add custom parameters
+        custom_parameter_1: parameters.custom_parameter_1,
+        custom_parameter_2: parameters.custom_parameter_2,
+        // Add page information
+        page_title: document.title,
+        page_location: window.location.href
+      });
+      
+      console.log('Conversion tracked:', eventName, parameters);
+    } else {
+      console.log('Conversion tracking skipped - no consent or gtag not loaded');
+    }
+  };
+
+  // Helper function to track thank you page conversion
+  window.trackThankYouConversion = function() {
+    const consent = getCookieConsent();
+    if (consent === 'accepted' && typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', {
+        send_to: 'AW-1234567890/ABC123DEF456', // Replace with your actual conversion ID
+        value: 1.0,
+        currency: 'NOK',
+        transaction_id: 'thank_you_' + Date.now()
+      });
+      
+      gtag('event', 'thank_you_page_view', {
+        event_category: 'conversion',
+        event_label: 'contact_form_submission',
+        value: 1
+      });
+    }
+  };
 
   // Listen for consent changes from the cookie banner
   document.addEventListener('consent-updated', (event) => {

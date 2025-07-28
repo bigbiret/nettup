@@ -1,11 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { packageSchema } from '../utils/schema';
+
+// Define package schemas for each service offering
+const startPackageSchema = packageSchema(
+  "Start Pakke - Nettup",
+  "5000",
+  "Perfekt for små bedrifter som ønsker en profesjonell digital tilstedeværelse",
+  ["Opptil 5 sider", "Enkel CMS / statisk", "Responsivt design", "Grunnleggende SEO", "SSL-sertifikat & hosting"]
+);
+
+const plusPackageSchema = packageSchema(
+  "Plus Pakke - Nettup", 
+  "8000",
+  "Ideell for voksende bedrifter som trenger mer funksjonalitet og fleksibilitet",
+  ["Opptil 10 sider", "WordPress CMS", "Bloggfunksjonalitet", "Google Analytics-oppsett"]
+);
+
+const proPackageSchema = packageSchema(
+  "Pro Pakke - Nettup",
+  "12000", 
+  "For etablerte bedrifter som krever avanserte løsninger og API-integrasjoner",
+  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (1 ekstern API)", "Support & oppdateringer (3 måneder)"]
+);
+
+const premiumPackageSchema = packageSchema(
+  "Premium Pakke - Nettup",
+  "20000",
+  "For enterprise-kunder som trenger tilpassede løsninger og prioritert support", 
+  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (flere API-er)", "Prioritert support & Flerspråklig innhold"]
+);
+
+const breadcrumbs = [
+  { name: 'Hjem', url: 'https://nettup.no' },
+  { name: 'Pakker & Priser', url: 'https://nettup.no/pakker' }
+];
 ---
+
+<!-- Package-specific schema markup -->
+<SchemaOrg data={startPackageSchema} />
+<SchemaOrg data={plusPackageSchema} />
+<SchemaOrg data={proPackageSchema} />
+<SchemaOrg data={premiumPackageSchema} />
 
 <BaseLayout
   title="Pakker & Priser - Nettup"
   description="Se våre transparente priser og pakker for webutvikling. Fra grunnleggende nettsider til avanserte e-handelsløsninger - vi har en pakke som passer deg."
+  schemaType="service"
+  breadcrumbs={breadcrumbs}
 >
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
@@ -1061,8 +1105,4 @@ import CTAButton from '../components/CTAButton.astro';
   </section>
 </BaseLayout>
 
-<script>
-  function openCalendly() {
-    window.open('https://calendly.com/post-nettup/30min', '_blank');
-  }
-</script>
+
