@@ -9,7 +9,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
 <!-- Google tag (gtag.js) -->
 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 ></script>
-<script>
+<script define:vars={{ GA_ID }}>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
@@ -24,7 +24,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     ad_personalization: 'denied',
   });
 
-  gtag('config', '${GA_ID}', {
+  gtag('config', GA_ID, {
     // Enhanced configuration for better tracking
     page_title: document.title,
     page_location: window.location.href,
@@ -48,7 +48,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     // Only track if analytics consent is granted
     const consent = getCookieConsent();
     if (consent === 'accepted') {
-      gtag('config', '${GA_ID}', {
+      gtag('config', GA_ID, {
         page_title: document.title,
         page_location: window.location.href,
         anonymize_ip: true,
@@ -93,7 +93,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
       });
       
       // Track the current page view
-      gtag('config', '${GA_ID}', {
+      gtag('config', GA_ID, {
         page_title: document.title,
         page_location: window.location.href,
         anonymize_ip: true,
