@@ -10,59 +10,55 @@ export interface Props {
 const { show = true } = Astro.props;
 ---
 
-{
-  show && (
-    <div
-      id="cookie-banner"
-      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4"
-      role="banner"
-      aria-label="Informasjonskapsler og personvern"
-    >
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div
-            class="flex-1"
-            role="region"
-            aria-label="Informasjon om informasjonskapsler"
-          >
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Informasjonskapsler (Cookies)
-            </h3>
-            <p class="text-sm text-gray-600 mb-3" id="cookie-description">
-              Vi bruker informasjonskapsler for å forbedre nettstedet vårt. Vi
-              samler ikke inn personlig informasjon eller IP-adresser. Du kan
-              velge hvilke informasjonskapsler du vil tillate.
-            </p>
-            <div class="text-xs text-gray-500">
-              <strong>Analytics:</strong> Hjelper oss å forstå hvordan
-              nettstedet brukes (ingen personlig informasjon)
-            </div>
-          </div>
-          <div
-            class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto"
-            role="group"
-            aria-label="Cookie-valg"
-          >
-            <button
-              id="accept-cookies"
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-              aria-describedby="cookie-description"
-            >
-              Godta alle
-            </button>
-            <button
-              id="decline-cookies"
-              class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors text-sm font-medium"
-              aria-describedby="cookie-description"
-            >
-              Kun nødvendige
-            </button>
-          </div>
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4 hidden"
+  role="banner"
+  aria-label="Informasjonskapsler og personvern"
+>
+  <div class="max-w-4xl mx-auto">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div
+        class="flex-1"
+        role="region"
+        aria-label="Informasjon om informasjonskapsler"
+      >
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+          Informasjonskapsler (Cookies)
+        </h3>
+        <p class="text-sm text-gray-600 mb-3" id="cookie-description">
+          Vi bruker informasjonskapsler for å forbedre nettstedet vårt. Vi
+          samler ikke inn personlig informasjon eller IP-adresser. Du kan
+          velge hvilke informasjonskapsler du vil tillate.
+        </p>
+        <div class="text-xs text-gray-500">
+          <strong>Analytics:</strong> Hjelper oss å forstå hvordan
+          nettstedet brukes (ingen personlig informasjon)
         </div>
       </div>
+      <div
+        class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto"
+        role="group"
+        aria-label="Cookie-valg"
+      >
+        <button
+          id="accept-cookies"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          aria-describedby="cookie-description"
+        >
+          Godta alle
+        </button>
+        <button
+          id="decline-cookies"
+          class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors text-sm font-medium"
+          aria-describedby="cookie-description"
+        >
+          Kun nødvendige
+        </button>
+      </div>
     </div>
-  )
-}
+  </div>
+</div>
 
 <script>
   // Cookie consent management
@@ -84,8 +80,9 @@ const { show = true } = Astro.props;
         // No choice made yet, show banner
         this.showBanner();
       } else {
-        // Choice already made, apply it
+        // Choice already made, apply it and hide banner
         this.applyConsent(consent);
+        this.hideBanner();
       }
 
       // Add event listeners
@@ -95,12 +92,14 @@ const { show = true } = Astro.props;
 
     showBanner() {
       if (this.banner) {
+        this.banner.classList.remove('hidden');
         this.banner.style.display = 'block';
       }
     }
 
     hideBanner() {
       if (this.banner) {
+        this.banner.classList.add('hidden');
         this.banner.style.display = 'none';
       }
     }
@@ -109,12 +108,18 @@ const { show = true } = Astro.props;
       this.setConsent('accepted');
       this.applyConsent('accepted');
       this.hideBanner();
+      
+      // Dispatch event for other components to listen to
+      this.dispatchConsentEvent('accepted');
     }
 
     declineAll() {
       this.setConsent('declined');
       this.applyConsent('declined');
       this.hideBanner();
+      
+      // Dispatch event for other components to listen to
+      this.dispatchConsentEvent('declined');
     }
 
     applyConsent(consent) {
@@ -125,6 +130,9 @@ const { show = true } = Astro.props;
         // Disable analytics tracking
         this.disableAnalytics();
       }
+      
+      // Dispatch event for other components to listen to
+      this.dispatchConsentEvent(consent);
     }
 
     enableAnalytics() {
@@ -153,13 +161,25 @@ const { show = true } = Astro.props;
     }
 
     setConsent(consent) {
-      // Set cookie for 1 year
+      // Set cookie for 1 year with secure settings
       const expires = new Date();
       expires.setFullYear(expires.getFullYear() + 1);
-      document.cookie = `${this.cookieName}=${consent}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+      
+      // Use secure cookie settings for GDPR compliance
+      const cookieValue = `${this.cookieName}=${consent}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+      document.cookie = cookieValue;
+      
+      // Also store in localStorage as backup
+      try {
+        localStorage.setItem(this.cookieName, consent);
+      } catch (e) {
+        // Fallback if localStorage is not available
+        console.warn('Could not store consent in localStorage:', e);
+      }
     }
 
     getConsent() {
+      // First try to get from cookie
       const cookies = document.cookie.split(';');
       for (let cookie of cookies) {
         const [name, value] = cookie.trim().split('=');
@@ -167,7 +187,28 @@ const { show = true } = Astro.props;
           return value;
         }
       }
+      
+      // Fallback to localStorage if cookie not found
+      try {
+        const storedConsent = localStorage.getItem(this.cookieName);
+        if (storedConsent) {
+          // Sync back to cookie
+          this.setConsent(storedConsent);
+          return storedConsent;
+        }
+      } catch (e) {
+        console.warn('Could not read from localStorage:', e);
+      }
+      
       return null;
+    }
+
+    dispatchConsentEvent(consent) {
+      // Dispatch custom event for consent changes
+      const event = new CustomEvent('consent-updated', {
+        detail: { consent: consent }
+      });
+      document.dispatchEvent(event);
     }
   }
 

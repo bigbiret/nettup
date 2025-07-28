@@ -58,6 +58,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
 
   // Helper function to get cookie consent
   function getCookieConsent() {
+    // First try to get from cookie
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
       const [name, value] = cookie.trim().split('=');
@@ -65,7 +66,47 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
         return value;
       }
     }
+    
+    // Fallback to localStorage if cookie not found
+    try {
+      const storedConsent = localStorage.getItem('cookie-consent');
+      if (storedConsent) {
+        return storedConsent;
+      }
+    } catch (e) {
+      console.warn('Could not read from localStorage:', e);
+    }
+    
     return null;
   }
+
+  // Listen for consent changes from the cookie banner
+  document.addEventListener('consent-updated', (event) => {
+    const consent = event.detail.consent;
+    if (consent === 'accepted') {
+      // Enable analytics and track current page
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      
+      // Track the current page view
+      gtag('config', '${GA_ID}', {
+        page_title: document.title,
+        page_location: window.location.href,
+        anonymize_ip: true,
+      });
+    } else {
+      // Disable analytics
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    }
+  });
 </script>
 
