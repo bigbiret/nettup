@@ -9,28 +9,32 @@ const startPackageSchema = packageSchema(
   "Start Pakke - Nettup",
   "5000",
   "Perfekt for små bedrifter som ønsker en profesjonell digital tilstedeværelse",
-  ["Opptil 5 sider", "Enkel CMS / statisk", "Responsivt design", "Grunnleggende SEO", "SSL-sertifikat & hosting"]
+  ["Opptil 5 sider", "Enkel CMS / statisk", "Responsivt design", "Grunnleggende SEO", "SSL-sertifikat & hosting"],
+  "https://nettup.no/images/pakker/start.png"
 );
 
 const plusPackageSchema = packageSchema(
   "Plus Pakke - Nettup", 
   "8000",
   "Ideell for voksende bedrifter som trenger mer funksjonalitet og fleksibilitet",
-  ["Opptil 10 sider", "WordPress CMS", "Bloggfunksjonalitet", "Google Analytics-oppsett"]
+  ["Opptil 10 sider", "WordPress CMS", "Bloggfunksjonalitet", "Google Analytics-oppsett"],
+  "https://nettup.no/images/pakker/plus.png"
 );
 
 const proPackageSchema = packageSchema(
   "Pro Pakke - Nettup",
   "12000", 
   "For etablerte bedrifter som krever avanserte løsninger og API-integrasjoner",
-  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (1 ekstern API)", "Support & oppdateringer (3 måneder)"]
+  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (1 ekstern API)", "Support & oppdateringer (3 måneder)"],
+  "https://nettup.no/images/pakker/pro.png"
 );
 
 const premiumPackageSchema = packageSchema(
   "Premium Pakke - Nettup",
   "20000",
   "For enterprise-kunder som trenger tilpassede løsninger og prioritert support", 
-  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (flere API-er)", "Prioritert support & Flerspråklig innhold"]
+  ["Ubegrenset sider", "WordPress CMS", "Avansert SEO", "API-integrasjon (flere API-er)", "Prioritert support & Flerspråklig innhold"],
+  "https://nettup.no/images/pakker/premium.png"
 );
 
 const breadcrumbs = [
@@ -87,6 +91,15 @@ const breadcrumbs = [
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 flex flex-col"
         >
+          <!-- Package Image -->
+          <div class="relative mb-6 flex justify-center">
+            <img 
+              src="/images/pakker/start.png" 
+              alt="Start Pakke - Nettup"
+              class="w-24 h-24 object-contain"
+            />
+          </div>
+          
           <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Start</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
@@ -216,6 +229,16 @@ const breadcrumbs = [
               >Mest populær</span
             >
           </div>
+          
+          <!-- Package Image -->
+          <div class="relative mb-6 flex justify-center">
+            <img 
+              src="/images/pakker/plus.png" 
+              alt="Plus Pakke - Nettup"
+              class="w-24 h-24 object-contain"
+            />
+          </div>
+          
           <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
@@ -356,6 +379,15 @@ const breadcrumbs = [
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 flex flex-col"
         >
+          <!-- Package Image -->
+          <div class="relative mb-6 flex justify-center">
+            <img 
+              src="/images/pakker/pro.png" 
+              alt="Pro Pakke - Nettup"
+              class="w-24 h-24 object-contain"
+            />
+          </div>
+          
           <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">
@@ -498,6 +530,15 @@ const breadcrumbs = [
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200 flex flex-col"
         >
+          <!-- Package Image -->
+          <div class="relative mb-6 flex justify-center">
+            <img 
+              src="/images/pakker/premium.png" 
+              alt="Premium Pakke - Nettup"
+              class="w-24 h-24 object-contain"
+            />
+          </div>
+          
           <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
             <div class="text-4xl font-bold text-gray-900 mb-2">

@@ -272,12 +272,13 @@ export const localBusinessSchema = {
 };
 
 // Product/Package Schema - For individual packages
-export function packageSchema(packageName: string, price: string, description: string, features: string[]) {
+export function packageSchema(packageName: string, price: string, description: string, features: string[], imageUrl?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": packageName,
     "description": description,
+    "image": imageUrl || `${SITE_URL}/favicon.svg`,
     "category": "Web Development Service",
     "brand": {
       "@type": "Brand",
