@@ -2,16 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout 
-  title="Takk for din henvendelse | Nettup" 
+<BaseLayout
+  title="Takk for din henvendelse | Nettup"
   description="Din henvendelse er mottatt. Vi kommer tilbake til deg innen 24 timer."
 >
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8"
+  >
     <div class="max-w-md w-full space-y-8 text-center">
       <!-- Success Icon -->
-      <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mb-8">
-        <svg class="h-12 w-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      <div
+        class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mb-8"
+      >
+        <svg
+          class="h-12 w-12 text-green-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"></path>
         </svg>
       </div>
 
@@ -20,34 +33,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h1 class="text-3xl font-bold text-gray-900">
           Takk for din henvendelse!
         </h1>
-        
+
         <div class="space-y-4 text-gray-600">
           <p class="text-lg">
-            Vi har mottatt din melding og setter stor pris på at du tok kontakt med oss.
+            Vi har mottatt din melding og setter stor pris på at du tok kontakt
+            med oss.
           </p>
-          
+
           <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p class="text-sm text-blue-800">
-              <strong>Hva skjer nå?</strong><br>
-              Vårt team vil gå gjennom din henvendelse og komme tilbake til deg innen <strong>24 timer</strong>.
+              <strong>Hva skjer nå?</strong><br />
+              Vårt team vil gå gjennom din henvendelse og komme tilbake til deg innen
+              <strong>24 timer</strong>.
             </p>
           </div>
-          
+
           <p class="text-sm">
-            I mellomtiden kan du utforske våre tjenester eller lese mer om hvordan vi kan hjelpe bedriften din.
+            I mellomtiden kan du utforske våre tjenester eller lese mer om
+            hvordan vi kan hjelpe bedriften din.
           </p>
         </div>
 
         <!-- Action Buttons -->
         <div class="space-y-3 pt-4">
-          <a 
+          <a
             href="/"
             class="w-full bg-blue-600 text-white font-medium rounded-lg px-6 py-3 text-base transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 inline-block"
           >
             Tilbake til forsiden
           </a>
-          
-          <a 
+
+          <a
             href="/pakker"
             class="w-full bg-gray-100 text-gray-700 font-medium rounded-lg px-6 py-3 text-base transition-all duration-200 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 inline-block"
           >
@@ -70,8 +86,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Additional Info -->
       <p class="text-xs text-gray-500 mt-6">
-        Hvis du ikke hører fra oss innen 24 timer, kontakt oss gjerne direkte på telefon eller e-post.
+        Hvis du ikke hører fra oss innen 24 timer, kontakt oss gjerne direkte på
+        telefon eller e-post.
       </p>
     </div>
   </div>
-</BaseLayout> 
+</BaseLayout>
+

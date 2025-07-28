@@ -7,18 +7,21 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
 ---
 
 <!-- Google tag (gtag.js) -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() {
+    dataLayer.push(arguments);
+  }
   gtag('js', new Date());
 
   // Initialize with consent mode - default to denied until user makes choice
   gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied'
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
   });
 
   gtag('config', '${GA_ID}', {
@@ -37,7 +40,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     // Disable enhanced link attribution
     link_attribution: false,
     // Disable cross-domain tracking
-    allow_linker: false
+    allow_linker: false,
   });
 
   // Track page views for SPA-like behavior (only if consent granted)
@@ -48,7 +51,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
       gtag('config', '${GA_ID}', {
         page_title: document.title,
         page_location: window.location.href,
-        anonymize_ip: true
+        anonymize_ip: true,
       });
     }
   });
@@ -64,4 +67,5 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
     }
     return null;
   }
-</script> 
+</script>
+

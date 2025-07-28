@@ -44,13 +44,26 @@ const selectedPackage = url.searchParams.get('pakke') || '';
             Fyll ut skjemaet under, så tar vi kontakt med deg innen 24 timer.
           </p>
 
-          <form class="space-y-6" action="https://formsubmit.co/post@nettup.no" method="POST">
+          <form
+            id="contact-form"
+            class="space-y-6"
+            action="https://formsubmit.co/post@nettup.no"
+            method="POST"
+          >
             <!-- FormSubmit.co configuration -->
-            <input type="hidden" name="_next" value="https://nettup.no/takk">
-            <input type="hidden" name="_subject" value="Ny kontaktforespørsel fra nettup.no">
-            <input type="hidden" name="_autoresponse" value="Takk for din henvendelse! Vi har mottatt din melding og vil komme tilbake til deg innen 24 timer. Med vennlig hilsen, Teamet på Nettup">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://nettup.no/takk" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Ny kontaktforespørsel fra nettup.no"
+            />
+            <input
+              type="hidden"
+              name="_autoresponse"
+              value="Takk for din henvendelse! Vi har mottatt din melding og vil komme tilbake til deg innen 24 timer. Med vennlig hilsen, Teamet på Nettup"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <!-- Navn -->
             <div>
               <label
