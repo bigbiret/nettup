@@ -1,10 +1,10 @@
-# Google Analytics og Cookie Consent Setup
+# Nettside Setup - Analytics og Kontaktskjema
 
 ## Oversikt
 
-Dette nettstedet bruker Google Analytics 4 (GA4) med en GDPR-kompatibel cookie consent banner. Systemet er satt opp for å respektere brukerens personvern og følge norske og EU-regler.
+Dette nettstedet bruker Google Analytics 4 (GA4) med GDPR-kompatibel cookie consent og FormSubmit.co for kontaktskjema. Systemet er optimalisert for GitHub Pages deployment.
 
-## Komponenter
+## Analytics Komponenter
 
 ### 1. GoogleAnalytics.astro
 - Håndterer GA4 tracking
@@ -24,6 +24,27 @@ Dette nettstedet bruker Google Analytics 4 (GA4) med en GDPR-kompatibel cookie c
 - Forklarer personvern-praksis
 - Kontaktinformasjon
 
+## Kontaktskjema Setup
+
+### FormSubmit.co Integration
+- **100% gratis** service for form submissions
+- **Ingen backend** påkrevd - perfekt for GitHub Pages
+- **Automatisk e-post** til både post@nettup.no og bruker
+- **Spam-beskyttelse** innebygd
+- **Custom redirect** til takk-side (/takk)
+
+### Konfiguration
+```html
+<form action="https://formsubmit.co/post@nettup.no" method="POST">
+  <input type="hidden" name="_next" value="https://nettup.no/takk">
+  <input type="hidden" name="_subject" value="Ny kontaktforespørsel fra nettup.no">
+  <input type="hidden" name="_autoresponse" value="Takk for din henvendelse! Vi har mottatt din melding og vil komme tilbake til deg innen 24 timer. Med vennlig hilsen, Teamet på Nettup">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <!-- Form fields -->
+</form>
+```
+
 ## Funksjonalitet
 
 ### Cookie Consent States
@@ -38,6 +59,13 @@ Dette nettstedet bruker Google Analytics 4 (GA4) med en GDPR-kompatibel cookie c
 - ✅ Ingen cross-domain tracking
 - ✅ Consent-basert tracking
 - ✅ Bruker kan endre valg når som helst
+
+### Accessibility Features
+- ✅ WCAG 2.1 AA compliant
+- ✅ Riktig landmark-struktur (banner, region, group)
+- ✅ ARIA-labels og beskrivelser
+- ✅ Keyboard navigation support
+- ✅ Screen reader friendly
 
 ## Konfigurasjon
 
@@ -64,6 +92,12 @@ PUBLIC_GA_ID=G-JGFB95353H
 3. Test "Godta alle" - analytics skal aktiveres
 4. Test "Kun nødvendige" - analytics skal deaktiveres
 5. Test at valget lagres (refresh siden)
+
+### Test Accessibility
+1. Kjør axe-core test: `npx @axe-core/cli http://localhost:4321`
+2. Test med screen reader (NVDA, JAWS, VoiceOver)
+3. Test keyboard navigation (Tab, Enter, Escape)
+4. Verifiser at alle elementer har riktig ARIA-attributter
 
 ### Test Analytics
 1. Åpne browser developer tools

@@ -2,21 +2,17 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
-import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-domain.github.io',
+  site: 'https://nettup.no',
   base: '/',
-  output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'static',
   integrations: [
     tailwind(),
     sitemap(),
     robotsTxt({
-      sitemap: 'https://your-domain.github.io/sitemap-index.xml',
+      sitemap: 'https://nettup.no/sitemap-index.xml',
     }),
   ],
   build: {
