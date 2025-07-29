@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTAButton from '../../components/CTAButton.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import { caseStudySchema, reviewSchema } from '../../utils/schema';
 
@@ -30,7 +31,7 @@ const caseData = {
     ],
     technologies: ['Next.js', 'Headless CMS', 'Fresha API', 'Google Analytics'],
     testimonial: {
-      text: 'Et helt fantastisk nettsted! Booking flyter, og jeg føler meg trygg på at kundene finner meg på nett.',
+      text: 'Nettup leverte en nettside som overgikk alle forventninger. Booking-systemet fungerer perfekt, og jeg får mange flere kunder som finner meg på Google. Nettsiden er rask, enkel å bruke og ser profesjonell ut. Kundene elsker at de kan booke direkte på nettsiden. Anbefaler Nettup til alle som trenger en profesjonell nettside!',
       author: 'Sara Sofie',
       position: 'Negletekniker',
       company: 'Nails by Sara Sofie',
@@ -217,7 +218,7 @@ const breadcrumbs = [
           <div
             class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 h-fit space-y-6"
           >
-            <img
+            <OptimizedImage
               src={`/images/cases/case_${slug === 'case-1' ? '1' : '2'}_logo.${slug === 'case-1' ? 'jpg' : 'jpeg'}`}
               alt={`${caseStudy.client} logo`}
               class="h-16 w-auto object-contain mx-auto opacity-90"
@@ -452,7 +453,7 @@ const breadcrumbs = [
               >
                 Lead-generering
               </span>
-              <img
+              <OptimizedImage
                 src="/images/cases/case_2_logo.jpeg"
                 alt="Maby Norge logo"
                 class="h-8 w-auto object-contain opacity-80"
@@ -487,7 +488,7 @@ const breadcrumbs = [
               >
                 Nettside med booking
               </span>
-              <img
+              <OptimizedImage
                 src="/images/cases/case_1_logo.jpg"
                 alt="Nails by Sara Sofie logo"
                 class="h-8 w-auto object-contain opacity-80"

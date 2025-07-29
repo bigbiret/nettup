@@ -21,7 +21,7 @@ export const organizationSchema = {
   ],
   "contactPoint": [{
     "@type": "ContactPoint",
-    "telephone": "+47 123 45 678", // Update with real phone number
+    "telephone": "+47 473 31 298", // Update with real phone number
     "contactType": "Customer Service",
     "areaServed": "NO",
     "availableLanguage": ["Norwegian", "English"],
@@ -29,6 +29,9 @@ export const organizationSchema = {
   }],
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Trollåsveien 4",
+    "addressLocality": "Trollåsen",
+    "postalCode": "1414",
     "addressCountry": "NO",
     "addressRegion": "Norge"
   },
@@ -47,7 +50,7 @@ export const organizationSchema = {
       }
     },
     {
-      "@type": "Offer", 
+      "@type": "Offer",
       "itemOffered": {
         "@type": "Service",
         "name": "Booking systemer",
@@ -57,7 +60,7 @@ export const organizationSchema = {
     {
       "@type": "Offer",
       "itemOffered": {
-        "@type": "Service", 
+        "@type": "Service",
         "name": "CMS & Headless",
         "description": "Fleksible innholdssystemer som gjør det enkelt å oppdatere nettsiden selv"
       }
@@ -79,7 +82,7 @@ export const websiteSchema = {
   "@type": "WebSite",
   "url": SITE_URL,
   "name": "Nettup - Nettsider som konverterer",
-  "description": "Webutvikling med fokus på resultater. Moderne nettsider, netthandel og CMS-løsninger som driver din bedrift fremover.",
+  "description": "Webutvikling med fokus på resultater. Rimelige, moderne nettsider og CMS-løsninger som driver din bedrift fremover.",
   "publisher": {
     "@type": "Organization",
     "name": "Nettup"
@@ -185,9 +188,12 @@ export const localBusinessSchema = {
   "logo": `${SITE_URL}/favicon.svg`,
   "description": "Profesjonell webutvikling med fokus på resultater og brukeropplevelse",
   "priceRange": "5000-20000 NOK",
-  "telephone": "+47 123 45 678", // Update with real phone
+  "telephone": "+47 473 31 298", // Update with real phone
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Trollåsveien 4",
+    "addressLocality": "Trollåsen",
+    "postalCode": "1414",
     "addressCountry": "NO"
   },
   "geo": {
@@ -205,7 +211,7 @@ export const localBusinessSchema = {
   },
   "knowsAbout": [
     "Web Development",
-    "Responsive Design", 
+    "Responsive Design",
     "SEO",
     "CMS Implementation",
     "API Integration",
@@ -229,7 +235,7 @@ export const localBusinessSchema = {
         }
       },
       {
-        "@type": "OfferCatalog", 
+        "@type": "OfferCatalog",
         "name": "Plus Pakke",
         "itemListElement": {
           "@type": "Offer",
@@ -243,7 +249,7 @@ export const localBusinessSchema = {
       },
       {
         "@type": "OfferCatalog",
-        "name": "Pro Pakke", 
+        "name": "Pro Pakke",
         "itemListElement": {
           "@type": "Offer",
           "itemOffered": {
@@ -258,7 +264,7 @@ export const localBusinessSchema = {
         "@type": "OfferCatalog",
         "name": "Premium Pakke",
         "itemListElement": {
-          "@type": "Offer", 
+          "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
             "name": "Premium Enterprise Løsning"

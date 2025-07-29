@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { packageSchema } from '../utils/schema';
 
@@ -93,9 +94,11 @@ const breadcrumbs = [
         >
           <!-- Package Image -->
           <div class="relative mb-6 flex justify-center">
-            <img 
+            <OptimizedImage
               src="/images/pakker/start.png" 
               alt="Start Pakke - Nettup"
+              width={96}
+              height={96}
               class="w-24 h-24 object-contain"
             />
           </div>
@@ -232,9 +235,11 @@ const breadcrumbs = [
           
           <!-- Package Image -->
           <div class="relative mb-6 flex justify-center">
-            <img 
+            <OptimizedImage
               src="/images/pakker/plus.png" 
               alt="Plus Pakke - Nettup"
+              width={96}
+              height={96}
               class="w-24 h-24 object-contain"
             />
           </div>
@@ -381,9 +386,11 @@ const breadcrumbs = [
         >
           <!-- Package Image -->
           <div class="relative mb-6 flex justify-center">
-            <img 
+            <OptimizedImage
               src="/images/pakker/pro.png" 
               alt="Pro Pakke - Nettup"
+              width={96}
+              height={96}
               class="w-24 h-24 object-contain"
             />
           </div>
@@ -532,9 +539,11 @@ const breadcrumbs = [
         >
           <!-- Package Image -->
           <div class="relative mb-6 flex justify-center">
-            <img 
+            <OptimizedImage
               src="/images/pakker/premium.png" 
               alt="Premium Pakke - Nettup"
+              width={96}
+              height={96}
               class="w-24 h-24 object-contain"
             />
           </div>

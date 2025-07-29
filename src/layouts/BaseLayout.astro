@@ -10,7 +10,8 @@ import {
   organizationSchema,
   websiteSchema,
   breadcrumbSchema,
-  faqSchema
+  faqSchema,
+  localBusinessSchema
 } from '../utils/schema';
 
 export interface Props {
@@ -86,6 +87,7 @@ const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
   <!-- Schema.org Structured Data -->
   <SchemaOrg data={organizationSchema} />
   <SchemaOrg data={websiteSchema} />
+  <SchemaOrg data={localBusinessSchema} />
   <SchemaOrg data={breadcrumbSchema(currentBreadcrumbs)} />
   
   <!-- Conditional Schema based on page type -->

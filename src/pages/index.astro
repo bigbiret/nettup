@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
 ---
 
 <BaseLayout
@@ -302,9 +304,11 @@ import CTAButton from '../components/CTAButton.astro';
         <div class="bg-white rounded-lg shadow-md p-6 relative hover:shadow-lg transition-shadow duration-200 flex flex-col">
           <!-- Package Image -->
           <div class="relative mb-4 flex justify-center">
-            <img 
-              src="/images/pakker/start.png" 
+            <OptimizedImage
+              src="/images/pakker/start.png"
               alt="Start Pakke - Nettup"
+              width={64}
+              height={64}
               class="w-16 h-16 object-contain"
             />
           </div>
@@ -417,9 +421,11 @@ import CTAButton from '../components/CTAButton.astro';
           
           <!-- Package Image -->
           <div class="relative mb-4 flex justify-center">
-            <img 
-              src="/images/pakker/plus.png" 
+            <OptimizedImage
+              src="/images/pakker/plus.png"
               alt="Plus Pakke - Nettup"
+              width={64}
+              height={64}
               class="w-16 h-16 object-contain"
             />
           </div>
@@ -508,9 +514,11 @@ import CTAButton from '../components/CTAButton.astro';
         <div class="bg-white rounded-lg shadow-md p-6 relative hover:shadow-lg transition-shadow duration-200 flex flex-col">
           <!-- Package Image -->
           <div class="relative mb-4 flex justify-center">
-            <img 
-              src="/images/pakker/pro.png" 
+            <OptimizedImage
+              src="/images/pakker/pro.png"
               alt="Pro Pakke - Nettup"
+              width={64}
+              height={64}
               class="w-16 h-16 object-contain"
             />
           </div>
@@ -616,9 +624,11 @@ import CTAButton from '../components/CTAButton.astro';
         >
           <!-- Package Image -->
           <div class="relative mb-4 flex justify-center">
-            <img 
-              src="/images/pakker/premium.png" 
+            <OptimizedImage
+              src="/images/pakker/premium.png"
               alt="Premium Pakke - Nettup"
+              width={64}
+              height={64}
               class="w-16 h-16 object-contain"
             />
           </div>
@@ -758,9 +768,11 @@ import CTAButton from '../components/CTAButton.astro';
               >
                 Nettside med booking
               </span>
-              <img
+              <OptimizedImage
                 src="/images/cases/case_1_logo.jpg"
                 alt="Nails by Sara Sofie logo"
+                width={48}
+                height={48}
                 class="h-12 w-auto object-contain opacity-80"
               />
             </div>
@@ -859,9 +871,11 @@ import CTAButton from '../components/CTAButton.astro';
               >
                 Lead-generering
               </span>
-              <img
+              <OptimizedImage
                 src="/images/cases/case_2_logo.jpeg"
                 alt="Maby Norge logo"
+                width={48}
+                height={48}
                 class="h-12 w-auto object-contain opacity-80"
               />
             </div>
