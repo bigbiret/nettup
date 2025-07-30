@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts
+const posts = await getCollection('blog');
+// Sort by publication date (newest first)
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Blog - Nettup" description="Faglige artikler om webdesign, nettside-utvikling og teknologi">
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Hero Section -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Fagblogg
+          </h1>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Få innsikt i webdesign, nettside-utvikling og teknologi. 
+            Vi deler vår ekspertise for å hjelpe din bedrift få en profesjonell nettside.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        {sortedPosts.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedPosts.map((post) => (
+              <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                {post.data.image && (
+                  <div class="aspect-w-16 aspect-h-9">
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.title}
+                      class="w-full h-48 object-cover"
+                    />
+                  </div>
+                )}
+                <div class="p-6">
+                  <div class="flex items-center text-sm text-gray-500 mb-2">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('nb-NO', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    {post.data.readingTime && (
+                      <span class="ml-4">• {post.data.readingTime} min lesetid</span>
+                    )}
+                  </div>
+                  <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                    <a href={`/blog/${post.slug}`} class="hover:text-blue-600 transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h2>
+                  <p class="text-gray-600 mb-4 line-clamp-3">
+                    {post.data.description}
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-500">Av {post.data.author}</span>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex gap-2">
+                        {post.data.tags.slice(0, 2).map((tag) => (
+                          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-16">
+            <div class="text-gray-400 text-6xl mb-4">📝</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Ingen artikler ennå</h3>
+            <p class="text-gray-600">Vi jobber med å lage kvalitetsinnhold for deg.</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Trenger du en profesjonell nettside?
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          La oss hjelpe deg med å få en moderne, brukervennlig nettside. Kontakt oss for en uforpliktende samtale.
+        </p>
+        <a 
+          href="/kontakt" 
+          class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+        >
+          Kontakt oss
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout> 

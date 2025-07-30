@@ -1,0 +1,181 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get related posts (same tags or recent posts)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .filter(p => p.data.tags?.some(tag => post.data.tags?.includes(tag)))
+  .slice(0, 3);
+
+// If no related posts by tags, get recent posts
+if (relatedPosts.length === 0) {
+  relatedPosts.push(...allPosts
+    .filter(p => p.slug !== post.slug)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3)
+  );
+}
+---
+
+<BaseLayout 
+  title={`${post.data.title} - Nettup Blog`} 
+  description={post.data.description}
+>
+  <main class="min-h-screen bg-white">
+    <!-- Article Header -->
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <a href="/blog" class="text-blue-600 hover:text-blue-800 transition-colors">
+          ← Tilbake til blogg
+        </a>
+      </nav>
+
+      <!-- Article Meta -->
+      <header class="mb-8">
+        <div class="flex items-center text-sm text-gray-500 mb-4">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('nb-NO', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {post.data.readingTime && (
+            <span class="ml-4">• {post.data.readingTime} min lesetid</span>
+          )}
+          <span class="ml-4">• Av {post.data.author}</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          {post.data.title}
+        </h1>
+
+        <p class="text-xl text-gray-600 mb-6">
+          {post.data.description}
+        </p>
+
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex gap-2 mb-6">
+            {post.data.tags.map((tag) => (
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {post.data.image && (
+          <div class="mb-8">
+            <img 
+              src={post.data.image} 
+              alt={post.data.title}
+              class="w-full h-64 md:h-96 object-cover rounded-lg"
+            />
+          </div>
+        )}
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+
+      <!-- Article Footer -->
+      <footer class="mt-12 pt-8 border-t border-gray-200">
+        <div class="flex items-center justify-between">
+          <div class="text-sm text-gray-500">
+            Publisert {post.data.pubDate.toLocaleDateString('nb-NO', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
+          
+          <!-- Social Share -->
+          <div class="flex gap-4">
+            <button 
+              onclick={`window.open('https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url)}', '_blank')`}
+              class="text-gray-400 hover:text-blue-400 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </button>
+            <button 
+              onclick={`window.open('https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url)}', '_blank')`}
+              class="text-gray-400 hover:text-blue-600 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </article>
+
+    <!-- Related Posts -->
+    {relatedPosts.length > 0 && (
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-50">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8">Relaterte artikler</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedPosts.map((relatedPost) => (
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              {relatedPost.data.image && (
+                <img 
+                  src={relatedPost.data.image} 
+                  alt={relatedPost.data.title}
+                  class="w-full h-32 object-cover"
+                />
+              )}
+              <div class="p-4">
+                <h3 class="font-semibold text-gray-900 mb-2">
+                  <a href={`/blog/${relatedPost.slug}`} class="hover:text-blue-600 transition-colors">
+                    {relatedPost.data.title}
+                  </a>
+                </h3>
+                <p class="text-sm text-gray-600 line-clamp-2">
+                  {relatedPost.data.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- CTA Section -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="bg-blue-50 rounded-lg p-8 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          Trenger du en profesjonell nettside?
+        </h2>
+        <p class="text-gray-600 mb-6">
+          La oss hjelpe deg med å få en moderne, brukervennlig nettside. Kontakt oss for en uforpliktende samtale.
+        </p>
+        <a 
+          href="/kontakt" 
+          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+        >
+          Kontakt oss
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout> 

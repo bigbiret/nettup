@@ -15,6 +15,7 @@ export default defineConfig({
       sitemap: 'https://nettup.no/sitemap-index.xml',
     }),
   ],
+
   build: {
     assets: 'assets',
   },
