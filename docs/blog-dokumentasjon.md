@@ -9,12 +9,12 @@ Denne mappen inneholder alle blogg-artikler for nettstedet.
 
 ```markdown
 ---
-title: "Tittelen på artikkelen"
-description: "Kort beskrivelse av artikkelen som vises i preview"
+title: 'Tittelen på artikkelen'
+description: 'Kort beskrivelse av artikkelen som vises i preview'
 pubDate: 2024-01-15
-author: "Nettup Team"
-tags: ["tag1", "tag2", "tag3"]
-image: "/images/blog/bilde.jpg" # valgfritt
+author: 'Nettup Team'
+tags: ['tag1', 'tag2', 'tag3']
+image: '/images/blog/bilde.jpg' # valgfritt
 featured: true # valgfritt, for fremhevede artikler
 readingTime: 5 # valgfritt, estimert lesetid i minutter
 ---
@@ -50,4 +50,4 @@ Mer innhold...
 - Bruk relevante nøkkelord i tittel og beskrivelse
 - Inkluder interne lenker til relevante sider
 - Legg til call-to-actions der det er naturlig
-- Bruk beskrivende bilde-filer 
+- Bruk beskrivende bilde-filer

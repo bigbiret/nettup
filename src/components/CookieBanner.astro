@@ -17,7 +17,9 @@ const { show = true } = Astro.props;
   aria-label="Informasjonskapsler og personvern"
 >
   <div class="max-w-4xl mx-auto">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+    >
       <div
         class="flex-1"
         role="region"
@@ -28,12 +30,12 @@ const { show = true } = Astro.props;
         </h3>
         <p class="text-sm text-gray-600 mb-3" id="cookie-description">
           Vi bruker informasjonskapsler for å forbedre nettstedet vårt. Vi
-          samler ikke inn personlig informasjon eller IP-adresser. Du kan
-          velge hvilke informasjonskapsler du vil tillate.
+          samler ikke inn personlig informasjon eller IP-adresser. Du kan velge
+          hvilke informasjonskapsler du vil tillate.
         </p>
         <div class="text-xs text-gray-500">
-          <strong>Analytics:</strong> Hjelper oss å forstå hvordan
-          nettstedet brukes (ingen personlig informasjon)
+          <strong>Analytics:</strong> Hjelper oss å forstå hvordan nettstedet brukes
+          (ingen personlig informasjon)
         </div>
       </div>
       <div
@@ -108,7 +110,7 @@ const { show = true } = Astro.props;
       this.setConsent('accepted');
       this.applyConsent('accepted');
       this.hideBanner();
-      
+
       // Dispatch event for other components to listen to
       this.dispatchConsentEvent('accepted');
     }
@@ -117,7 +119,7 @@ const { show = true } = Astro.props;
       this.setConsent('declined');
       this.applyConsent('declined');
       this.hideBanner();
-      
+
       // Dispatch event for other components to listen to
       this.dispatchConsentEvent('declined');
     }
@@ -130,7 +132,7 @@ const { show = true } = Astro.props;
         // Disable analytics tracking
         this.disableAnalytics();
       }
-      
+
       // Dispatch event for other components to listen to
       this.dispatchConsentEvent(consent);
     }
@@ -164,11 +166,11 @@ const { show = true } = Astro.props;
       // Set cookie for 1 year with secure settings
       const expires = new Date();
       expires.setFullYear(expires.getFullYear() + 1);
-      
+
       // Use secure cookie settings for GDPR compliance
       const cookieValue = `${this.cookieName}=${consent}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
       document.cookie = cookieValue;
-      
+
       // Also store in localStorage as backup
       try {
         localStorage.setItem(this.cookieName, consent);
@@ -187,7 +189,7 @@ const { show = true } = Astro.props;
           return value;
         }
       }
-      
+
       // Fallback to localStorage if cookie not found
       try {
         const storedConsent = localStorage.getItem(this.cookieName);
@@ -199,14 +201,14 @@ const { show = true } = Astro.props;
       } catch (e) {
         console.warn('Could not read from localStorage:', e);
       }
-      
+
       return null;
     }
 
     dispatchConsentEvent(consent) {
       // Dispatch custom event for consent changes
       const event = new CustomEvent('consent-updated', {
-        detail: { consent: consent }
+        detail: { consent: consent },
       });
       document.dispatchEvent(event);
     }
@@ -221,4 +223,3 @@ const { show = true } = Astro.props;
     new CookieConsent();
   }
 </script>
-

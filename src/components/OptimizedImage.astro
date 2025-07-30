@@ -9,14 +9,14 @@ export interface Props {
   sizes?: string;
 }
 
-const { 
-  src, 
-  alt, 
-  class: className = '', 
-  width, 
-  height, 
+const {
+  src,
+  alt,
+  class: className = '',
+  width,
+  height,
   loading = 'lazy',
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 } = Astro.props;
 
 // Extract base name and extension
@@ -42,21 +42,21 @@ const fallbackSrc = src;
 
 <picture>
   <!-- AVIF format (best compression) -->
-  <source 
-    type="image/avif" 
+  <source
+    type="image/avif"
     srcset={`${avifSmallSrc} 400w, ${avifMediumSrc} 800w, ${avifLargeSrc} 1200w, ${avifSrc} 1600w`}
     sizes={sizes}
   />
-  
+
   <!-- WebP format (good compression, wide support) -->
-  <source 
-    type="image/webp" 
+  <source
+    type="image/webp"
     srcset={`${webpSmallSrc} 400w, ${webpMediumSrc} 800w, ${webpLargeSrc} 1200w, ${webpSrc} 1600w`}
     sizes={sizes}
   />
-  
+
   <!-- Fallback to original format -->
-  <img 
+  <img
     src={fallbackSrc}
     alt={alt}
     class={className}

@@ -60,29 +60,34 @@ done
 På forsiden (`dist/index.html`) skal du se:
 
 ```html
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Nettup",
-  "url": "https://nettup.no",
-  ...
-}</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nettup",
+    "url": "https://nettup.no",
+    ...
+  }
+</script>
 ```
 
 ## 7. Sjekke spesifikke sider
 
 ### Forsiden
+
 - Organization schema ✓
 - WebSite schema ✓
 - BreadcrumbList schema ✓
 
 ### FAQ-siden
+
 - Organization schema ✓
 - WebSite schema ✓
 - BreadcrumbList schema ✓
 - FAQPage schema ✓
 
 ### Pakker-siden
+
 - Organization schema ✓
 - WebSite schema ✓
 - BreadcrumbList schema ✓
@@ -114,4 +119,4 @@ Overvåk schema.org-implementeringen ved å:
 - Sjekke Google Search Console regelmessig
 - Teste med Google Rich Results Test etter endringer
 - Overvåke søkeresultater for rik utdrag
-- Sjekke at alle nye sider får riktig schema.org-markup 
+- Sjekke at alle nye sider får riktig schema.org-markup

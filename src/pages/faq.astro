@@ -4,63 +4,76 @@ import CTAButton from '../components/CTAButton.astro';
 
 const breadcrumbs = [
   { name: 'Hjem', url: 'https://nettup.no' },
-  { name: 'Ofte stilte spørsmål', url: 'https://nettup.no/faq' }
+  { name: 'Ofte stilte spørsmål', url: 'https://nettup.no/faq' },
 ];
 
 // Extended FAQ data matching the schema
 const faqs = [
   {
-    question: "Hvordan bestiller jeg en nettside hos Nettup?",
-    answer: "Du kan bestille ved å klikke på 'Book gratis konsultasjon' og velge et tidspunkt som passer deg. Vi tar en uforpliktende samtale om dine behov og lager et skreddersydd tilbud."
+    question: 'Hvordan bestiller jeg en nettside hos Nettup?',
+    answer:
+      "Du kan bestille ved å klikke på 'Book gratis konsultasjon' og velge et tidspunkt som passer deg. Vi tar en uforpliktende samtale om dine behov og lager et skreddersydd tilbud.",
   },
   {
-    question: "Hvor lang tid tar det å få en ferdig nettside?",
-    answer: "Leveringstiden avhenger av kompleksiteten, men de fleste prosjekter leveres innen 2-8 uker. Enkle nettsider kan være klare på under 2 uker."
+    question: 'Hvor lang tid tar det å få en ferdig nettside?',
+    answer:
+      'Leveringstiden avhenger av kompleksiteten, men de fleste prosjekter leveres innen 2-8 uker. Enkle nettsider kan være klare på under 2 uker.',
   },
   {
-    question: "Får jeg tilgang til å oppdatere nettsiden selv?",
-    answer: "Ja, vi setter opp CMS-løsninger som gjør det enkelt for deg å oppdatere innhold selv. Vi gir også opplæring i hvordan systemet fungerer."
+    question: 'Får jeg tilgang til å oppdatere nettsiden selv?',
+    answer:
+      'Ja, vi setter opp CMS-løsninger som gjør det enkelt for deg å oppdatere innhold selv. Vi gir også opplæring i hvordan systemet fungerer.',
   },
   {
-    question: "Hva er inkludert i vedlikeholdspakken?",
-    answer: "Vedlikeholdspakken inkluderer sikkerhetsopdateringer, backup, teknisk support, mindre endringer og overvåking av nettsiden."
+    question: 'Hva er inkludert i vedlikeholdspakken?',
+    answer:
+      'Vedlikeholdspakken inkluderer sikkerhetsopdateringer, backup, teknisk support, mindre endringer og overvåking av nettsiden.',
   },
   {
-    question: "Kan dere hjelpe med SEO og Google-synlighet?",
-    answer: "Ja, alle våre nettsider er optimalisert for søkemotorer fra start. Vi inkluderer grunnleggende SEO i alle pakker, og tilbyr avansert SEO-optimalisering i Pro og Premium-pakker."
+    question: 'Kan dere hjelpe med SEO og Google-synlighet?',
+    answer:
+      'Ja, alle våre nettsider er optimalisert for søkemotorer fra start. Vi inkluderer grunnleggende SEO i alle pakker, og tilbyr avansert SEO-optimalisering i Pro og Premium-pakker.',
   },
   {
-    question: "Hva skjer hvis jeg trenger endringer etter lansering?",
-    answer: "Mindre endringer er inkludert i vedlikeholdspakken. For større endringer lager vi et separat tilbud. Vi er alltid tilgjengelige for support og utvidelser."
+    question: 'Hva skjer hvis jeg trenger endringer etter lansering?',
+    answer:
+      'Mindre endringer er inkludert i vedlikeholdspakken. For større endringer lager vi et separat tilbud. Vi er alltid tilgjengelige for support og utvidelser.',
   },
   {
-    question: "Kan jeg få hjelp til å migrere fra en eksisterende nettside?",
-    answer: "Ja, vi hjelper gjerne til med å migrere innhold fra eksisterende nettsider. Vi sørger for at alt innhold overføres trygt og at SEO-verdien bevares."
+    question: 'Kan jeg få hjelp til å migrere fra en eksisterende nettside?',
+    answer:
+      'Ja, vi hjelper gjerne til med å migrere innhold fra eksisterende nettsider. Vi sørger for at alt innhold overføres trygt og at SEO-verdien bevares.',
   },
   {
-    question: "Tilbyr dere hosting og domenenavn?",
-    answer: "Ja, hosting og SSL-sertifikat er inkludert i alle våre pakker. Vi kan også hjelpe med registrering av domenenavn eller overføring av eksisterende domener."
+    question: 'Tilbyr dere hosting og domenenavn?',
+    answer:
+      'Ja, hosting og SSL-sertifikat er inkludert i alle våre pakker. Vi kan også hjelpe med registrering av domenenavn eller overføring av eksisterende domener.',
   },
   {
-    question: "Hva hvis jeg ikke er fornøyd med resultatet?",
-    answer: "Vi jobber tett med våre kunder gjennom hele prosessen for å sikre at du er fornøyd. Vi tilbyr revisjoner underveis og garanterer ikke ferdigstillelse før du er helt fornøyd."
+    question: 'Hva hvis jeg ikke er fornøyd med resultatet?',
+    answer:
+      'Vi jobber tett med våre kunder gjennom hele prosessen for å sikre at du er fornøyd. Vi tilbyr revisjoner underveis og garanterer ikke ferdigstillelse før du er helt fornøyd.',
   },
   {
-    question: "Kan dere lage nettbutikk/e-handel?",
-    answer: "Ja, vi har erfaring med både enkle og avanserte nettbutikker. Vi kan integrere betalingsløsninger, varekatalog og ordrehåndtering basert på dine behov."
+    question: 'Kan dere lage nettbutikk/e-handel?',
+    answer:
+      'Ja, vi har erfaring med både enkle og avanserte nettbutikker. Vi kan integrere betalingsløsninger, varekatalog og ordrehåndtering basert på dine behov.',
   },
   {
-    question: "Hvor mye koster det å lage en nettside for bedrift?",
-    answer: "Prisene starter fra 5 000,- kr for en grunnleggende bedriftsnettside. Vi tilbyr transparente priser og kan gi deg et skreddersydd tilbud basert på dine spesifikke behov."
+    question: 'Hvor mye koster det å lage en nettside for bedrift?',
+    answer:
+      'Prisene starter fra 5 000,- kr for en grunnleggende bedriftsnettside. Vi tilbyr transparente priser og kan gi deg et skreddersydd tilbud basert på dine spesifikke behov.',
   },
   {
-    question: "Kan dere hjelpe meg med å lage en hjemmeside fra bunnen?",
-    answer: "Absolutt! Vi spesialiserer oss på å hjelpe bedrifter som ikke har nettside fra før. Vi følger deg gjennom hele prosessen fra idé til lansering."
+    question: 'Kan dere hjelpe meg med å lage en hjemmeside fra bunnen?',
+    answer:
+      'Absolutt! Vi spesialiserer oss på å hjelpe bedrifter som ikke har nettside fra før. Vi følger deg gjennom hele prosessen fra idé til lansering.',
   },
   {
-    question: "Hvor lang tid tar det å lage en webside?",
-    answer: "Leveringstiden avhenger av kompleksiteten, men de fleste nettsider og hjemmesider leveres innen 2-8 uker. Enkle websider kan være klare på under 2 uker."
-  }
+    question: 'Hvor lang tid tar det å lage en webside?',
+    answer:
+      'Leveringstiden avhenger av kompleksiteten, men de fleste nettsider og hjemmesider leveres innen 2-8 uker. Enkle websider kan være klare på under 2 uker.',
+  },
 ];
 ---
 
@@ -78,7 +91,8 @@ const faqs = [
           Ofte stilte <span class="text-blue-600">spørsmål</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Finn svar på de vanligste spørsmålene våre kunder stiller om webutvikling, priser og prosess
+          Finn svar på de vanligste spørsmålene våre kunder stiller om
+          webutvikling, priser og prosess
         </p>
       </div>
     </div>
@@ -88,32 +102,37 @@ const faqs = [
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="space-y-8">
-        {faqs.map((faq, index) => (
-          <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-            <details class="group">
-              <summary class="cursor-pointer list-none">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-semibold text-gray-900 pr-4">
-                    {faq.question}
-                  </h3>
-                  <svg 
-                    class="w-6 h-6 text-blue-600 transform group-open:rotate-180 transition-transform duration-200 flex-shrink-0"
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
+        {
+          faqs.map((faq, index) => (
+            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+              <details class="group">
+                <summary class="cursor-pointer list-none">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900 pr-4">
+                      {faq.question}
+                    </h3>
+                    <svg
+                      class="w-6 h-6 text-blue-600 transform group-open:rotate-180 transition-transform duration-200 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                  <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
                 </div>
-              </summary>
-              <div class="mt-4 pt-4 border-t border-gray-200">
-                <p class="text-gray-600 leading-relaxed">
-                  {faq.answer}
-                </p>
-              </div>
-            </details>
-          </div>
-        ))}
+              </details>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -125,7 +144,8 @@ const faqs = [
         Fant du ikke svaret du lette etter?
       </h2>
       <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-        Vi er her for å hjelpe! Kontakt oss direkte, så får du personlig veiledning tilpasset dine behov.
+        Vi er her for å hjelpe! Kontakt oss direkte, så får du personlig
+        veiledning tilpasset dine behov.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <CTAButton
@@ -151,7 +171,8 @@ const faqs = [
           Klar for å komme i gang?
         </h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-          Se våre transparente pakker og finn den som passer perfekt for din bedrift
+          Se våre transparente pakker og finn den som passer perfekt for din
+          bedrift
         </p>
         <CTAButton
           text="Se pakker & priser"
@@ -163,4 +184,5 @@ const faqs = [
       </div>
     </div>
   </section>
-</BaseLayout> 
+</BaseLayout>
+

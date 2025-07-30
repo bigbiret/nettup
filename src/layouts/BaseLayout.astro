@@ -11,7 +11,7 @@ import {
   websiteSchema,
   breadcrumbSchema,
   faqSchema,
-  localBusinessSchema
+  localBusinessSchema,
 } from '../utils/schema';
 
 export interface Props {
@@ -26,9 +26,7 @@ const { title, description, schemaType = 'default', breadcrumbs } = Astro.props;
 // Build dynamic breadcrumbs if not provided
 const defaultBreadcrumbs = [
   { name: 'Hjem', url: Astro.site || 'https://nettup.no' },
-  ...(Astro.url.pathname !== '/' 
-    ? [{ name: title, url: Astro.url.href }] 
-    : [])
+  ...(Astro.url.pathname !== '/' ? [{ name: title, url: Astro.url.href }] : []),
 ];
 
 const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
@@ -81,7 +79,7 @@ const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
   <SchemaOrg data={websiteSchema} />
   <SchemaOrg data={localBusinessSchema} />
   <SchemaOrg data={breadcrumbSchema(currentBreadcrumbs)} />
-  
+
   <!-- Conditional Schema based on page type -->
   {schemaType === 'faq' && <SchemaOrg data={faqSchema} />}
   <body class="min-h-screen bg-white">
@@ -100,45 +98,58 @@ const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
         if (typeof window.trackConversion === 'function') {
           window.trackConversion('booking_consultation_click', {
             event_label: 'calendly_booking',
-            value: 1
+            value: 1,
           });
         }
-        
-        // If Calendly is already loaded, use it
-        if (typeof Calendly !== 'undefined') {
-          Calendly.initPopupWidget({
-            url: 'https://calendly.com/post-nettup/30min',
-          });
-          return;
+
+        // Try to open Calendly popup first
+        try {
+          // If Calendly is already loaded, use it
+          if (typeof Calendly !== 'undefined') {
+            Calendly.initPopupWidget({
+              url: 'https://calendly.com/post-nettup/30min',
+            });
+            return;
+          }
+
+          // Check if script is already being loaded
+          if (window.calendlyLoading) {
+            return;
+          }
+
+          // Set loading flag to prevent multiple loads
+          window.calendlyLoading = true;
+
+          // Load Calendly script dynamically
+          const script = document.createElement('script');
+          script.src = 'https://assets.calendly.com/assets/external/widget.js';
+          script.async = true;
+
+          script.onload = function () {
+            window.calendlyLoading = false;
+            try {
+              Calendly.initPopupWidget({
+                url: 'https://calendly.com/post-nettup/30min',
+              });
+            } catch (error) {
+              console.log('Calendly popup blocked, opening in new window');
+              window.open('https://calendly.com/post-nettup/30min', '_blank');
+            }
+          };
+
+          script.onerror = function () {
+            window.calendlyLoading = false;
+            console.log(
+              'Calendly script failed to load, opening in new window'
+            );
+            window.open('https://calendly.com/post-nettup/30min', '_blank');
+          };
+
+          document.head.appendChild(script);
+        } catch (error) {
+          console.log('Calendly popup blocked, opening in new window');
+          window.open('https://calendly.com/post-nettup/30min', '_blank');
         }
-        
-        // Check if script is already being loaded
-        if (window.calendlyLoading) {
-          return;
-        }
-        
-        // Set loading flag to prevent multiple loads
-        window.calendlyLoading = true;
-        
-        // Load Calendly script dynamically
-        const script = document.createElement('script');
-        script.src = 'https://assets.calendly.com/assets/external/widget.js';
-        script.async = true;
-        
-        script.onload = function () {
-          window.calendlyLoading = false;
-          Calendly.initPopupWidget({
-            url: 'https://calendly.com/post-nettup/30min',
-          });
-        };
-        
-        script.onerror = function () {
-          window.calendlyLoading = false;
-          // Fallback: redirect to contact page if script fails to load
-          window.location.href = '/kontakt';
-        };
-        
-        document.head.appendChild(script);
       };
     </script>
 
@@ -147,13 +158,13 @@ const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
       // Track thank you page as conversion
       if (window.location.pathname === '/takk') {
         // Wait for GA to load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
           if (typeof window.trackConversion === 'function') {
             window.trackConversion('thank_you_page_view', {
               event_label: 'contact_form_submission',
               value: 1,
               custom_parameter_1: 'form_completion',
-              custom_parameter_2: 'contact_page'
+              custom_parameter_2: 'contact_page',
             });
           }
         });
