@@ -6,8 +6,8 @@
 const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
 ---
 
-<!-- Google tag (gtag.js) -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+<!-- Google tag (gtag.js) - Loaded at end of body for better performance -->
+<script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 ></script>
 <script define:vars={{ GA_ID }}>
   window.dataLayer = window.dataLayer || [];
