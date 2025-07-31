@@ -17,7 +17,9 @@
     "test:e2e:ui": "playwright test --ui",
     "audit": "npm audit --audit-level moderate",
     "check": "npm run lint && npm run format -- --check && npm run test && npm run audit",
-    "optimize-images": "node scripts/optimize-images.cjs"
+    "optimize-images": "node scripts/optimize-images.cjs",
+    "lighthouse": "npx lighthouse-ci autorun",
+    "lighthouse:build": "npm run build && npm run preview & sleep 3 && npx lighthouse-ci autorun"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",

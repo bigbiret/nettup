@@ -2,7 +2,13 @@ module.exports = {
   ci: {
     collect: {
       startServerCommand: 'npm run preview',
-      url: ['http://localhost:4321'],
+      url: [
+        'http://localhost:4321',
+        'http://localhost:4321/pakker',
+        'http://localhost:4321/kontakt',
+        'http://localhost:4321/faq',
+        'http://localhost:4321/case'
+      ],
       numberOfRuns: 3,
     },
     assert: {
