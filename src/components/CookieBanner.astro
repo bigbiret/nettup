@@ -176,7 +176,7 @@ const { show = true } = Astro.props;
         localStorage.setItem(this.cookieName, consent);
       } catch (e) {
         // Fallback if localStorage is not available
-        console.warn('Could not store consent in localStorage:', e);
+        // Could not store consent in localStorage
       }
     }
 
@@ -199,7 +199,7 @@ const { show = true } = Astro.props;
           return storedConsent;
         }
       } catch (e) {
-        console.warn('Could not read from localStorage:', e);
+        // Could not read from localStorage
       }
 
       return null;

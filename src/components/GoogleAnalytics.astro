@@ -74,7 +74,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
         return storedConsent;
       }
     } catch (e) {
-      console.warn('Could not read from localStorage:', e);
+      // Could not read from localStorage
     }
 
     return null;
@@ -99,11 +99,9 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-JGFB95353H';
         page_location: window.location.href,
       });
 
-      console.log('Conversion tracked:', eventName, parameters);
+      // Conversion tracked: eventName, parameters
     } else {
-      console.log(
-        'Conversion tracking skipped - no consent or gtag not loaded'
-      );
+      // Conversion tracking skipped - no consent or gtag not loaded
     }
   };
 

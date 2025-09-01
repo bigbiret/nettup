@@ -7,7 +7,7 @@ module.exports = {
         'http://localhost:4321/pakker',
         'http://localhost:4321/kontakt',
         'http://localhost:4321/faq',
-        'http://localhost:4321/case'
+        'http://localhost:4321/case',
       ],
       numberOfRuns: 3,
     },

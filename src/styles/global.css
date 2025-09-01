@@ -11,3 +11,266 @@ body {
   background-color: theme('colors.background');
   color: theme('colors.main-text');
 }
+
+/* Text Animation - Beste praksis løsning */
+.text-animation-container {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  line-height: 1.2;
+}
+
+.static-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.animated-words {
+  display: inline-block;
+  position: relative;
+  min-width: 160px;
+  height: 1.2em;
+  margin-left: 0.3em;
+  vertical-align: baseline;
+  will-change: contents;
+}
+
+.animated-words .word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  white-space: nowrap;
+  animation: textFadeSmooth 9s infinite;
+  will-change: opacity, transform;
+}
+
+.animated-words .word:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animated-words .word:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.animated-words .word:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes textFadeSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  8%,
+  25% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  33%,
+  100% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+}
+
+/* Responsive tilpasninger */
+@media (max-width: 768px) {
+  .text-animation-container {
+    display: block;
+    text-align: center;
+  }
+  
+  .static-text {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .animated-words {
+    display: block;
+    margin-left: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .animated-words .word {
+    left: 50%;
+    transform-origin: center;
+    transform: translateX(-50%);
+  }
+  
+  @keyframes textFadeSmooth {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px) scale(0.95);
+    }
+    8%,
+    25% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    33%,
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px) scale(0.95);
+    }
+  }
+}
+
+/* Feature Cards and Animations */
+.feature-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Floating Elements Background Animation */
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 20s infinite ease-in-out;
+}
+
+.floating-element-1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.floating-element-2 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  top: 60%;
+  right: 10%;
+  animation-delay: 3s;
+  animation-duration: 30s;
+}
+
+.floating-element-3 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 6s;
+  animation-duration: 22s;
+}
+
+.floating-element-4 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  top: 30%;
+  right: 25%;
+  animation-delay: 9s;
+  animation-duration: 28s;
+}
+
+.floating-element-5 {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  bottom: 40%;
+  left: 40%;
+  animation-delay: 12s;
+  animation-duration: 26s;
+}
+
+.floating-element-6 {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  top: 15%;
+  left: 60%;
+  animation-delay: 15s;
+  animation-duration: 24s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translate(30px, -30px) rotate(90deg) scale(1.1);
+  }
+  40% {
+    transform: translate(-20px, 20px) rotate(180deg) scale(0.9);
+  }
+  60% {
+    transform: translate(40px, 10px) rotate(270deg) scale(1.05);
+  }
+  80% {
+    transform: translate(-10px, -20px) rotate(360deg) scale(0.95);
+  }
+}
+
+/* Icon Glow Animation */
+.feature-icon-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.feature-icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animated-words .word {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Show only the first word when motion is reduced */
+  .animated-words .word:nth-child(1) {
+    position: static;
+    opacity: 1;
+  }
+  
+  .animated-words .word:nth-child(n + 2) {
+    display: none;
+  }
+  
+  /* Disable floating elements animation */
+  .floating-element {
+    animation: none;
+    opacity: 0.05;
+  }
+  
+  /* Disable icon glow animation */
+  .feature-icon-glow {
+    animation: none;
+    opacity: 0;
+  }
+}

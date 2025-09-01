@@ -1,0 +1,98 @@
+/* 
+  Moderne tekstanimasjon - Beste praksis
+  ======================================
+  Prinsipper:
+  1. CSS Grid for overlapping uten layout shift
+  2. GPU-akselererte transforms
+  3. Custom properties for enkel justering
+  4. Accessibility first
+*/
+
+/* Konfigurerbare variabler */
+:root {
+  --animation-duration: 3s;
+  --animation-total: 9s;
+  --word-count: 3;
+}
+
+/* Hovedcontainer - Enkel og ren */
+.text-rotate {
+  display: inline-grid;
+  vertical-align: baseline;
+  overflow: hidden;
+  padding-bottom: 0.2em; /* Rom for descenders (g, j, y, p, q) */
+  padding-top: 0.1em; /* Litt rom øverst også */
+  margin-bottom: -0.2em; /* Kompenserer for padding så baseline holder seg */
+}
+
+/* Alle ord i samme grid-celle = perfekt overlapping */
+.text-rotate > .word {
+  grid-area: 1/1;
+  opacity: 0;
+  animation: rotateWord var(--animation-total) ease-in-out infinite;
+  will-change: opacity, transform;
+  line-height: 1; /* Tettere linjehøyde for bedre kontroll */
+}
+
+/* Forsinkelse basert på posisjon */
+.text-rotate > .word:nth-child(1) { animation-delay: 0s; }
+.text-rotate > .word:nth-child(2) { animation-delay: var(--animation-duration); }
+.text-rotate > .word:nth-child(3) { animation-delay: calc(var(--animation-duration) * 2); }
+
+/* Enkel, clean animasjon - inn ovenfra, ut nedover */
+@keyframes rotateWord {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  5%, 25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .text-rotate > .word {
+    animation: none;
+  }
+  
+  .text-rotate > .word:first-child {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .text-rotate > .word:not(:first-child) {
+    display: none;
+  }
+}
+
+/* Responsiv - Stack på mobil */
+@media (max-width: 640px) {
+  .text-rotate-container {
+    display: block;
+    text-align: center;
+  }
+  
+  .text-rotate-static {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Performance optimalisering for mobil */
+@media (max-width: 640px) and (hover: none) {
+  .text-rotate > .word {
+    animation-play-state: paused;
+  }
+  
+  .text-rotate > .word:first-child {
+    animation-play-state: running;
+    opacity: 1;
+  }
+}
+

@@ -1,0 +1,90 @@
+/* 
+  Enkel tekstanimasjon - Kun siste ord endres
+  ============================================
+  Den ultimate løsningen:
+  - Statisk "Nettsider som" 
+  - Kun siste ord animeres
+  - Hele setningen sentrert automatisk
+  - Ingen spacing-problemer
+*/
+
+/* Container for animerte ord - inline-grid er nøkkelen */
+.animated-text {
+  display: inline-grid;
+  vertical-align: baseline;
+  overflow: hidden;
+  padding-bottom: 0.2em; /* Rom for descenders (g, j, y) */
+  padding-top: 0.1em;
+  margin-bottom: -0.2em;
+}
+
+/* Alle ord overlapper i samme grid-celle */
+.animated-text > .animated-word {
+  grid-area: 1/1;
+  opacity: 0;
+  animation: fadeSlide 9s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Timing for hvert ord */
+.animated-text > .animated-word:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animated-text > .animated-word:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.animated-text > .animated-word:nth-child(3) {
+  animation-delay: 6s;
+}
+
+/* Enkel, clean animasjon */
+@keyframes fadeSlide {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  5%, 28% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* Accessibility - respekter reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animated-text > .animated-word {
+    animation: none;
+  }
+  
+  .animated-text > .animated-word:first-child {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animated-text > .animated-word:not(:first-child) {
+    display: none;
+  }
+}
+
+/* Mobil optimalisering */
+@media (max-width: 640px) {
+  @keyframes fadeSlide {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(-50%); /* Mindre bevegelse på mobil */
+    }
+    5%, 28% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    33% {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+  }
+}

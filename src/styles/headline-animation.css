@@ -1,0 +1,97 @@
+/* 
+  Full-setning animasjon - Beste praksis
+  =======================================
+  Fordeler:
+  1. Perfekt spacing - ingen layout shift
+  2. Enkel struktur med CSS Grid
+  3. Bevarer fargestyling på individuelle ord
+  4. Smooth animasjon inn/ut
+*/
+
+/* Container med Grid for perfekt overlapping */
+.headline-animation {
+  display: grid;
+  overflow: hidden;
+  padding-bottom: 0.2em; /* Rom for descenders */
+  padding-top: 0.1em;
+  margin-bottom: -0.2em; /* Kompenserer padding */
+}
+
+/* Alle setninger i samme grid-celle */
+.headline-animation > .headline-word {
+  grid-area: 1/1;
+  opacity: 0;
+  animation: slideWords 9s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Timing for hver setning */
+.headline-animation > .headline-word:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.headline-animation > .headline-word:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.headline-animation > .headline-word:nth-child(3) {
+  animation-delay: 6s;
+}
+
+/* Smooth slide animasjon */
+@keyframes slideWords {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  5%, 28% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+/* Responsiv - ingen endring i struktur nødvendig */
+@media (max-width: 640px) {
+  .headline-animation {
+    /* Grid holder spacing perfekt også på mobil */
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .headline-animation > .headline-word {
+    animation: none;
+  }
+  
+  /* Vis kun første setning når animasjon er deaktivert */
+  .headline-animation > .headline-word:first-child {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .headline-animation > .headline-word:not(:first-child) {
+    display: none;
+  }
+}
+
+/* Performance optimalisering for mobil */
+@media (max-width: 640px) and (hover: none) {
+  @keyframes slideWords {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(-20px); /* Mindre bevegelse på mobil */
+    }
+    5%, 28% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    33% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+}

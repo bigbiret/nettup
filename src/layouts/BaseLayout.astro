@@ -5,6 +5,7 @@ import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import '../styles/global.css';
+import '../styles/simple-text-animation.css';
 
 import {
   organizationSchema,
@@ -132,22 +133,20 @@ const currentBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
                 url: 'https://calendly.com/post-nettup/30min',
               });
             } catch (error) {
-              console.log('Calendly popup blocked, opening in new window');
+              // Calendly popup blocked, opening in new window
               window.open('https://calendly.com/post-nettup/30min', '_blank');
             }
           };
 
           script.onerror = function () {
             window.calendlyLoading = false;
-            console.log(
-              'Calendly script failed to load, opening in new window'
-            );
+            // Calendly script failed to load, opening in new window
             window.open('https://calendly.com/post-nettup/30min', '_blank');
           };
 
           document.head.appendChild(script);
         } catch (error) {
-          console.log('Calendly popup blocked, opening in new window');
+          // Calendly popup blocked, opening in new window
           window.open('https://calendly.com/post-nettup/30min', '_blank');
         }
       };
