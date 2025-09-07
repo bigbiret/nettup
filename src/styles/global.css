@@ -80,25 +80,25 @@ body {
     display: block;
     text-align: center;
   }
-  
+
   .static-text {
     display: block;
     margin-bottom: 0.5rem;
   }
-  
+
   .animated-words {
     display: block;
     margin-left: 0;
     margin: 0 auto;
     text-align: center;
   }
-  
+
   .animated-words .word {
     left: 50%;
     transform-origin: center;
     transform: translateX(-50%);
   }
-  
+
   @keyframes textFadeSmooth {
     0% {
       opacity: 0;
@@ -197,7 +197,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
   20% {
@@ -227,14 +228,19 @@ body {
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.4) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   animation: pulse 3s ease-in-out infinite;
   z-index: -1;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
   }
@@ -257,17 +263,17 @@ body {
     position: static;
     opacity: 1;
   }
-  
+
   .animated-words .word:nth-child(n + 2) {
     display: none;
   }
-  
+
   /* Disable floating elements animation */
   .floating-element {
     animation: none;
     opacity: 0.05;
   }
-  
+
   /* Disable icon glow animation */
   .feature-icon-glow {
     animation: none;

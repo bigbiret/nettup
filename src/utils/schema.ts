@@ -76,7 +76,7 @@ export const organizationSchema = {
         '@type': 'Service',
         name: 'Support',
         description:
-          'Kontinuerlig vedlikehold, sikkerhetsopdateringer og teknisk support',
+          'Kontinuerlig vedlikehold, sikkerhetsoppdateringer og teknisk support',
       },
     },
   ],
@@ -184,7 +184,7 @@ export const faqSchema = {
       name: 'Hva er inkludert i vedlikeholdspakken?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Vedlikeholdspakken inkluderer sikkerhetsopdateringer, backup, teknisk support, mindre endringer og overvåking av nettsiden.',
+        text: 'Vedlikeholdspakken inkluderer sikkerhetsoppdateringer, backup, teknisk support, mindre endringer og overvåking av nettsiden.',
       },
     },
   ],

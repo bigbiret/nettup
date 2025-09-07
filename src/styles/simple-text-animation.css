@@ -41,11 +41,13 @@
 
 /* Enkel, clean animasjon */
 @keyframes fadeSlide {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateY(-100%);
   }
-  5%, 28% {
+  5%,
+  28% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -60,12 +62,12 @@
   .animated-text > .animated-word {
     animation: none;
   }
-  
+
   .animated-text > .animated-word:first-child {
     opacity: 1;
     transform: none;
   }
-  
+
   .animated-text > .animated-word:not(:first-child) {
     display: none;
   }
@@ -74,11 +76,13 @@
 /* Mobil optimalisering */
 @media (max-width: 640px) {
   @keyframes fadeSlide {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0;
       transform: translateY(-50%); /* Mindre bevegelse på mobil */
     }
-    5%, 28% {
+    5%,
+    28% {
       opacity: 1;
       transform: translateY(0);
     }

@@ -8,6 +8,9 @@ export default defineConfig({
   site: 'https://nettup.no',
   base: '/',
   output: 'static',
+  redirects: {
+    '/blog/hvorofr-sette-opp-nettside': '/blog/hvorfor-sette-opp-nettside',
+  },
   integrations: [
     tailwind(),
     sitemap(),

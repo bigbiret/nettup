@@ -50,11 +50,7 @@ function getMobileNavLinkClasses(path: string): string {
           >
           <a href="/case" class={getNavLinkClasses('/case')}>Prosjekter</a>
           <a href="/blog" class={getNavLinkClasses('/blog')}>Blogg</a>
-          <a
-            href="/kontakt"
-            class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >Kontakt</a
-          >
+          <a href="/kontakt" class={getNavLinkClasses('/kontakt')}>Kontakt</a>
         </div>
       </div>
 
@@ -111,11 +107,7 @@ function getMobileNavLinkClasses(path: string): string {
       >
       <a href="/case" class={getMobileNavLinkClasses('/case')}>Prosjekter</a>
       <a href="/blog" class={getMobileNavLinkClasses('/blog')}>Blogg</a>
-      <a
-        href="/kontakt"
-        class="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-        >Kontakt</a
-      >
+      <a href="/kontakt" class={getMobileNavLinkClasses('/kontakt')}>Kontakt</a>
     </div>
   </div>
 </nav>

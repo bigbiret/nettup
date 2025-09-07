@@ -40,11 +40,13 @@
 
 /* Smooth slide animasjon */
 @keyframes slideWords {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateY(-30px);
   }
-  5%, 28% {
+  5%,
+  28% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -66,13 +68,13 @@
   .headline-animation > .headline-word {
     animation: none;
   }
-  
+
   /* Vis kun første setning når animasjon er deaktivert */
   .headline-animation > .headline-word:first-child {
     opacity: 1;
     transform: none;
   }
-  
+
   .headline-animation > .headline-word:not(:first-child) {
     display: none;
   }
@@ -81,11 +83,13 @@
 /* Performance optimalisering for mobil */
 @media (max-width: 640px) and (hover: none) {
   @keyframes slideWords {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0;
       transform: translateY(-20px); /* Mindre bevegelse på mobil */
     }
-    5%, 28% {
+    5%,
+    28% {
       opacity: 1;
       transform: translateY(0);
     }

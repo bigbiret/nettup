@@ -243,21 +243,23 @@ const selectedPackage = url.searchParams.get('pakke') || '';
         <div>
           <div class="bg-gray-50 rounded-lg p-8 mb-8">
             <h3 class="text-2xl font-bold text-gray-900 mb-6">
-              Eller book direkte
+              Book direkte i kalenderen
             </h3>
             <p class="text-gray-600 mb-6">
-              Foretrekker du en direkte samtale? Book et gratis
-              konsultasjonsmøte.
+              Velg et tidspunkt som passer deg for en gratis konsultasjon.
             </p>
-            <CTAButton
-              text="Book gratis konsultasjon"
-              onclick="openCalendly()"
-              size="lg"
-              class="w-full mb-6"
-            />
-            <p class="text-sm text-gray-500">
-              📅 20 minutter<br />
-              💬 Uforpliktende<br />
+
+            <!-- Calendly inline widget -->
+            <div
+              class="calendly-inline-widget rounded-lg overflow-hidden shadow-sm"
+              data-url="https://calendly.com/post-nettup/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=2563eb"
+              style="min-width:320px;height:550px;"
+            >
+            </div>
+
+            <p class="text-sm text-gray-500 mt-6">
+              📅 20 minutter gratis konsultasjon<br />
+              💬 Uforpliktende samtale<br />
               🎯 Tilpasset dine behov
             </p>
           </div>
@@ -459,4 +461,10 @@ const selectedPackage = url.searchParams.get('pakke') || '';
       </div>
     </div>
   </section>
+
+  <!-- Calendly Widget Script -->
+  <script
+    src="https://assets.calendly.com/assets/external/widget.js"
+    type="text/javascript"
+    async></script>
 </BaseLayout>

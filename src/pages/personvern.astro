@@ -22,16 +22,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="prose prose-lg max-w-none">
         <h2>1. Behandlingsansvarlig</h2>
         <p>
-          Nettup AS er behandlingsansvarlig for behandlingen av
-          personopplysninger som beskrevet i denne personvernerklæringen.
+          Nettup er behandlingsansvarlig for behandlingen av personopplysninger
+          som beskrevet i denne personvernerklæringen.
         </p>
         <p>
           <strong>Kontaktinformasjon:</strong><br />
-          Nettup AS<br />
-          Kongens gate 15<br />
-          0153 Oslo<br />
-          E-post: personvern@nettup.no<br />
-          Telefon: +47 22 12 34 56
+          Nettup<br />
+          Trollåsveien 4<br />
+          1414 Trollåsen<br />
+          E-post: post@nettup.no<br />
+          Telefon: +47 473 31 298
         </p>
 
         <h2>2. Hvilke personopplysninger samler vi inn?</h2>
@@ -54,9 +54,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <h3>2.3 Automatisk innsamling</h3>
         <ul>
-          <li>IP-adresse</li>
+          <li>IP-adresse (anonymisert via Google Analytics)</li>
           <li>Nettleserinformasjon</li>
-          <li>Besøksdata (via Google Analytics)</li>
+          <li>Besøksdata (via Google Analytics med IP-anonymisering)</li>
           <li>Cookies</li>
         </ul>
 
@@ -83,11 +83,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
 
         <h2>5. Deling av personopplysninger</h2>
-        <p>Vi deler ikke personopplysninger med tredjeparter, med unntak av:</p>
+        <p>Vi deler begrenset informasjon med følgende tjenesteleverandører:</p>
         <ul>
           <li>
-            Tjenesteleverandører som hjelper oss med drift av nettsiden (Google
-            Analytics, e-posttjenester)
+            <strong>Google Analytics:</strong> For trafikkmåling og analyse. IP-adresser
+            anonymiseres før prosessering, og vi har deaktivert annonsefunksjoner
+            og demografisk rapportering
+          </li>
+          <li>
+            <strong>E-posttjenester:</strong> For utsending av nyhetsbrev (kun med
+            samtykke)
           </li>
           <li>Juridiske krav eller myndighetsforespørsler</li>
         </ul>
@@ -136,10 +141,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>Vår nettside bruker cookies for å:</p>
         <ul>
           <li>Forbedre brukeropplevelsen</li>
-          <li>Analysere nettsidetrafikk</li>
-          <li>Tilpasse innhold og annonser</li>
+          <li>
+            Analysere nettsidetrafikk (Google Analytics med IP-anonymisering)
+          </li>
+          <li>Huske dine preferanser</li>
         </ul>
-        <p>Du kan administrere cookie-innstillinger i din nettleser.</p>
+        <p>
+          Vi bruker ikke cookies for annonsering eller personlig profilering. Du
+          kan administrere cookie-innstillinger via banneret på nettsiden eller
+          i din nettleser.
+        </p>
 
         <h2>9. Sikkerhet</h2>
         <p>
@@ -163,7 +174,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>
           E-post: personvern@nettup.no<br />
           Telefon: +47 22 12 34 56<br />
-          Post: Nettup AS, Kongens gate 15, 0153 Oslo
+          Post: Nettup AS, Trollåsveien 4, 1414 Trollåsen
         </p>
 
         <p>

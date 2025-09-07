@@ -8,58 +8,48 @@ import { packageSchema } from '../utils/schema';
 // Define package schemas for each service offering
 const startPackageSchema = packageSchema(
   'Start Pakke - Nettup',
-  '5000',
-  'Perfekt for små bedrifter som ønsker en profesjonell digital tilstedeværelse',
+  '4900',
+  'Kom raskt i gang - for små aktører som vil live raskt',
   [
-    'Opptil 5 sider',
-    'Enkel CMS / statisk',
-    'Responsivt design',
-    'Grunnleggende SEO',
-    'SSL-sertifikat & hosting',
+    'Inntil 3 sider (eller 1 one-pager)',
+    'Tema-basert design',
+    '1 skjema (kontakt/booking)',
+    'GA4 og grunnleggende SEO',
+    '1 revisjonsrunde',
   ],
   'https://nettup.no/images/pakker/start.png'
 );
 
-const plusPackageSchema = packageSchema(
-  'Plus Pakke - Nettup',
-  '8000',
-  'Ideell for voksende bedrifter som trenger mer funksjonalitet og fleksibilitet',
+const standardPackageSchema = packageSchema(
+  'Standard Pakke - Nettup',
+  '11000',
+  'Bedriften klar - den typiske SMB-nettsiden som skal konvertere',
   [
-    'Opptil 10 sider',
-    'WordPress CMS',
-    'Bloggfunksjonalitet',
-    'Google Analytics-oppsett',
+    '6-10 sider',
+    'Blogg og innholdsmaler',
+    'Semiskreddersøm design',
+    '1 integrasjon',
+    '2 revisjonsrunder',
+    'SEO+ med søkeordsgrunnlag',
   ],
   'https://nettup.no/images/pakker/plus.png'
 );
 
-const proPackageSchema = packageSchema(
-  'Pro Pakke - Nettup',
-  '12000',
-  'For etablerte bedrifter som krever avanserte løsninger og API-integrasjoner',
+const growthPackageSchema = packageSchema(
+  'Growth/Pro Pakke - Nettup',
+  '20000',
+  'Skaler og konverter - for bedrifter som vil ha dokumenterbar vekst',
   [
-    'Ubegrenset sider',
-    'WordPress CMS',
-    'Avansert SEO',
-    'API-integrasjon (1 ekstern API)',
-    'Support & oppdateringer (3 måneder)',
+    '10-15 sider',
+    'Skreddersydd designsystem',
+    '2-3 integrasjoner',
+    'Innholdsreview + CRO',
+    'Ytelsesoptimalisering',
   ],
   'https://nettup.no/images/pakker/pro.png'
 );
 
-const premiumPackageSchema = packageSchema(
-  'Premium Pakke - Nettup',
-  '20000',
-  'For enterprise-kunder som trenger tilpassede løsninger og prioritert support',
-  [
-    'Ubegrenset sider',
-    'WordPress CMS',
-    'Avansert SEO',
-    'API-integrasjon (flere API-er)',
-    'Prioritert support & Flerspråklig innhold',
-  ],
-  'https://nettup.no/images/pakker/premium.png'
-);
+// Commerce as add-on, not a separate package
 
 const breadcrumbs = [
   { name: 'Hjem', url: 'https://nettup.no' },
@@ -69,9 +59,8 @@ const breadcrumbs = [
 
 <!-- Package-specific schema markup -->
 <SchemaOrg data={startPackageSchema} />
-<SchemaOrg data={plusPackageSchema} />
-<SchemaOrg data={proPackageSchema} />
-<SchemaOrg data={premiumPackageSchema} />
+<SchemaOrg data={standardPackageSchema} />
+<SchemaOrg data={growthPackageSchema} />
 
 <BaseLayout
   title="Pakker & Priser - Nettup"
@@ -87,9 +76,9 @@ const breadcrumbs = [
           Pakker & <span class="text-blue-600">Priser</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Transparente priser og fleksible pakker som passer din bedrifts behov
-          og budsjett. Vi hjelper deg med å lage nettside og hjemmeside til
-          riktig pris.
+          Tre tydelige pakker – fra rask lansering til målbar vekst. Alle
+          inkluderer responsivt design, SEO-grunnpakke, GA4-sporing og
+          lead-fangst.
         </p>
       </div>
     </div>
@@ -101,10 +90,9 @@ const breadcrumbs = [
       <div class="text-center">
         <p class="text-lg text-gray-600 leading-relaxed">
           Vi tilbyr faste prispakker som gjør det enkelt for deg å budsjettere
-          og planlegge. Alle våre pakker inkluderer alt du trenger for å komme
-          online, og du kan alltid oppgradere underveis. Som et profesjonelt
-          webfirma hjelper vi deg med å lage nettside og hjemmeside som
-          fungerer.
+          og planlegge. Våre tre pakkenivåer dekker alt fra rask lansering for
+          små aktører til målbar vekst for etablerte bedrifter. Du kan alltid
+          oppgradere underveis og vi fakturerer kun differansen.
         </p>
       </div>
     </div>
@@ -113,7 +101,9 @@ const breadcrumbs = [
   <!-- Pakkekort -->
   <section class="py-16 lg:py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+      >
         <!-- Start -->
         <div
           class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 flex flex-col"
@@ -131,16 +121,20 @@ const breadcrumbs = [
 
           <div class="text-center flex flex-col h-full">
             <h3 class="text-2xl font-bold text-gray-900 mb-2">Start</h3>
-            <div class="text-4xl font-bold text-gray-900 mb-2">
-              5 000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            <p class="text-lg font-semibold text-blue-600 mb-3">
+              «Kom raskt i gang»
+            </p>
+            <div class="text-3xl font-bold text-gray-900 mb-2">
+              Fra 4 900,- <span class="text-lg font-normal text-gray-600"
+                >kr</span
+              >
             </div>
             <div class="text-lg text-gray-500 mb-4">
-              300,- kr/mnd vedlikehold
+              Til 9 900,- • <span class="text-sm">Vedlikehold 500 kr/mnd</span>
             </div>
             <p class="text-gray-600 mb-6">
-              Perfekt for små bedrifter som ønsker en profesjonell digital
-              tilstedeværelse. Vi lager bedriftsnettsider og bedriftshjemmesider
-              som fungerer.
+              For små firma som vil live raskt. Tema-basert, 3 sider, 1 skjema,
+              grunn-SEO og hosting inkludert.
             </p>
 
             <!-- Funksjonsliste -->
@@ -158,7 +152,9 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Opptil 5 sider</span>
+                <span class="text-sm text-gray-700"
+                  >Inntil 3 sider (eller 1 one-pager)</span
+                >
               </li>
               <li class="flex items-start">
                 <svg
@@ -173,37 +169,7 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Enkel CMS / statisk</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Responsivt design</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Grunnleggende SEO</span>
+                <span class="text-sm text-gray-700">Tema-basert design</span>
               </li>
               <li class="flex items-start">
                 <svg
@@ -219,7 +185,7 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >SSL‑sertifikat & hosting (1 år)</span
+                  >1 skjema (kontakt/booking)</span
                 >
               </li>
               <li class="flex items-start">
@@ -235,7 +201,24 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Kontaktskjema & Forms</span>
+                <span class="text-sm text-gray-700"
+                  >GA4 og grunnleggende SEO</span
+                >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">1 revisjonsrunde</span>
               </li>
             </ul>
 
@@ -256,7 +239,7 @@ const breadcrumbs = [
           <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
             <span
               class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium"
-              >Mest populær</span
+              >Mest kjøpte</span
             >
           </div>
 
@@ -272,17 +255,21 @@ const breadcrumbs = [
           </div>
 
           <div class="text-center flex flex-col h-full">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
-            <div class="text-4xl font-bold text-gray-900 mb-2">
-              8 000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Standard</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-3">
+              «Bedriften klar»
+            </p>
+            <div class="text-3xl font-bold text-gray-900 mb-2">
+              Fra 11 000,- <span class="text-lg font-normal text-gray-600"
+                >kr</span
+              >
             </div>
             <div class="text-lg text-gray-500 mb-4">
-              500,- kr/mnd vedlikehold
+              Til 19 000,- • <span class="text-sm">Vedlikehold 990 kr/mnd</span>
             </div>
             <p class="text-gray-600 mb-6">
-              Perfekt for voksende bedrifter som trenger mer funksjonalitet og
-              innholdsstyring. Vi hjelper deg med å lage webside og nettside som
-              vokser med din bedrift.
+              6-10 sider, semiskreddersøm, blogg, 1 integrasjon, SEO+ med
+              søkeordsgrunnlag og analysedashboard.
             </p>
 
             <!-- Funksjonsliste -->
@@ -300,7 +287,7 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Opptil 10 sider</span>
+                <span class="text-sm text-gray-700">6-10 sider</span>
               </li>
               <li class="flex items-start">
                 <svg
@@ -315,7 +302,8 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">WordPress CMS</span>
+                <span class="text-sm text-gray-700">Blogg og innholdsmaler</span
+                >
               </li>
               <li class="flex items-start">
                 <svg
@@ -330,53 +318,7 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Responsivt design</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Grunnleggende SEO</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700"
-                  >SSL‑sertifikat & hosting (1 år)</span
+                <span class="text-sm text-gray-700">Semiskreddersøm design</span
                 >
               </li>
               <li class="flex items-start">
@@ -393,15 +335,30 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Google Analytics-oppsett</span
+                  >1 integrasjon (Mailchimp/Calendly)</span
                 >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">2 revisjonsrunder</span>
               </li>
             </ul>
 
             <div class="mt-auto">
               <CTAButton
-                text="Velg Plus"
-                href="/kontakt?pakke=plus"
+                text="Velg Standard"
+                href="/kontakt?pakke=standard"
                 class="w-full"
               />
             </div>
@@ -424,17 +381,23 @@ const breadcrumbs = [
           </div>
 
           <div class="text-center flex flex-col h-full">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
-            <div class="text-4xl font-bold text-gray-900 mb-2">
-              12 000,- <span class="text-lg font-normal text-gray-600">kr</span>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Growth/Pro</h3>
+            <p class="text-lg font-semibold text-blue-600 mb-3">
+              «Skaler og konverter»
+            </p>
+            <div class="text-3xl font-bold text-gray-900 mb-2">
+              Fra 20 000,- <span class="text-lg font-normal text-gray-600"
+                >kr</span
+              >
             </div>
             <div class="text-lg text-gray-500 mb-4">
-              800,- kr/mnd vedlikehold
+              Til 30 000,- • <span class="text-sm"
+                >Vedlikehold 1 990 kr/mnd</span
+              >
             </div>
             <p class="text-gray-600 mb-6">
-              Perfekt for etablerte bedrifter som trenger avanserte funksjoner
-              og API-integrasjoner. Vi lager profesjonelle nettsider og
-              hjemmesider med avanserte funksjoner.
+              10-15 sider, designsystem, 2-3 integrasjoner, CRO/ytelse og
+              A/B-testing klar.
             </p>
 
             <!-- Funksjonsliste -->
@@ -452,52 +415,7 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Ubegrenset sider</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">WordPress CMS</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Avansert SEO</span>
+                <span class="text-sm text-gray-700">10-15 sider</span>
               </li>
               <li class="flex items-start">
                 <svg
@@ -513,7 +431,7 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >API-integrasjon (1 ekstern API)</span
+                  >Skreddersydd designsystem</span
                 >
               </li>
               <li class="flex items-start">
@@ -530,7 +448,7 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Opplæring i CMS (1 time)</span
+                  >2-3 integrasjoner (CRM, automasjon)</span
                 >
               </li>
               <li class="flex items-start">
@@ -546,116 +464,63 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700"
-                  >Support & oppdateringer (3 måneder)</span
+                <span class="text-sm text-gray-700">Innholdsreview + CRO</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Ytelsesoptimalisering</span>
               </li>
             </ul>
 
             <div class="mt-auto">
               <CTAButton
-                text="Velg Pro"
-                href="/kontakt?pakke=pro"
+                text="Velg Growth/Pro"
+                href="/kontakt?pakke=growth-pro"
                 class="w-full"
               />
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Premium -->
-        <div
-          class="bg-white rounded-lg shadow-md p-8 relative hover:shadow-lg transition-shadow duration-200 border border-yellow-200 flex flex-col"
-        >
-          <!-- Package Image -->
-          <div class="relative mb-6 flex justify-center">
-            <OptimizedImage
-              src="/images/pakker/premium.png"
-              alt="Premium Pakke - Nettup"
-              width={48}
-              height={48}
-              class="w-12 h-12 object-contain"
-            />
-          </div>
+  <!-- E-handel tillegg -->
+  <section class="py-16 bg-gradient-to-br from-purple-50 to-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <div class="text-center mb-6">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            E-handel som tillegg
+          </h2>
+          <p class="text-lg text-gray-600">
+            Utvid din pakke med fullverdig nettbutikk-funksjonalitet
+          </p>
+        </div>
 
-          <div class="text-center flex flex-col h-full">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-            <div class="text-4xl font-bold text-gray-900 mb-2">
-              20 000,- <span class="text-lg font-normal text-gray-600">kr</span>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Commerce-tillegg
+            </h3>
+            <div class="text-2xl font-bold text-purple-600 mb-4">
+              + 45 000 - 90 000,- kr
             </div>
-            <div class="text-lg text-gray-500 mb-4">
-              1 200,- kr/mnd vedlikehold
-            </div>
-            <p class="text-gray-600 mb-6">
-              For enterprise-kunder som trenger tilpassede løsninger og
-              prioritert support. Vi lager tilpassede nettsider og hjemmesider
-              for store bedrifter.
-            </p>
-
-            <!-- Funksjonsliste -->
-            <ul class="text-left space-y-3 mb-8">
+            <ul class="space-y-2">
               <li class="flex items-start">
                 <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Ubegrenset sider</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">WordPress CMS</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Bloggfunksjonalitet</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Avansert SEO</span>
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -667,12 +532,12 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >API-integrasjon (flere API-er)</span
+                  >WooCommerce eller Shopify</span
                 >
               </li>
               <li class="flex items-start">
                 <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -684,12 +549,12 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Opplæring (5 timer workshop)</span
+                  >Betaling (Vipps/Klarna/Stripe)</span
                 >
               </li>
               <li class="flex items-start">
                 <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -701,12 +566,12 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Support & oppdateringer (6 måneder)</span
+                  >Fraktregler og avgifter</span
                 >
               </li>
               <li class="flex items-start">
                 <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -717,11 +582,26 @@ const breadcrumbs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-gray-700">Prioritert support</span>
+                <span class="text-sm text-gray-700">10-20 produktmaler</span>
               </li>
               <li class="flex items-start">
                 <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-gray-700">Kategorier og filtre</span>
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -733,34 +613,56 @@ const breadcrumbs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-sm text-gray-700"
-                  >Hastighets‑optimalisering</span
+                  >Grunnfeed (Google/Meta)</span
                 >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-green-500 mr-3 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-700">Flerspråklig innhold</span>
               </li>
             </ul>
-
-            <div class="mt-auto">
-              <CTAButton
-                text="Velg Premium"
-                href="/kontakt?pakke=premium"
-                class="w-full"
-              />
-            </div>
           </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Ekstra tillegg</h3>
+            <ul class="space-y-3">
+              <li class="border-b pb-2">
+                <span class="font-semibold text-gray-800"
+                  >Stor produktimport</span
+                >
+                <p class="text-sm text-gray-600">
+                  Import av eksisterende produktkatalog
+                </p>
+              </li>
+              <li class="border-b pb-2">
+                <span class="font-semibold text-gray-800"
+                  >ERP/Kasse-integrasjon</span
+                >
+                <p class="text-sm text-gray-600">
+                  Kobling mot eksisterende systemer
+                </p>
+              </li>
+              <li class="border-b pb-2">
+                <span class="font-semibold text-gray-800"
+                  >Avanserte varianter</span
+                >
+                <p class="text-sm text-gray-600">
+                  Størrelser, farger, materialer
+                </p>
+              </li>
+              <li class="border-b pb-2">
+                <span class="font-semibold text-gray-800">Flerspråk</span>
+                <p class="text-sm text-gray-600">
+                  Flere språk for internasjonalt salg
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <CTAButton
+            text="Kontakt oss for e-handel"
+            href="/kontakt?type=ehandel"
+            variant="secondary"
+            size="lg"
+          />
         </div>
       </div>
     </div>
@@ -774,7 +676,9 @@ const breadcrumbs = [
           Detaljert sammenligning
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Se nøyaktig hva som er inkludert i hver pakke
+          <strong>Inkludert i alle pakker:</strong> Responsivt design • SSL • GA4
+          med mål • Grunn-SEO (titler, meta, sitemap) • Skjema/lead-fangst • Sikkerhetskopi
+          ved launch
         </p>
       </div>
 
@@ -788,23 +692,20 @@ const breadcrumbs = [
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Start<br /><span class="text-sm font-normal">5 000,-</span><br
-                /><span class="text-xs text-gray-500">300,-/mnd</span></th
+                >Start<br /><span class="text-sm font-normal"
+                  >4 900-9 900 kr</span
+                ></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Plus<br /><span class="text-sm font-normal">8 000,-</span><br
-                /><span class="text-xs text-gray-500">500,-/mnd</span></th
+                >Standard<br /><span class="text-sm font-normal"
+                  >11 000-19 000 kr</span
+                ></th
               >
               <th
                 class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Pro<br /><span class="text-sm font-normal">12 000,-</span><br
-                /><span class="text-xs text-gray-500">800,-/mnd</span></th
-              >
-              <th
-                class="border border-gray-200 px-4 py-3 text-center font-semibold text-gray-900"
-                >Premium<br /><span class="text-sm font-normal">20 000,-</span
-                ><br /><span class="text-xs text-gray-500">1 200,-/mnd</span
+                >Growth/Pro<br /><span class="text-sm font-normal"
+                  >20 000-30 000 kr</span
                 ></th
               >
             </tr>
@@ -812,274 +713,127 @@ const breadcrumbs = [
           <tbody>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Inkluderte sider</td
+                >Sider</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Opptil 5</td
+                >3 (eller 1 one-pager)</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Opptil 10</td
+                >6-10</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Ubegrenset</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Ubegrenset</td
-              >
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-200 px-4 py-3 text-gray-700">CMS</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >Enkel CMS / statisk</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >WordPress</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >WordPress</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >WordPress</td
-              >
-            </tr>
-            <tr>
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Bloggfunksjonalitet</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Responsivt design</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Grunnleggende SEO</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Avansert SEO</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >SSL‑sertifikat & hosting</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅</td
-              >
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅</td
+                >10-15</td
               >
             </tr>
             <tr class="bg-gray-50">
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Kontaktskjema & Forms</td
+                >Design</td
               >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >Tema-basert</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >Semi-skreddersøm</td
+              >
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+                >Skreddersydd designsystem</td
+              >
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Google Analytics-oppsett</td
+                >Blogg</td
               >
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+                <span class="text-gray-400">–</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
+                <span class="text-green-500 text-xl">✓</span>
               </td>
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
+                <span class="text-green-500 text-xl">✓</span>
               </td>
             </tr>
             <tr class="bg-gray-50">
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >API-integrasjon</td
+                >Integrasjoner</td
               >
               <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+                <span class="text-gray-400">–</span>
               </td>
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (1 ekstern API)</td
               >
+                1
+              </td>
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (flere API-er)</td
               >
+                2-3
+              </td>
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Opplæring i CMS</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td
-                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (1 time)</td
+                >Revisjoner</td
               >
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (5 timer workshop)</td
               >
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Support og oppdateringer</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+                1
               </td>
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (3 måneder)</td
               >
+                2
+              </td>
               <td
                 class="border border-gray-200 px-4 py-3 text-center text-gray-700"
-                >✅ (6 måneder)</td
               >
-            </tr>
-            <tr>
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Prioritert support</td
-              >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
+                2 (+ mikrojusteringer)
               </td>
             </tr>
             <tr class="bg-gray-50">
-              <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Hastighets‑optimalisering</td
+              <td class="border border-gray-200 px-4 py-3 text-gray-700">SEO</td
               >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                Grunnleggende
               </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                + søkeordsgrunnlag
               </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                + innholdsstruktur/CRO
               </td>
             </tr>
             <tr>
               <td class="border border-gray-200 px-4 py-3 text-gray-700"
-                >Flerspråklig innhold</td
+                >Analyse</td
               >
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                GA4 + mål
               </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                + Dashboard
               </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-red-500 text-xl">❌</span>
-              </td>
-              <td class="border border-gray-200 px-4 py-3 text-center">
-                <span class="text-green-500 text-xl">✅</span>
+              <td
+                class="border border-gray-200 px-4 py-3 text-center text-gray-700"
+              >
+                + Hypoteser/A/B-klar
               </td>
             </tr>
           </tbody>
@@ -1092,14 +846,13 @@ const breadcrumbs = [
   <section class="py-16 lg:py-24 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        Ikke sikker på hvilken pakke som passer?
+        Usikker på hvilket nivå som passer?
       </h2>
       <p class="text-xl text-gray-600 mb-8">
-        La oss ta en uforpliktende prat om dine behov og anbefale den beste
-        løsningen
+        Svar på 5 spørsmål – så får du et estimat og kan booke 15 min
       </p>
       <CTAButton
-        text="Eller få et gratis prisoverslag"
+        text="Få et gratis prisoverslag"
         onclick="openCalendly()"
         size="lg"
         variant="outline"
@@ -1126,9 +879,9 @@ const breadcrumbs = [
             Hva er inkludert i hosting og vedlikehold?
           </h3>
           <p class="text-gray-600">
-            Alle våre pakker inkluderer sikker hosting, automatiske
-            sikkerhetskopier, sikkerhetsopdateringer og grunnleggende teknisk
-            support i det første året.
+            Hosting inkludert de første 12 månedene. Vedlikehold faktureres fra
+            måned 1 og inkluderer automatiske sikkerhetskopier,
+            sikkerhetsoppdateringer og grunnleggende teknisk support.
           </p>
         </div>
 
@@ -1160,7 +913,7 @@ const breadcrumbs = [
             Hvor mye koster det å lage en nettside for bedrift?
           </h3>
           <p class="text-gray-600">
-            Prisene starter fra 5 000,- kr for en grunnleggende
+            Prisene starter fra 4 900,- kr for en grunnleggende
             bedriftsnettside. Vi tilbyr transparente priser og kan gi deg et
             skreddersydd tilbud basert på dine spesifikke behov.
           </p>
