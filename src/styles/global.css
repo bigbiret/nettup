@@ -5,11 +5,25 @@
 /* Base styles */
 html {
   font-family: 'Inter', sans-serif;
+  /* Prevent font loading layout shift */
+  font-display: swap;
 }
 
 body {
   background-color: theme('colors.background');
   color: theme('colors.main-text');
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Reserve space for lazy-loaded content */
+[loading="lazy"] {
+  min-height: 1px;
 }
 
 /* Text Animation - Beste praksis løsning */
