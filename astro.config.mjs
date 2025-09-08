@@ -21,11 +21,16 @@ export default defineConfig({
 
   build: {
     assets: 'assets',
+    inlineStylesheets: 'auto',
   },
   vite: {
     build: {
+      cssCodeSplit: true,
       rollupOptions: {
         external: ['workbox-build'],
+        output: {
+          manualChunks: undefined,
+        },
       },
     },
     // Load environment variables from .env file

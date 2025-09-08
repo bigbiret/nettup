@@ -74,7 +74,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -82,6 +82,10 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Install Chrome and ChromeDriver
+        run: |
+          npx browser-driver-manager install chrome
 
       - name: Start preview server and run accessibility tests
         run: |
