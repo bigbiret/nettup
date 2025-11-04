@@ -1,0 +1,243 @@
+/* ========================================
+   Animation Styles for Nettup
+   ======================================== */
+
+/* 
+   Performance-optimized animations using GPU-accelerated properties:
+   - transform
+   - opacity
+   - filter (for brightness effects)
+*/
+
+/* ========================================
+   Why Choose Nettup Section Animations
+   ======================================== */
+
+.why-choose-icon {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Lightning Strike Animation - Rask oppstart */
+.lightning-icon {
+  animation: lightningStrike 3s ease-out infinite;
+  animation-delay: 0.5s;
+  transform-origin: center;
+}
+
+@keyframes lightningStrike {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  10% {
+    transform: translateY(-3px) scale(0.95);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateY(2px) scale(1.15);
+    opacity: 1;
+    filter: brightness(2) drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
+  }
+  25% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1.5) drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
+  }
+  30% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Lock Secure Animation - Sikker kode */
+.lock-icon {
+  animation: lockSecure 4s ease-in-out infinite;
+  animation-delay: 1s;
+  transform-origin: center;
+}
+
+.lock-shackle {
+  animation: shackleClose 4s ease-in-out infinite;
+  animation-delay: 1s;
+  transform-origin: top center;
+}
+
+@keyframes lockSecure {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.05);
+  }
+}
+
+@keyframes shackleClose {
+  0%, 20%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-20deg);
+  }
+  15% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* Bar Chart Growth Animation - Målbare resultater */
+.chart-icon {
+  transform-origin: bottom;
+}
+
+.chart-bar {
+  animation: barGrow 2.5s ease-out forwards;
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+
+.chart-bar-1 {
+  animation-delay: 0.2s;
+}
+
+.chart-bar-2 {
+  animation-delay: 0.4s;
+}
+
+.chart-bar-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes barGrow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Book Icon Animation - Komplett veiledning */
+.book-icon {
+  animation: bookFlip 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+  transform-origin: center;
+}
+
+@keyframes bookFlip {
+  0%, 100% {
+    transform: rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: rotateY(-15deg) scale(1.05);
+  }
+  50% {
+    transform: rotateY(15deg) scale(1.05);
+  }
+  75% {
+    transform: rotateY(-5deg) scale(1);
+  }
+}
+
+/* ========================================
+   Scroll-triggered Animations
+   ======================================== */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pause animations until triggered */
+.animate-on-scroll .why-choose-icon {
+  animation-play-state: paused;
+}
+
+.animate-on-scroll.animated .why-choose-icon {
+  animation-play-state: running;
+}
+
+/* Staggered animation delays for children */
+.animate-on-scroll.animated > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.animate-on-scroll.animated > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.animate-on-scroll.animated > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll.animated > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.animate-on-scroll.animated > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.animate-on-scroll.animated > *:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* ========================================
+   Accessibility & Performance
+   ======================================== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .lightning-icon,
+  .lock-icon,
+  .lock-shackle,
+  .chart-bar,
+  .book-icon {
+    animation: none;
+  }
+  
+  .chart-bar {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .animate-on-scroll > * {
+    transition-delay: 0s;
+  }
+}
+
+/* Optimize for mobile performance */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .lightning-icon,
+  .lock-icon,
+  .book-icon {
+    animation-duration: 4s;
+  }
+  
+  .chart-bar {
+    animation-duration: 2s;
+  }
+}
